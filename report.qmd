@@ -1,0 +1,1477 @@
+---
+title: "Skill Trends in East Asia"
+subtitle: "Insights from Online Job Postings"
+date: today
+format:
+  html:
+    theme:
+      light: cosmo
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    smooth-scroll: true
+    code-fold: show
+    embed-resources: true
+    fig-width: 9
+    fig-height: 6
+include-in-header:
+  text: |
+    <style>
+      :root {
+        --bg-soft: #f8fafc;
+        --ink-strong: #0f172a;
+        --ink-mid: #334155;
+        --card-border: #e2e8f0;
+        --brand: #2563eb;
+        --brand-2: #0891b2;
+        --brand-3: #7c3aed;
+      }
+
+      body {
+        color: var(--ink-mid);
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 40%);
+        font-feature-settings: "ss01", "cv01";
+      }
+
+      #title-block-header {
+        margin-bottom: 1.2rem;
+      }
+
+      .report-eyebrow {
+        display: block;
+        color: #94a3b8;
+        letter-spacing: 0.16em;
+        font-weight: 700;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        margin-bottom: 0.45rem;
+      }
+
+      .hero {
+        border: 1px solid var(--card-border);
+        background: radial-gradient(1200px 280px at 0% 0%, #dbeafe 0%, #f8fafc 55%, #ffffff 100%);
+        border-radius: 18px;
+        padding: 1.4rem 1.2rem 1rem 1.2rem;
+        margin: 0.2rem 0 1.2rem 0;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      .hero h2 {
+        margin-top: 0.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--ink-strong);
+        letter-spacing: -0.01em;
+      }
+
+      .hero p {
+        margin-bottom: 0.4rem;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+        gap: 0.8rem;
+        margin: 0.8rem 0 1.4rem 0;
+      }
+
+      .kpi-card {
+        background: white;
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 0.75rem 0.9rem;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      }
+
+      .kpi-label {
+        font-size: 0.78rem;
+        color: #64748b;
+        margin-bottom: 0.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .kpi-value {
+        color: var(--ink-strong);
+        font-weight: 700;
+        font-size: 1.3rem;
+        line-height: 1.2;
+      }
+
+      .section-card {
+        background: #fff;
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 1rem 1rem 0.4rem 1rem;
+        margin: 0.8rem 0 1rem 0;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+      }
+
+      .table caption {
+        caption-side: bottom;
+        color: #64748b;
+        font-size: 0.85rem;
+        padding-top: 0.5rem;
+      }
+
+      .table thead th {
+        background: #f1f5f9;
+        color: #0f172a;
+        border-bottom: 1px solid #cbd5e1;
+      }
+
+      .table tbody tr:hover {
+        background: #f8fafc;
+      }
+
+      .market-table th {
+        user-select: none;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .market-table th.active-sort {
+        color: var(--ink-strong);
+      }
+
+      .market-table td,
+      .market-table th {
+        vertical-align: middle;
+      }
+
+      .market-row-high td {
+        background: #f8fbff;
+      }
+
+      .market-row-upper_middle td {
+        background: #fffdf7;
+      }
+
+      .market-row-lower_middle td {
+        background: #f7fdfa;
+      }
+
+      .market-row-benchmark td {
+        background: #fbf9ff;
+      }
+
+      .market-table tbody tr:hover td {
+        filter: brightness(0.985);
+      }
+
+      .source-note {
+        margin-top: 0.95rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .source-note-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        margin-bottom: 0.45rem;
+      }
+
+      .source-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem 1.4rem;
+      }
+
+      .source-link {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.28rem;
+        color: #0f6cbd;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.25;
+        text-decoration: none;
+        border-bottom: 2px solid rgba(15, 108, 189, 0.28);
+        padding-bottom: 0.08rem;
+        transition: color 120ms ease, border-color 120ms ease;
+      }
+
+      .source-link:hover,
+      .source-link:focus {
+        color: #0a5aa0;
+        border-bottom-color: rgba(10, 90, 160, 0.5);
+      }
+
+      .source-link-ext {
+        color: #7fb0d8;
+        font-size: 0.9em;
+      }
+
+      .modal-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.7rem;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid #cfe0f3;
+        background: #f8fbff;
+        color: #0f6cbd;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .modal-link-btn:hover,
+      .modal-link-btn:focus {
+        background: #eef6ff;
+        color: #0a5aa0;
+        border-color: #b8d2ee;
+      }
+
+      .pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.22rem 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-right: 0.35rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .pill-high { background: #dbeafe; color: #1e3a8a; }
+      .pill-upper { background: #fef3c7; color: #92400e; }
+      .pill-lower { background: #ccfbf1; color: #115e59; }
+      .pill-benchmark {
+        color: #5b21b6;
+        border: 1px solid #c4b5fd;
+        background: repeating-linear-gradient(
+          -45deg,
+          #f5f3ff,
+          #f5f3ff 6px,
+          #ede9fe 6px,
+          #ede9fe 12px
+        );
+      }
+
+      .map-tooltip {
+        position: absolute;
+        z-index: 20;
+        pointer-events: none;
+        opacity: 0;
+        min-width: 220px;
+        max-width: 280px;
+        padding: 0.7rem 0.8rem;
+        border-radius: 12px;
+        border: 1px solid #dbe3f0;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
+        backdrop-filter: blur(6px);
+      }
+
+      .map-tooltip-title {
+        color: var(--ink-strong);
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .map-tooltip-row {
+        font-size: 0.82rem;
+        color: var(--ink-mid);
+        margin: 0.12rem 0;
+      }
+
+      .map-tooltip-label {
+        color: #64748b;
+        font-weight: 600;
+      }
+
+      .map-country-active {
+        stroke: #0f172a !important;
+        stroke-width: 1.2 !important;
+        filter: brightness(0.98);
+      }
+
+      .map-controls {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 15;
+        display: flex;
+        gap: 0.4rem;
+      }
+
+      .map-control-btn {
+        border: 1px solid #dbe3f0;
+        background: rgba(255, 255, 255, 0.94);
+        color: #0f172a;
+        border-radius: 10px;
+        min-width: 2.2rem;
+        height: 2.2rem;
+        padding: 0 0.65rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+      }
+
+      .map-control-btn:hover,
+      .map-control-btn:focus {
+        background: #ffffff;
+        border-color: #bfd2ea;
+      }
+
+      .pipeline-diagram {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin: 1.6rem 0 1rem 0;
+        padding: 1rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .pipeline-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: flex-start;
+        min-width: 165px;
+        max-width: 185px;
+        flex: 1;
+        padding: 0.9rem 0.8rem 0.95rem 0.8rem;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(226, 232, 240, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+
+      .pipeline-step:hover,
+      .pipeline-step:focus-within {
+        transform: translateY(-3px) scale(1.025);
+        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.10);
+        border-color: #cbd5e1;
+      }
+
+      .pipeline-step-top {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.7rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .pipeline-step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.05rem;
+        height: 2.05rem;
+        padding: 0 0.45rem;
+        border-radius: 999px;
+        border: 1px solid #dbe3f0;
+        background: #ffffff;
+        color: #64748b;
+        font-size: 0.73rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, color 160ms ease;
+      }
+
+      .pipeline-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+      }
+
+      .pipeline-step:hover .pipeline-icon,
+      .pipeline-step:focus-within .pipeline-icon {
+        transform: scale(1.06);
+        box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+        filter: saturate(1.06) brightness(1.02);
+      }
+
+      .pipeline-step:hover .pipeline-step-number,
+      .pipeline-step:focus-within .pipeline-step-number {
+        transform: scale(1.04);
+        color: var(--ink-strong);
+        border-color: #cbd5e1;
+        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+      }
+
+      .pipeline-label {
+        font-weight: 700;
+        font-size: 0.96rem;
+        color: var(--ink-strong);
+        line-height: 1.22;
+        margin-bottom: 0.45rem;
+        min-height: 2.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pipeline-detail {
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.45;
+        padding: 0 0.15rem;
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .compare-controls {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
+        gap: 0.8rem;
+        margin: 0.3rem 0 1rem 0;
+      }
+
+      .compare-control label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+
+      .compare-control select {
+        width: 100%;
+        border: 1px solid #dbe3f0;
+        border-radius: 10px;
+        padding: 0.55rem 0.7rem;
+        background: #fff;
+        color: var(--ink-strong);
+        box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
+      }
+
+      .compare-note {
+        font-size: 0.84rem;
+        color: #64748b;
+        margin: 0.2rem 0 0.9rem 0;
+      }
+
+      .compare-charts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      @media (max-width: 680px) {
+        .pipeline-diagram {
+          grid-template-columns: 1fr;
+        }
+        .pipeline-step {
+          max-width: none;
+          width: 100%;
+        }
+        .compare-controls {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 681px) and (max-width: 980px) {
+        .pipeline-diagram {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .kpi-grid {
+          grid-template-columns: repeat(3, minmax(140px, 1fr));
+        }
+      }
+
+      @media (max-width: 720px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .kpi-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const title = document.querySelector("#title-block-header .title");
+        if (!title) return;
+        if (document.querySelector(".report-eyebrow")) return;
+        const tag = document.createElement("span");
+        tag.className = "report-eyebrow";
+        tag.textContent = "PROGRESS REPORT";
+        title.parentNode.insertBefore(tag, title);
+      });
+    </script>
+---
+
+::: {.hero}
+## Executive Summary
+
+This report examines skill demand patterns across East and Southeast Asian
+labour markets using large-scale data from online job advertisements.
+By combining automated translation, sentence-level skill filtering,
+and taxonomy mapping to the European Skills, Competences, Qualifications
+and Occupations (ESCO) framework, we provide a cross-country comparison
+of employer skill requirements.
+:::
+
+```{=html}
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">Job Ads</div>
+    <div class="kpi-value">1,953,674</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Markets Analyzed</div>
+    <div class="kpi-value">9 <span style="font-size:0.75rem;font-weight:500;color:#64748b;">East Asian</span></div>
+    <div style="font-size:0.78rem;color:#94a3b8;margin-top:0.15rem;">+ 4 benchmark</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">ESCO Skills</div>
+    <div class="kpi-value">13.9K</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Data Period</div>
+    <div class="kpi-value" style="font-size:1rem; line-height:1.35;">Mar 2025 — Mar 2026</div>
+  </div>
+</div>
+```
+
+## Regional Coverage
+
+### Countries covered
+
+```{ojs}
+//| echo: false
+//| output: false
+
+topojson = import("https://cdn.jsdelivr.net/npm/topojson-client@3/+esm")
+
+world = fetch(
+  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+).then(r => r.json())
+
+// ISO 3166-1 numeric → label + income group + offer counts
+countryMeta = ({
+  "392": { name: "Japan",        group: "high",         iso3: "JPN", offers: 258139 },
+  "410": { name: "South Korea",  group: "high",         iso3: "KOR", offers: 124869 },
+  "158": { name: "Taiwan",       group: "high",         iso3: "TWN", offers: 55217 },
+  "702": { name: "Singapore",    group: "high",         iso3: "SGP", offers: 138202 },
+  "764": { name: "Thailand",     group: "upper_middle", iso3: "THA", offers: 57892 },
+  "360": { name: "Indonesia",    group: "upper_middle", iso3: "IDN", offers: 113460 },
+  "458": { name: "Malaysia",     group: "upper_middle", iso3: "MYS", offers: 171586 },
+  "704": { name: "Vietnam",      group: "lower_middle", iso3: "VNM", offers: 145549 },
+  "608": { name: "Philippines",  group: "lower_middle", iso3: "PHL", offers: 187818 },
+  "356": { name: "India",        group: "benchmark",    iso3: "IND", offers: 224187 },
+})
+
+benchmarkMeta = ([
+  { name: "Chile", group: "benchmark", iso3: "CHL", offers: 142324 },
+  { name: "Mexico", group: "benchmark", iso3: "MEX", offers: 199404 },
+  { name: "Poland", group: "benchmark", iso3: "POL", offers: 135027 },
+])
+
+mapBenchmarkMetaById = ({
+  "152": { name: "Chile",  group: "benchmark", iso3: "CHL", offers: 142324 },
+  "484": { name: "Mexico", group: "benchmark", iso3: "MEX", offers: 199404 },
+  "616": { name: "Poland", group: "benchmark", iso3: "POL", offers: 135027 },
+})
+
+allMarketMeta = [
+  ...Object.values(countryMeta),
+  ...benchmarkMeta,
+]
+
+palette = ({
+  high:         "#1d4ed8",
+  upper_middle: "#f59e0b",
+  lower_middle: "#0d9488",
+  benchmark:    "#7c3aed",
+  bg:        "#f1f5f9",
+  border:    "#ffffff",
+  ocean:     "#eff6ff",
+  land:      "#e2e8f0",
+})
+
+// Label anchor positions [lon, lat] with nudge
+labelAnchors = [
+  { id: "392", lon: 140,  lat: 37,   dx: 8,  dy: 0   },
+  { id: "410", lon: 128,  lat: 36,   dx: -45,dy: 12  },
+  { id: "158", lon: 121,  lat: 23.5, dx: 8,  dy: 8   },
+  { id: "764", lon: 101,  lat: 14,   dx: -10,dy: 16  },
+  { id: "704", lon: 107,  lat: 16,   dx: 10, dy: 0   },
+  { id: "458", lon: 109,  lat: 3,    dx: -50,dy: -8  },
+  { id: "608", lon: 122,  lat: 12,   dx: 10, dy: 0   },
+  { id: "702", lon: 104,  lat: 1.3,  dx: -55,dy: 8   },
+  { id: "360", lon: 118,  lat: -2,   dx: 0,  dy: 14  },
+  { id: "356", lon: 79,   lat: 22,   dx: -10,dy: 0   },
+  { id: "152", lon: -71,  lat: -30,  dx: 10, dy: 0   },
+  { id: "484", lon: -102, lat: 23,   dx: 10, dy: 0   },
+  { id: "616", lon: 19,   lat: 52,   dx: 8,  dy: 0   },
+]
+
+laborForceOverrides = ({
+  TWN: { year: 2025, value: 12028000 },
+})
+
+laborForceByIso3 = Object.fromEntries(await Promise.all(
+  [...new Set(allMarketMeta.map(d => d.iso3))].map(async iso3 => {
+    if (laborForceOverrides[iso3]) {
+      return [iso3, laborForceOverrides[iso3]]
+    }
+    const url = `https://api.worldbank.org/v2/country/${iso3}/indicator/SL.TLF.TOTL.IN?format=json&per_page=3`
+    const data = await fetch(url).then(r => r.json())
+    const row = (data?.[1] || []).find(d => d.value != null)
+    return [iso3, row ? { year: Number(row.date), value: Number(row.value) } : null]
+  })
+))
+
+gdpGrowthOverrides = ({
+  TWN: { year: 2025, value: 8.63 },
+})
+
+gdpGrowthByIso3 = Object.fromEntries(await Promise.all(
+  [...new Set(allMarketMeta.map(d => d.iso3))].map(async iso3 => {
+    if (gdpGrowthOverrides[iso3]) {
+      return [iso3, gdpGrowthOverrides[iso3]]
+    }
+    const url = `https://api.worldbank.org/v2/country/${iso3}/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=3`
+    const data = await fetch(url).then(r => r.json())
+    const row = (data?.[1] || []).find(d => d.value != null)
+    return [iso3, row ? { year: Number(row.date), value: Number(row.value) } : null]
+  })
+))
+
+fmtInt = d3.format(",")
+fmtRate = d3.format(".1f")
+
+groupLabels = ({
+  high: "High-income",
+  upper_middle: "Upper-middle-income",
+  lower_middle: "Lower-middle-income",
+  benchmark: "Benchmark",
+})
+
+metricsFor = (meta) => {
+  const lf = laborForceByIso3[meta.iso3]
+  const gdp = gdpGrowthByIso3[meta.iso3]
+  return {
+    ...meta,
+    income_group: groupLabels[meta.group],
+    labor_force: lf?.value ?? null,
+    labor_force_year: lf?.year ?? null,
+    real_gdp_growth_2025: gdp?.value ?? null,
+    real_gdp_growth_year: gdp?.year ?? null,
+    offers_per_100k: (meta.offers != null && lf?.value)
+      ? (meta.offers / lf.value) * 100000
+      : null,
+  }
+}
+
+countryRowsById = Object.fromEntries(
+  Object.entries(countryMeta).map(([id, meta]) => [id, metricsFor(meta)])
+)
+
+mapRowsById = Object.fromEntries(
+  [...Object.entries(countryMeta), ...Object.entries(mapBenchmarkMetaById)]
+    .map(([id, meta]) => [id, metricsFor(meta)])
+)
+
+benchmarkRows = benchmarkMeta.map(metricsFor)
+
+groupOrder = ({ high: 0, upper_middle: 1, lower_middle: 2, benchmark: 3 })
+
+reportRows = [...Object.values(countryRowsById), ...benchmarkRows]
+  .sort((a, b) => groupOrder[a.group] - groupOrder[b.group] || b.offers - a.offers)
+
+tooltipHtml = (row) => {
+  const offersText = row.offers == null ? "n/a" : fmtInt(row.offers)
+  const lfText = row.labor_force == null ? "n/a" : fmtInt(row.labor_force)
+  const per100k = row.offers_per_100k == null ? "n/a" : fmtRate(row.offers_per_100k)
+  const gdpText = row.real_gdp_growth_2025 == null ? "n/a" : fmtRate(row.real_gdp_growth_2025)
+  const lfYear = row.labor_force_year ? ` (${row.labor_force_year})` : ""
+  return `
+    <div class="map-tooltip-title">${row.name}</div>
+    <div class="map-tooltip-row"><span class="map-tooltip-label">Income group:</span> ${row.income_group}</div>
+    <div class="map-tooltip-row"><span class="map-tooltip-label">Job offers:</span> ${offersText}</div>
+    <div class="map-tooltip-row"><span class="map-tooltip-label">Labor force${lfYear}:</span> ${lfText}</div>
+    <div class="map-tooltip-row"><span class="map-tooltip-label">Offers per 100k LF:</span> ${per100k}</div>
+    <div class="map-tooltip-row"><span class="map-tooltip-label">Real GDP growth (2025):</span> ${gdpText}%</div>
+  `
+}
+```
+
+```{ojs}
+//| echo: false
+//| fig-cap: "Analyzed countries grouped by income status."
+
+{
+  const W = 860, H = 560;
+  const container = d3.create("div")
+    .style("position", "relative")
+    .style("max-width", "100%")
+    .style("overflow", "hidden");
+
+  const tooltip = container.append("div")
+    .attr("class", "map-tooltip");
+
+  const controls = container.append("div")
+    .attr("class", "map-controls");
+
+  const projection = d3.geoMercator()
+    .center([108, 18])
+    .scale(480)
+    .translate([W / 2, H / 2]);
+
+  const path = d3.geoPath(projection);
+
+  const land = topojson.feature(world, world.objects.countries);
+
+  const svg = container.append("svg")
+    .attr("viewBox", [0, 0, W, H])
+    .attr("width", W)
+    .attr("height", H)
+    .style("max-width", "100%")
+    .style("height", "auto")
+    .style("font-family", "system-ui, sans-serif");
+
+  // Ocean and subtle background grid feel
+  svg.append("rect")
+    .attr("width", W).attr("height", H)
+    .attr("fill", palette.ocean);
+
+  const mapLayer = svg.append("g");
+
+  // Stripe pattern for benchmark country (India)
+  const defs = svg.append("defs");
+  const hatch = defs.append("pattern")
+    .attr("id", "benchmarkHatch")
+    .attr("patternUnits", "userSpaceOnUse")
+    .attr("width", 8)
+    .attr("height", 8)
+    .attr("patternTransform", "rotate(45)");
+
+  hatch.append("rect")
+    .attr("width", 8)
+    .attr("height", 8)
+    .attr("fill", "#f5f3ff");
+
+  hatch.append("line")
+    .attr("x1", 0).attr("y1", 0)
+    .attr("x2", 0).attr("y2", 8)
+    .attr("stroke", palette.benchmark)
+    .attr("stroke-width", 2);
+
+  const showTooltip = (event, row) => {
+    const [x, y] = d3.pointer(event, container.node());
+    const rect = container.node().getBoundingClientRect();
+    const tooltipWidth = 250;
+    const tooltipHeight = 120;
+    const left = Math.min(rect.width - tooltipWidth - 12, Math.max(12, x + 14));
+    const top = Math.min(rect.height - tooltipHeight - 12, Math.max(12, y + 14));
+    tooltip
+      .html(tooltipHtml(row))
+      .style("left", `${left}px`)
+      .style("top", `${top}px`)
+      .style("opacity", 1);
+  };
+
+  const hideTooltip = () => {
+    tooltip.style("opacity", 0);
+  };
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.15, 6])
+    .on("zoom", (event) => {
+      mapLayer.attr("transform", event.transform);
+    });
+
+  svg.call(zoom);
+
+  controls.append("button")
+    .attr("class", "map-control-btn")
+    .attr("type", "button")
+    .attr("title", "Zoom in")
+    .text("+")
+    .on("click", () => {
+      svg.transition().duration(220).call(zoom.scaleBy, 1.35);
+    });
+
+  controls.append("button")
+    .attr("class", "map-control-btn")
+    .attr("type", "button")
+    .attr("title", "Zoom out")
+    .text("−")
+    .on("click", () => {
+      svg.transition().duration(220).call(zoom.scaleBy, 1 / 1.35);
+    });
+
+  controls.append("button")
+    .attr("class", "map-control-btn")
+    .attr("type", "button")
+    .attr("title", "Reset view")
+    .style("min-width", "auto")
+    .text("Reset")
+    .on("click", () => {
+      svg.transition().duration(260).call(zoom.transform, d3.zoomIdentity);
+    });
+
+  // Countries
+  const countryPaths = mapLayer.selectAll("path.country")
+    .data(land.features)
+    .join("path")
+      .attr("class", "country")
+      .attr("d", path)
+      .attr("fill", d => {
+        const m = mapRowsById[d.id];
+        if (!m) return palette.land;
+        return m.group === "benchmark" ? "url(#benchmarkHatch)" : palette[m.group];
+      })
+      .attr("stroke", palette.border)
+      .attr("stroke-width", 0.5)
+      .attr("opacity", d => mapRowsById[d.id] ? 1 : 0.6)
+      .style("cursor", d => mapRowsById[d.id] ? "pointer" : "default");
+
+  countryPaths
+    .filter(d => mapRowsById[d.id])
+    .on("mouseenter", function(event, d) {
+      d3.select(this).classed("map-country-active", true);
+      showTooltip(event, mapRowsById[d.id]);
+    })
+    .on("mousemove", function(event, d) {
+      showTooltip(event, mapRowsById[d.id]);
+    })
+    .on("mouseleave", function() {
+      d3.select(this).classed("map-country-active", false);
+      hideTooltip();
+    });
+
+  // Small-country markers (Singapore is invisible at 110m)
+  for (const anc of labelAnchors) {
+    if (anc.id === "702") {
+      const [cx, cy] = projection([anc.lon, anc.lat]);
+      const m = mapRowsById[anc.id];
+      mapLayer.append("circle")
+        .attr("cx", cx).attr("cy", cy).attr("r", 4)
+        .attr("fill", m.group === "benchmark" ? palette.benchmark : palette[m.group])
+        .attr("stroke", palette.border)
+        .attr("stroke-width", 1)
+        .style("cursor", "pointer")
+        .on("mouseenter", (event) => showTooltip(event, m))
+        .on("mousemove", (event) => showTooltip(event, m))
+        .on("mouseleave", hideTooltip);
+    }
+  }
+
+  // Labels
+  const labels = mapLayer.append("g").attr("class", "labels");
+
+  for (const anc of labelAnchors) {
+    const [x, y] = projection([anc.lon, anc.lat]);
+    const m = mapRowsById[anc.id];
+    if (!m) continue;
+
+    labels.append("text")
+      .attr("x", x + (anc.dx || 0))
+      .attr("y", y + (anc.dy || 0))
+      .attr("text-anchor", "start")
+      .attr("font-size", "11px")
+      .attr("font-weight", 600)
+      .attr("fill", "#1e293b")
+      .attr("paint-order", "stroke")
+      .attr("stroke", "#ffffffcc")
+      .attr("stroke-width", 3)
+      .text(m.name);
+  }
+
+  // Legend
+  const lg = svg.append("g")
+    .attr("transform", `translate(20, ${H - 106})`);
+
+  const items = [
+    { label: "High-income economies", color: palette.high, hatch: false },
+    { label: "Upper-middle-income economies", color: palette.upper_middle, hatch: false },
+    { label: "Lower-middle-income economies", color: palette.lower_middle, hatch: false },
+    { label: "Benchmark", color: palette.benchmark, hatch: true },
+  ];
+
+  items.forEach(({ label, color, hatch }, i) => {
+    const marker = lg.append("rect")
+      .attr("x", 0).attr("y", i * 22)
+      .attr("width", 14).attr("height", 14)
+      .attr("rx", 2)
+      .attr("fill", color);
+    if (hatch) {
+      marker
+        .attr("fill", "url(#benchmarkHatch)")
+        .attr("stroke", color)
+        .attr("stroke-width", 1);
+    }
+    lg.append("text")
+      .attr("x", 20).attr("y", i * 22 + 12)
+      .attr("font-size", "12px")
+      .attr("fill", "#334155")
+      .text(label);
+  });
+
+  return container.node();
+}
+```
+
+<span class="pill pill-lower">Lower-middle-income: Vietnam, Philippines</span>
+<span class="pill pill-upper">Upper-middle-income: Thailand, Indonesia, Malaysia</span>
+<span class="pill pill-high">High-income: Japan, South Korea, Singapore, Taiwan</span>
+<span class="pill pill-benchmark">Benchmark: India, Chile, Mexico, Poland</span>
+
+::: {.section-card}
+### Relative labour demand
+
+The table below summarizes the absolute number of job offers and the number of
+offers per 100,000 people in the labor force. This allows us to compare
+both the scale of observed hiring and its intensity relative to each
+country's labour supply. Click a column header to sort the table.
+
+```{ojs}
+//| echo: false
+
+{
+  const rows = reportRows.map(d => ({
+    country: d.name,
+    group: d.group,
+    income_group: d.income_group,
+    offers: d.offers,
+    offers_per_100k: d.offers_per_100k,
+    real_gdp_growth_2025: d.real_gdp_growth_2025,
+  }));
+
+  const table = d3.create("table")
+    .attr("class", "table table-sm align-middle market-table");
+
+  const columns = [
+    { key: "country", label: "Country", type: "text" },
+    { key: "income_group", label: "Income group", type: "text" },
+    { key: "offers", label: "Job offers", type: "number" },
+    { key: "offers_per_100k", label: "Offers per 100k labor force", type: "number" },
+    { key: "real_gdp_growth_2025", label: "Real GDP growth (2025)", type: "number" },
+  ];
+
+  let sortKey = "income_group";
+  let sortDirection = "asc";
+
+  const thead = table.append("thead");
+  const headerRow = thead.append("tr");
+  const tbody = table.append("tbody");
+
+  const sortRows = () => {
+    const sorted = [...rows].sort((a, b) => {
+      if (sortKey === "income_group") {
+        const cmp = groupOrder[a.group] - groupOrder[b.group];
+        if (cmp !== 0) return sortDirection === "asc" ? cmp : -cmp;
+        return b.offers - a.offers;
+      }
+      const av = a[sortKey];
+      const bv = b[sortKey];
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      const cmp = columns.find(c => c.key === sortKey).type === "text"
+        ? String(av).localeCompare(String(bv))
+        : av - bv;
+      return sortDirection === "asc" ? cmp : -cmp;
+    });
+    return sorted;
+  };
+
+  const renderBody = () => {
+    tbody.selectAll("tr").remove();
+    sortRows().forEach(row => {
+      const tr = tbody.append("tr")
+        .attr("class", `market-row-${row.group}`);
+      tr.append("td").text(row.country);
+      tr.append("td").text(row.income_group);
+      tr.append("td").style("text-align", "right").text(fmtInt(row.offers));
+      tr.append("td")
+        .style("text-align", "right")
+        .text(row.offers_per_100k == null ? "n/a" : fmtRate(row.offers_per_100k));
+      tr.append("td")
+        .style("text-align", "right")
+        .text(row.real_gdp_growth_2025 == null ? "n/a" : `${fmtRate(row.real_gdp_growth_2025)}%`);
+    });
+  };
+
+  columns.forEach(col => {
+    headerRow.append("th")
+      .attr("class", col.key === sortKey ? "active-sort" : null)
+      .text(`${col.label}${col.key === sortKey ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}`)
+      .on("click", function() {
+        if (sortKey === col.key) {
+          sortDirection = sortDirection === "asc" ? "desc" : "asc";
+        } else {
+          sortKey = col.key;
+          sortDirection = col.type === "text" ? "asc" : "desc";
+        }
+        headerRow.selectAll("th")
+          .attr("class", d => null)
+          .text((d, i) => {
+            const c = columns[i];
+            return `${c.label}${c.key === sortKey ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}`;
+          });
+        headerRow.selectAll("th")
+          .filter((d, i) => columns[i].key === sortKey)
+          .attr("class", "active-sort");
+        renderBody();
+      });
+  });
+
+  renderBody();
+
+  return table.node();
+}
+```
+:::
+
+```{=html}
+<div class="source-note">
+  <div class="source-note-label">Macroeconomic sources</div>
+  <div class="source-links">
+    <a class="source-link" href="https://data.worldbank.org/indicator/SL.TLF.TOTL.IN" target="_blank" rel="noopener noreferrer">
+      World Bank labor force (2025)
+      <span class="source-link-ext">↗</span>
+    </a>
+    <a class="source-link" href="https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG" target="_blank" rel="noopener noreferrer">
+      World Bank real GDP growth (2025)
+      <span class="source-link-ext">↗</span>
+    </a>
+    <a class="source-link" href="https://eng.stat.gov.tw/" target="_blank" rel="noopener noreferrer">
+      National Statistics, Republic of China (Taiwan, 2025)
+      <span class="source-link-ext">↗</span>
+    </a>
+  </div>
+</div>
+```
+
+## Data and Methodology
+
+::: {.section-card}
+### Data collection
+
+We collect job advertisements from **Indeed** and **Careerjet**, two large
+aggregators with country-specific sites across the markets covered in this
+study. The analytical sample shown here comprises roughly **1.95 million**
+postings covering March 2025 – March 2026.
+
+```{=html}
+<button type="button" class="modal-link-btn" data-bs-toggle="modal" data-bs-target="#dataCollectionModal">
+  Read more
+  <span aria-hidden="true">↗</span>
+</button>
+
+<div class="modal fade" id="dataCollectionModal" tabindex="-1" aria-labelledby="dataCollectionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dataCollectionModalLabel">Data collection details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>We use two aggregators: <strong>Indeed</strong>, the most established platform in the sample, and <strong>Careerjet</strong>, a newer but growing platform. We selected them because both provide dedicated country-level sites across the markets included in the analysis.</p>
+        <p>For all country-platform combinations, we developed Python web scrapers that retrieve job postings and extract core information such as job title, job description, company name, salary, job and company location, posting date, contract type, remote-work status, industry, company size and revenue, and the original job-post URL.</p>
+        <p>Because attribute availability varies across postings, we restrict the analytical sample to offers containing at least a job title, a job description, and the original URL. We additionally remove duplicates with identical titles and descriptions, both within each job board and across boards.</p>
+        <p>Both portals impose practical result limits for broad queries. Indeed typically exposes up to 1,000 postings and Careerjet up to 2,000. To improve coverage, we run multiple searches by region within each country and monitor cases where the maximum visible result count is returned, since that suggests that additional postings may be omitted.</p>
+        <p>The scraping pipeline runs daily on a cloud-hosted Python environment. Automated tests alert us to blocking or portal-structure changes, allowing quick maintenance when needed. Retrieved postings are stored in an SQL database that supports efficient querying at scale.</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+:::
+
+::: {.section-card}
+### Processing pipeline
+
+Raw job postings arrive in different languages and contain noisy,
+unstructured information. We transform them into a standardised analytic
+dataset in six steps: we first identify the posting language, translate
+non-English text into a common language, isolate skill-relevant
+sentences, map extracted skills to ESCO, standardise job titles to ESCO
+occupations using both titles and skill context for disambiguation, and
+then enrich each posting with sector information by assigning NACE
+economic activity codes.
+
+```{=html}
+<div class="pipeline-diagram">
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">01</div>
+      <div class="pipeline-icon" style="background:#e0f2fe;color:#0369a1;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9l-4 4v-4H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/><path d="M8 9h5"/><path d="M8 12h3"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">Language<br>Detection</div>
+    <div class="pipeline-detail">ML-based identification of the source language for each job posting</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">02</div>
+      <div class="pipeline-icon" style="background:#fef3c7;color:#b45309;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6"/><path d="M8 6v2c0 2.1-1 4.2-2.8 5.6"/><path d="M6 12c.8 1.2 2 2.2 3.4 2.8"/><path d="m13 7 6 10"/><path d="m19 7-6 10"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">Translation</div>
+    <div class="pipeline-detail">Fine-tuned Gemma-architecture model translates non-English descriptions to English</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">03</div>
+      <div class="pipeline-icon" style="background:#ccfbf1;color:#0d9488;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M7 12h10"/><path d="M10 18h4"/><circle cx="6.5" cy="6.5" r="1"/><circle cx="17.5" cy="12.5" r="1"/><circle cx="8.5" cy="18.5" r="1"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">Skill-Sentence<br>Filtering</div>
+    <div class="pipeline-detail">Fine-tuned BERT-architecture classifier identifies skill-relevant sentences</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">04</div>
+      <div class="pipeline-icon" style="background:#ede9fe;color:#7c3aed;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">ESCO<br>Mapping</div>
+    <div class="pipeline-detail">Contrastive bi-encoder matches extracted skills to ~14,000 ESCO taxonomy entries</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">05</div>
+      <div class="pipeline-icon" style="background:#dbeafe;color:#1d4ed8;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10"/><path d="M9 8h6"/><path d="M12 8v9"/><path d="M8 20h8"/><path d="M5 12c1.2-1.4 2.8-2 4.7-2"/><path d="M19 12c-1.2-1.4-2.8-2-4.7-2"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">Job Title<br>Standardisation</div>
+    <div class="pipeline-detail">Job titles are mapped to ESCO occupations using titles and extracted skills as context for disambiguation</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-step-top">
+      <div class="pipeline-step-number">06</div>
+      <div class="pipeline-icon" style="background:#dcfce7;color:#15803d;">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h7"/><path d="M17 11c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4"/><path d="m17 13 1.4 1.4L21 12"/></svg>
+      </div>
+    </div>
+    <div class="pipeline-label">Data<br>Augmentation</div>
+    <div class="pipeline-detail">NACE economic activity is assigned using the official ESCO-NACE crosswalk and job-ad context for disambiguation</div>
+  </div>
+</div>
+```
+
+::: {.callout-note appearance="simple"}
+Our pipeline outperforms the current state of the art by approximately
+3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets
+reported by Decorte et al. (2025). These benchmarks consist of job
+postings annotated with ESCO gold-standard skill labels by human
+experts, against which model predictions are evaluated. The reported
+RP@5 scores are 0.822 and 0.838, respectively.
+:::
+
+:::
+
+
+## Results
+
+::: {.section-card}
+### Skills per offer
+
+The table below summarises how many ESCO-mapped skills are retained per
+job posting. To show the distribution, it reports the mean together
+with selected percentiles. Click a column header to sort the table.
+
+```{ojs}
+//| echo: false
+
+{
+  const rows = [
+    { country: "India", mean: 13.68, p10: 2.0, p25: 5.0, median: 12.0, p75: 20.0, p90: 28.0 },
+    { country: "Japan", mean: 10.17, p10: 2.0, p25: 5.0, median: 9.0, p75: 14.0, p90: 19.0 },
+    { country: "South Korea", mean: 6.09, p10: 0.0, p25: 1.0, median: 3.0, p75: 8.0, p90: 16.0 },
+    { country: "Malaysia", mean: 13.82, p10: 1.0, p25: 5.0, median: 12.0, p75: 20.0, p90: 29.0 },
+    { country: "Mexico", mean: 10.70, p10: 2.0, p25: 5.0, median: 9.0, p75: 15.0, p90: 21.0 },
+    { country: "Philippines", mean: 14.70, p10: 3.0, p25: 7.0, median: 13.0, p75: 20.0, p90: 29.0 },
+    { country: "Poland", mean: 17.96, p10: 7.0, p25: 12.0, median: 17.0, p75: 24.0, p90: 30.0 },
+    { country: "Singapore", mean: 16.93, p10: 5.0, p25: 10.0, median: 16.0, p75: 23.0, p90: 31.0 },
+    { country: "Thailand", mean: 10.35, p10: 1.0, p25: 1.0, median: 7.0, p75: 16.0, p90: 26.0 },
+    { country: "Taiwan", mean: 14.73, p10: 1.0, p25: 5.0, median: 12.0, p75: 22.0, p90: 32.0 },
+    { country: "Vietnam", mean: 18.07, p10: 7.0, p25: 11.0, median: 17.0, p75: 23.0, p90: 31.0 },
+    { country: "Overall", mean: 13.22, p10: 2.0, p25: 5.0, median: 12.0, p75: 19.0, p90: 27.0, overall: true },
+  ];
+
+  const table = d3.create("table")
+    .attr("class", "table table-sm align-middle market-table");
+
+  const columns = [
+    { key: "country", label: "Country", align: "left", type: "text" },
+    { key: "mean", label: "Mean", align: "right", type: "number" },
+    { key: "p10", label: "P10", align: "right", type: "number" },
+    { key: "p25", label: "P25", align: "right", type: "number" },
+    { key: "median", label: "Median", align: "right", type: "number" },
+    { key: "p75", label: "P75", align: "right", type: "number" },
+    { key: "p90", label: "P90", align: "right", type: "number" },
+  ];
+
+  let sortKey = "mean";
+  let sortDirection = "desc";
+
+  const thead = table.append("thead");
+  const header = thead.append("tr");
+  const tbody = table.append("tbody");
+
+  const sortRows = () => {
+    const baseRows = rows.filter(d => !d.overall);
+    const overall = rows.find(d => d.overall);
+    const sorted = [...baseRows].sort((a, b) => {
+      const av = a[sortKey];
+      const bv = b[sortKey];
+      const cmp = columns.find(c => c.key === sortKey).type === "text"
+        ? String(av).localeCompare(String(bv))
+        : av - bv;
+      return sortDirection === "asc" ? cmp : -cmp;
+    });
+    return overall ? [...sorted, overall] : sorted;
+  };
+
+  const renderBody = () => {
+    tbody.selectAll("tr").remove();
+    sortRows().forEach(row => {
+      const tr = tbody.append("tr")
+        .style("font-weight", row.overall ? "700" : null)
+        .style("background", row.overall ? "#f8fafc" : null);
+      tr.append("td").text(row.country);
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.mean));
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p10));
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p25));
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.median));
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p75));
+      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p90));
+    });
+  };
+
+  columns.forEach(col => header.append("th")
+    .attr("class", col.key === sortKey ? "active-sort" : null)
+    .style("text-align", col.align)
+    .style("font-variant-numeric", col.align === "right" ? "tabular-nums" : null)
+    .text(`${col.label}${col.key === sortKey ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}`)
+    .on("click", function() {
+      if (sortKey === col.key) {
+        sortDirection = sortDirection === "asc" ? "desc" : "asc";
+      } else {
+        sortKey = col.key;
+        sortDirection = col.type === "text" ? "asc" : "desc";
+      }
+      header.selectAll("th")
+        .attr("class", null)
+        .text((d, i) => {
+          const c = columns[i];
+          return `${c.label}${c.key === sortKey ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}`;
+        });
+      header.selectAll("th")
+        .filter((d, i) => columns[i].key === sortKey)
+        .attr("class", "active-sort");
+      renderBody();
+    }));
+
+  renderBody();
+
+  return table.node();
+}
+```
+:::
+
+::: {.section-card}
+### Cross-country comparison
+
+The charts below compare the composition of mapped ESCO concepts across
+three selected countries. Shares are normalised within each country
+separately for **skills** and **knowledge**, so each column sums to 100%
+within the respective panel. The knowledge panel shows the most frequent
+3-digit knowledge categories. Language and other ESCO concept types are
+excluded from this specific view.
+
+```{ojs}
+//| echo: false
+
+categoryData = FileAttachment("esco_category_shares.json").json()
+
+{
+  const data = await categoryData;
+  const countries = data.country_order;
+  const defaultSelection = ["Japan", "Singapore", "Vietnam"];
+  const skillCodes = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"];
+
+  const wrap = d3.create("div");
+
+  const controls = wrap.append("div").attr("class", "compare-controls");
+
+  const selectors = defaultSelection.map((selectedCountry, i) => {
+    const box = controls.append("div").attr("class", "compare-control");
+    box.append("label").attr("for", `compare-country-${i}`).text(`Country ${i + 1}`);
+    const select = box.append("select").attr("id", `compare-country-${i}`);
+    countries.forEach(country => {
+      select.append("option")
+        .attr("value", country)
+        .property("selected", country === selectedCountry)
+        .text(country);
+    });
+    return select.node();
+  });
+
+  wrap.append("div")
+    .attr("class", "compare-note")
+    .text("Each cell shows the category share within the selected country. Use the dropdowns to compare a different set of three countries.");
+
+  const chartHost = wrap.append("div").attr("class", "compare-charts");
+
+  const shortLabel = (text, n = 44) => text.length > n ? `${text.slice(0, n - 1)}…` : text;
+
+  function drawHeatmap({title, rows, selected, paletteInterpolator}) {
+    const margin = {top: 44, right: 14, bottom: 10, left: 270};
+    const cellW = 92;
+    const cellH = 30;
+    const width = margin.left + selected.length * cellW + margin.right;
+    const height = margin.top + rows.length * cellH + margin.bottom;
+    const maxShare = d3.max(rows.flatMap(r => selected.map(c => r.values[c] || 0))) || 0.001;
+    const color = d3.scaleSequential([0, maxShare], paletteInterpolator);
+
+    const svg = d3.create("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .attr("width", width)
+      .attr("height", height)
+      .style("max-width", "100%")
+      .style("height", "auto");
+
+    svg.append("text")
+      .attr("x", margin.left)
+      .attr("y", 22)
+      .attr("font-size", 16)
+      .attr("font-weight", 700)
+      .attr("fill", "#0f172a")
+      .text(title);
+
+    selected.forEach((country, i) => {
+      svg.append("text")
+        .attr("x", margin.left + i * cellW + cellW / 2)
+        .attr("y", margin.top - 12)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+        .attr("fill", "#334155")
+        .text(country);
+    });
+
+    rows.forEach((row, r) => {
+      const y = margin.top + r * cellH;
+
+      svg.append("text")
+        .attr("x", margin.left - 10)
+        .attr("y", y + cellH / 2 + 4)
+        .attr("text-anchor", "end")
+        .attr("font-size", 12)
+        .attr("fill", "#334155")
+        .text(row.label);
+
+      selected.forEach((country, c) => {
+        const value = row.values[country] || 0;
+        const x = margin.left + c * cellW;
+        svg.append("rect")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("width", cellW - 4)
+          .attr("height", cellH - 4)
+          .attr("rx", 6)
+          .attr("fill", color(value))
+          .attr("stroke", "#ffffff");
+        svg.append("text")
+          .attr("x", x + (cellW - 4) / 2)
+          .attr("y", y + cellH / 2 + 4)
+          .attr("text-anchor", "middle")
+          .attr("font-size", 11)
+          .attr("font-weight", 700)
+          .attr("fill", value > maxShare * 0.45 ? "#ffffff" : "#0f172a")
+          .text(d3.format(".1%")(value));
+      });
+    });
+
+    return svg.node();
+  }
+
+  function render() {
+    const selected = selectors.map(s => s.value);
+    chartHost.selectAll("*").remove();
+
+    const skillRows = skillCodes.map(code => ({
+      label: `${code}  ${shortLabel(data.skill_meta[code] || code, 38)}`,
+      values: Object.fromEntries(selected.map(country => [country, data.countries[country]?.skill_shares?.[code] || 0]))
+    }));
+
+    const knowledgeRows = [...data.top_knowledge_codes]
+      .map(code => ({
+        code,
+        label: `${code}  ${shortLabel(data.knowledge_meta[code] || code, 42)}`,
+        values: Object.fromEntries(selected.map(country => [country, data.countries[country]?.knowledge_shares?.[code] || 0]))
+      }))
+      .sort((a, b) =>
+        d3.mean(selected.map(country => b.values[country] || 0)) -
+        d3.mean(selected.map(country => a.values[country] || 0))
+      );
+
+    chartHost.append(() => drawHeatmap({
+      title: "Skills categories (S1-S8)",
+      rows: skillRows,
+      selected,
+      paletteInterpolator: t => d3.interpolateRgb("#eff6ff", "#2563eb")(t)
+    }));
+
+    chartHost.append(() => drawHeatmap({
+      title: "Knowledge categories (top 12 three-digit groups)",
+      rows: knowledgeRows,
+      selected,
+      paletteInterpolator: t => d3.interpolateRgb("#fff7ed", "#ea580c")(t)
+    }));
+  }
+
+  selectors.forEach(select => select.addEventListener("change", render));
+  render();
+
+  return wrap.node();
+}
+```
+:::
+
+::: {.section-card}
+### Digital skills prevalence
+
+*Section to be populated with digital-skills analysis.*
+:::
+
+## References
+
+::: {#refs}
+Decorte, J.-J., Van Hautte, J., Develder, C., & Demeester, T. (2025).
+Efficient Text Encoders for Labor Market Analysis.
+*IEEE Access*, 13, 133596–133608.
+:::

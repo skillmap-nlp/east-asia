@@ -1,0 +1,22 @@
+# SSH Connection Settings for PythonAnywhere
+# Your PythonAnywhere login credentials for SSH tunnel
+SSH_HOST=ssh.pythonanywhere.com
+# For EU accounts use: ssh.eu.pythonanywhere.com
+SSH_USER=mpalinski
+SSH_PASSWORD=your_pythonanywhere_login_password_here
+
+# MySQL Connection Settings
+# Your MySQL database credentials
+MYSQL_HOST=mpalinski.mysql.pythonanywhere-services.com
+# For EU accounts use: mpalinski.mysql.eu.pythonanywhere-services.com
+MYSQL_USER=mpalinski
+MYSQL_PASSWORD=your_mysql_database_password_here
+MYSQL_DATABASE=mpalinski$default
+
+# ISO Code for table naming (e.g., vn, ph, my, th, cn, jp, kr)
+# Tables will be named: jobads_<isocode>_<original_table_name>
+# Leave empty to use format: jobads_<original_table_name>
+ISO_CODE=vn
+
+# Output SQLite database filename (saved locally)
+SQLITE_DB=pythonanywhere_export.db
