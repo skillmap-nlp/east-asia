@@ -1391,7 +1391,7 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 
   wrap.append("div")
     .attr("class", "compare-note")
-    .text("Each cell shows the category share within the selected country. You can compare up to five countries at once.");
+    .text("Each cell shows the share of the selected country in the most aggregated ESCO skill and knowledge groups. You can compare up to five countries at once.");
 
   const chartHost = wrap.append("div").attr("class", "compare-charts");
 
@@ -1500,14 +1500,14 @@ categoryData = FileAttachment("esco_category_shares.json").json()
       );
 
     chartHost.append(() => drawHeatmap({
-      title: "Skills categories (S1-S8)",
+      title: "Most aggregated skill categories",
       rows: skillRows,
       selected,
       paletteInterpolator: t => d3.interpolateRgb("#eff6ff", "#2563eb")(t)
     }));
 
     chartHost.append(() => drawHeatmap({
-      title: "Knowledge categories (top 12 three-digit groups)",
+      title: "Most aggregated knowledge categories",
       rows: knowledgeRows,
       selected,
       paletteInterpolator: t => d3.interpolateRgb("#fff7ed", "#ea580c")(t)
@@ -1545,7 +1545,130 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 ::: {.section-card}
 ### Digital skills prevalence
 
-*Section to be populated with digital-skills analysis.*
+Using the digital skill classification from Chinen et al. (2025), we
+identify ESCO skills associated with **basic**, **intermediate**, and
+**advanced** digital capabilities. Transversal digital skills are
+excluded from this view. The chart reports the share of job postings in
+each country that contain at least one ESCO-mapped digital skill from
+the respective level; shares therefore do not sum to 100%.
+
+```{ojs}
+//| echo: false
+
+digitalData = FileAttachment("digital_skill_offer_shares.json").json()
+
+{
+  const data = await digitalData;
+  const levelOrder = ["Basic", "Intermediate", "Advanced"];
+  const palette = {
+    Basic: "#93c5fd",
+    Intermediate: "#3b82f6",
+    Advanced: "#1d4ed8"
+  };
+
+  const rows = [...data.rows]
+    .map(d => ({
+      country: d.country,
+      Basic: d.shares.Basic,
+      Intermediate: d.shares.Intermediate,
+      Advanced: d.shares.Advanced,
+      Any: d.shares.Any
+    }))
+    .sort((a, b) => b.Advanced - a.Advanced);
+
+  const margin = {top: 32, right: 24, bottom: 28, left: 150};
+  const rowH = 28;
+  const groupGap = 14;
+  const width = 860;
+  const innerW = width - margin.left - margin.right;
+  const height = margin.top + rows.length * (rowH * 3 + groupGap) + margin.bottom;
+
+  const svg = d3.create("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("width", width)
+    .attr("height", height)
+    .style("max-width", "100%")
+    .style("height", "auto");
+
+  const x = d3.scaleLinear()
+    .domain([0, d3.max(rows.flatMap(d => levelOrder.map(level => d[level]))) || 0.01])
+    .nice()
+    .range([margin.left, width - margin.right]);
+
+  svg.append("g")
+    .attr("transform", `translate(0, ${margin.top - 8})`)
+    .call(
+      d3.axisTop(x)
+        .ticks(6)
+        .tickFormat(d3.format(".0%"))
+    )
+    .call(g => g.select(".domain").remove())
+    .call(g => g.selectAll(".tick line").attr("stroke", "#cbd5e1"))
+    .call(g => g.selectAll(".tick text").attr("fill", "#64748b"));
+
+  const legend = svg.append("g")
+    .attr("transform", `translate(${margin.left}, 14)`);
+
+  levelOrder.forEach((level, i) => {
+    const g = legend.append("g").attr("transform", `translate(${i * 160}, 0)`);
+    g.append("rect")
+      .attr("width", 14)
+      .attr("height", 14)
+      .attr("rx", 3)
+      .attr("fill", palette[level]);
+    g.append("text")
+      .attr("x", 20)
+      .attr("y", 11)
+      .attr("font-size", 12)
+      .attr("font-weight", 700)
+      .attr("fill", "#334155")
+      .text(level);
+  });
+
+  rows.forEach((row, i) => {
+    const y0 = margin.top + i * (rowH * 3 + groupGap);
+
+    svg.append("text")
+      .attr("x", margin.left - 12)
+      .attr("y", y0 + rowH * 1.5)
+      .attr("text-anchor", "end")
+      .attr("font-size", 12)
+      .attr("font-weight", 700)
+      .attr("fill", "#334155")
+      .text(row.country);
+
+    levelOrder.forEach((level, j) => {
+      const y = y0 + j * rowH;
+      const value = row[level];
+      svg.append("rect")
+        .attr("x", margin.left)
+        .attr("y", y + 5)
+        .attr("width", x(value) - margin.left)
+        .attr("height", 18)
+        .attr("rx", 6)
+        .attr("fill", palette[level]);
+
+      svg.append("text")
+        .attr("x", margin.left + 6)
+        .attr("y", y + 18)
+        .attr("font-size", 11)
+        .attr("font-weight", 700)
+        .attr("fill", j === 0 ? "#1e3a8a" : "#ffffff")
+        .text(level);
+
+      svg.append("text")
+        .attr("x", x(value) + 8)
+        .attr("y", y + 18)
+        .attr("font-size", 11)
+        .attr("font-weight", 700)
+        .attr("fill", "#334155")
+        .text(d3.format(".1%")(value));
+    });
+  });
+
+  return svg.node();
+}
+```
 :::
 
 ## References

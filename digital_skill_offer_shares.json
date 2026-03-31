@@ -1,0 +1,126 @@
+{
+  "levels": [
+    "Any",
+    "Basic",
+    "Intermediate",
+    "Advanced"
+  ],
+  "rows": [
+    {
+      "country": "India",
+      "offers": 221614,
+      "shares": {
+        "Any": 0.7477505933740648,
+        "Basic": 0.31851327082224046,
+        "Intermediate": 0.6436867706913824,
+        "Advanced": 0.5513505464456216
+      }
+    },
+    {
+      "country": "Japan",
+      "offers": 256421,
+      "shares": {
+        "Any": 0.5774800035878497,
+        "Basic": 0.15167244492455767,
+        "Intermediate": 0.43650871028503907,
+        "Advanced": 0.3338611112194399
+      }
+    },
+    {
+      "country": "South Korea",
+      "offers": 120559,
+      "shares": {
+        "Any": 0.41006478155923654,
+        "Basic": 0.1242047462238406,
+        "Intermediate": 0.30685390555661546,
+        "Advanced": 0.27292031287585333
+      }
+    },
+    {
+      "country": "Malaysia",
+      "offers": 171116,
+      "shares": {
+        "Any": 0.6234893288763178,
+        "Basic": 0.2771102643820566,
+        "Intermediate": 0.5274842796699315,
+        "Advanced": 0.41899062624184763
+      }
+    },
+    {
+      "country": "Mexico",
+      "offers": 198421,
+      "shares": {
+        "Any": 0.630840485634081,
+        "Basic": 0.2232828178469013,
+        "Intermediate": 0.4978807686686389,
+        "Advanced": 0.3872321982048271
+      }
+    },
+    {
+      "country": "Philippines",
+      "offers": 187085,
+      "shares": {
+        "Any": 0.7569393591148409,
+        "Basic": 0.34878798407141137,
+        "Intermediate": 0.621562391426357,
+        "Advanced": 0.5297271293796937
+      }
+    },
+    {
+      "country": "Poland",
+      "offers": 125050,
+      "shares": {
+        "Any": 0.8597441023590564,
+        "Basic": 0.3376969212315074,
+        "Intermediate": 0.7585605757696922,
+        "Advanced": 0.6579448220711716
+      }
+    },
+    {
+      "country": "Singapore",
+      "offers": 118980,
+      "shares": {
+        "Any": 0.7837535720289124,
+        "Basic": 0.28724995797613045,
+        "Intermediate": 0.6749873928391327,
+        "Advanced": 0.629761304420911
+      }
+    },
+    {
+      "country": "Thailand",
+      "offers": 57688,
+      "shares": {
+        "Any": 0.4784530578283179,
+        "Basic": 0.19952156427679935,
+        "Intermediate": 0.390843849674109,
+        "Advanced": 0.3158542504507003
+      }
+    },
+    {
+      "country": "Taiwan",
+      "offers": 54653,
+      "shares": {
+        "Any": 0.6282180301172854,
+        "Basic": 0.32042156880683587,
+        "Intermediate": 0.5075110240974878,
+        "Advanced": 0.5040162479644301
+      }
+    },
+    {
+      "country": "Vietnam",
+      "offers": 145366,
+      "shares": {
+        "Any": 0.8409875761870038,
+        "Basic": 0.427197556512527,
+        "Intermediate": 0.7310375190897459,
+        "Advanced": 0.6192782356259373
+      }
+    }
+  ],
+  "matched_taxonomy_counts": {
+    "Basic": 79,
+    "Advanced": 649,
+    "Intermediate": 283
+  },
+  "unmatched_taxonomy_labels": 31
+}
