@@ -245,32 +245,6 @@ include-in-header:
         z-index: 20;
       }
 
-      .paper-cite {
-        position: relative;
-        display: inline-block;
-        color: #0f6cbd;
-        font-weight: 700;
-        border-bottom: 2px dashed rgba(15, 108, 189, 0.35);
-        padding-bottom: 0.02rem;
-        cursor: help;
-      }
-
-      .paper-cite:hover,
-      .paper-cite:focus-visible {
-        color: #0a5aa0;
-        border-bottom-color: rgba(10, 90, 160, 0.55);
-        z-index: 20;
-      }
-
-      .paper-cite:focus {
-        outline: none;
-      }
-
-      .paper-cite:focus-visible {
-        outline: 2px solid rgba(37, 99, 235, 0.45);
-        outline-offset: 2px;
-      }
-
       .paper-tooltip {
         position: absolute;
         left: 0;
@@ -316,9 +290,7 @@ include-in-header:
       }
 
       .paper-link:hover .paper-tooltip,
-      .paper-link:focus-visible .paper-tooltip,
-      .paper-cite:hover .paper-tooltip,
-      .paper-cite:focus-visible .paper-tooltip {
+      .paper-link:focus-visible .paper-tooltip {
         visibility: visible;
         opacity: 1;
         transform: translateY(0);
@@ -1829,7 +1801,7 @@ digitalData = FileAttachment("digital_skill_offer_shares.json").json()
 
 To identify digital skills and knowledge that are particularly
 characteristic of individual countries, we apply the log-likelihood
-ratio (`G²`) test following <span class="paper-cite" tabindex="0">Dunning (1993)<span class="paper-tooltip" role="tooltip">Dunning, T. (1993). <em>Accurate Methods for the Statistics of Surprise and Coincidence.</em> <em>Computational Linguistics</em>, 19(1), 61&#8211;74.</span></span>, a method widely used in
+ratio (`G²`) test following <a class="paper-link" href="https://aclanthology.org/J93-1003.pdf" target="_blank" rel="noopener noreferrer">Dunning (1993)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Dunning, T. (1993). <em>Accurate Methods for the Statistics of Surprise and Coincidence.</em> <em>Computational Linguistics</em>, 19(1), 61&#8211;74.</span></a>, a method widely used in
 corpus-based analysis to compare term distributions across text
 collections. Here, the same logic is applied to extracted ESCO concepts:
 the test assesses whether specific digital skills or digital knowledge
