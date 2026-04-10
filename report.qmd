@@ -221,6 +221,7 @@ include-in-header:
       }
 
       .paper-link {
+        position: relative;
         display: inline-flex;
         align-items: baseline;
         gap: 0.28rem;
@@ -237,6 +238,97 @@ include-in-header:
       .paper-link:focus {
         color: #0a5aa0;
         border-bottom-color: rgba(10, 90, 160, 0.5);
+      }
+
+      .paper-link:hover,
+      .paper-link:focus-visible {
+        z-index: 20;
+      }
+
+      .paper-cite {
+        position: relative;
+        display: inline-block;
+        color: #0f6cbd;
+        font-weight: 700;
+        border-bottom: 2px dashed rgba(15, 108, 189, 0.35);
+        padding-bottom: 0.02rem;
+        cursor: help;
+      }
+
+      .paper-cite:hover,
+      .paper-cite:focus-visible {
+        color: #0a5aa0;
+        border-bottom-color: rgba(10, 90, 160, 0.55);
+        z-index: 20;
+      }
+
+      .paper-cite:focus {
+        outline: none;
+      }
+
+      .paper-cite:focus-visible {
+        outline: 2px solid rgba(37, 99, 235, 0.45);
+        outline-offset: 2px;
+      }
+
+      .paper-tooltip {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 10px);
+        z-index: 100;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
+        box-sizing: border-box;
+        min-width: 14rem;
+        max-width: min(26rem, 92vw);
+        padding: 0.65rem 0.85rem;
+        border-radius: 10px;
+        border: 1px solid var(--card-border);
+        background: #fff;
+        color: var(--ink-mid);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: left;
+        text-decoration: none;
+        box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.9);
+        pointer-events: none;
+      }
+
+      .paper-tooltip::before {
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: -6px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-left: 1px solid var(--card-border);
+        border-top: 1px solid var(--card-border);
+        transform: rotate(45deg);
+      }
+
+      .paper-tooltip em {
+        font-style: italic;
+        color: var(--ink-strong);
+      }
+
+      .paper-link:hover .paper-tooltip,
+      .paper-link:focus-visible .paper-tooltip,
+      .paper-cite:hover .paper-tooltip,
+      .paper-cite:focus-visible .paper-tooltip {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 160ms ease, transform 160ms ease, visibility 0s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .paper-tooltip {
+          transition: none;
+        }
       }
 
       .modal-link-btn {
@@ -631,7 +723,7 @@ include-in-header:
 ::: {.hero}
 ## Executive Summary
 
-This report analyses labour demand in East and Southeast Asia through
+This report analyses labour demand in East Asia through
 the lens of online job advertisements, with a focus on how employers
 signal required skills across occupations and markets. It combines
 labour-market analysis with modern NLP methods, including automated
@@ -1302,7 +1394,7 @@ economic activity codes.
 ::: {.callout-note appearance="simple"}
 Our pipeline outperforms the current state of the art by approximately
 3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets
-reported by <a class="paper-link" href="https://arxiv.org/html/2505.24640v1" target="_blank" rel="noopener noreferrer">Decorte et al. (2025)<span class="source-link-ext">↗</span></a>. These benchmarks consist of job
+reported by <a class="paper-link" href="https://arxiv.org/html/2505.24640v1" target="_blank" rel="noopener noreferrer">Decorte et al. (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Decorte, J.-J., Van Hautte, J., Develder, C., &amp; Demeester, T. (2025). <em>Efficient Text Encoders for Labor Market Analysis.</em> <em>IEEE Access</em>, 13, 133596&#8211;133608.</span></a>. These benchmarks consist of job
 postings annotated with ESCO gold-standard skill labels by human
 experts, against which model predictions are evaluated. The reported
 RP@5 scores are 0.822 and 0.838, respectively.
@@ -1620,7 +1712,7 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 ### Digital skills prevalence
 
 Using the digital skill classification from
-<a class="paper-link" href="https://ideas.repec.org/p/wbk/hdgens/203091.html" target="_blank" rel="noopener noreferrer">Angel-Urdinola et al. (2025)<span class="source-link-ext">↗</span></a>, we
+<a class="paper-link" href="https://ideas.repec.org/p/wbk/hdgens/203091.html" target="_blank" rel="noopener noreferrer">Angel-Urdinola et al. (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Angel-Urdinola, D., Chinen, M. H., &amp; Rodon Casarramona, G. (2025). <em>Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches.</em> <em>Education Notes</em>, (203091).</span></a>, we
 identify ESCO skills associated with **basic**, **intermediate**, and
 **advanced** digital capabilities. In broad terms, **basic** digital
 skills cover routine use of standard software and digital tools,
@@ -1737,7 +1829,7 @@ digitalData = FileAttachment("digital_skill_offer_shares.json").json()
 
 To identify digital skills and knowledge that are particularly
 characteristic of individual countries, we apply the log-likelihood
-ratio (`G²`) test following Dunning (1993), a method widely used in
+ratio (`G²`) test following <span class="paper-cite" tabindex="0">Dunning (1993)<span class="paper-tooltip" role="tooltip">Dunning, T. (1993). <em>Accurate Methods for the Statistics of Surprise and Coincidence.</em> <em>Computational Linguistics</em>, 19(1), 61&#8211;74.</span></span>, a method widely used in
 corpus-based analysis to compare term distributions across text
 collections. Here, the same logic is applied to extracted ESCO concepts:
 the test assesses whether specific digital skills or digital knowledge
