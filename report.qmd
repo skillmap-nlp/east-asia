@@ -7,7 +7,7 @@ format:
     theme:
       light: cosmo
     toc: true
-    toc-depth: 2
+    toc-depth: 3
     toc-location: right
     smooth-scroll: true
     code-fold: show
@@ -31,6 +31,13 @@ include-in-header:
         color: var(--ink-mid);
         background: linear-gradient(180deg, #f8fbff 0%, #ffffff 40%);
         font-feature-settings: "ss01", "cv01";
+      }
+
+      #quarto-document-content p,
+      #quarto-document-content li,
+      #quarto-document-content dd {
+        text-align: justify;
+        text-justify: inter-word;
       }
 
       #title-block-header {
@@ -120,6 +127,52 @@ include-in-header:
         padding: 1rem 1rem 0.4rem 1rem;
         margin: 0.8rem 0 1rem 0;
         box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+      }
+
+      .step-detail {
+        border-left: 3px solid #cbd5e1;
+        padding: 0.6rem 0 0.6rem 1.2rem;
+        margin: 1.2rem 0;
+      }
+
+      .step-detail h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #0f172a;
+      }
+
+      .step-detail .step-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        margin-right: 0.4rem;
+        vertical-align: middle;
+      }
+
+      .step-detail .step-badge-blue   { background: #e0f2fe; color: #0369a1; }
+      .step-detail .step-badge-amber  { background: #fef3c7; color: #b45309; }
+      .step-detail .step-badge-teal   { background: #ccfbf1; color: #0d9488; }
+      .step-detail .step-badge-violet { background: #ede9fe; color: #7c3aed; }
+      .step-detail .step-badge-indigo { background: #dbeafe; color: #1d4ed8; }
+      .step-detail .step-badge-green  { background: #dcfce7; color: #15803d; }
+
+      .cell[data-engine="mermaid"] .cell-output-display,
+      .quarto-figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pipeline-jump-note {
+        margin-top: 0.25rem;
+        margin-bottom: 0.2rem;
+        font-size: 0.88rem;
+        color: #64748b;
       }
 
       .table caption {
@@ -331,8 +384,41 @@ include-in-header:
         padding: 0.22rem 0.6rem;
         font-size: 0.78rem;
         font-weight: 600;
-        margin-right: 0.35rem;
-        margin-bottom: 0.35rem;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin: 0.35rem 0 0.2rem 0;
+      }
+
+      .skill-pill-row {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.28rem;
+        vertical-align: middle;
+      }
+
+      .skill-pill-common,
+      .skill-pill-distinctive {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.18rem 0.52rem;
+        font-size: 0.78rem;
+        line-height: 1.25;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .skill-pill-common {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .skill-pill-distinctive {
+        background: #ffedd5;
+        color: #9a3412;
       }
 
       .pill-high { background: #dbeafe; color: #1e3a8a; }
@@ -446,6 +532,7 @@ include-in-header:
         border-radius: 16px;
         box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
         transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        cursor: pointer;
       }
 
       .pipeline-step:hover,
@@ -453,6 +540,11 @@ include-in-header:
         transform: translateY(-3px) scale(1.025);
         box-shadow: 0 18px 34px rgba(15, 23, 42, 0.10);
         border-color: #cbd5e1;
+      }
+
+      .pipeline-step:focus-visible {
+        outline: 3px solid rgba(37, 99, 235, 0.22);
+        outline-offset: 2px;
       }
 
       .pipeline-step-top {
@@ -552,10 +644,72 @@ include-in-header:
         margin-bottom: 0.35rem;
       }
 
+      .view-toggle-group {
+        display: inline-flex;
+      }
+
+      .view-toggle-btn {
+        border: 1px solid #bfdbfe;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        color: #1d4ed8;
+        border-radius: 999px;
+        padding: 0.48rem 0.9rem;
+        font-weight: 700;
+        font-size: 0.84rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: background 140ms ease, color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.10);
+      }
+
+      .view-toggle-btn:hover,
+      .view-toggle-btn:focus {
+        border-color: #93c5fd;
+        background: #eff6ff;
+        color: #1d4ed8;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.14);
+      }
+
+      .view-toggle-btn.active {
+        background: #eff6ff;
+        border-color: #93c5fd;
+        color: #1d4ed8;
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+      }
+
       .country-button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 0.55rem;
+      }
+
+      .country-group-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .country-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        width: 100%;
+      }
+
+      .country-group-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #94a3b8;
+        padding-left: 0.15rem;
+      }
+
+      .country-group-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
       }
 
       .country-pill {
@@ -682,12 +836,29 @@ include-in-header:
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const title = document.querySelector("#title-block-header .title");
-        if (!title) return;
-        if (document.querySelector(".report-eyebrow")) return;
-        const tag = document.createElement("span");
-        tag.className = "report-eyebrow";
-        tag.textContent = "PROGRESS REPORT";
-        title.parentNode.insertBefore(tag, title);
+        if (title && !document.querySelector(".report-eyebrow")) {
+          const tag = document.createElement("span");
+          tag.className = "report-eyebrow";
+          tag.textContent = "PROGRESS REPORT";
+          title.parentNode.insertBefore(tag, title);
+        }
+
+        document.querySelectorAll(".pipeline-step[data-target]").forEach(function (step) {
+          const activate = function () {
+            const targetId = step.getAttribute("data-target");
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          };
+
+          step.addEventListener("click", activate);
+          step.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              activate();
+            }
+          });
+        });
       });
     </script>
 ---
@@ -718,12 +889,12 @@ occupations.
 <div class="kpi-grid">
   <div class="kpi-card">
     <div class="kpi-label">Job Ads</div>
-    <div class="kpi-value">1,953,674</div>
+    <div class="kpi-value">1,860,159</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Markets Analyzed</div>
     <div class="kpi-value">9 <span style="font-size:0.75rem;font-weight:500;color:#64748b;">East Asian</span></div>
-    <div style="font-size:0.78rem;color:#94a3b8;margin-top:0.15rem;">+ 4 benchmark</div>
+    <div style="font-size:0.78rem;color:#94a3b8;margin-top:0.15rem;">+ 3 benchmark</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">ESCO Skills</div>
@@ -752,8 +923,8 @@ world = fetch(
 
 // ISO 3166-1 numeric → label + income group + offer counts
 countryMeta = ({
-  "392": { name: "Japan",        group: "high",         iso3: "JPN", offers: 258139 },
-  "410": { name: "South Korea",  group: "high",         iso3: "KOR", offers: 124869 },
+  "392": { name: "Japan",        group: "high",         iso3: "JPN", offers: 299669 },
+  "410": { name: "South Korea",  group: "high",         iso3: "KOR", offers: 132148 },
   "158": { name: "Taiwan",       group: "high",         iso3: "TWN", offers: 55217 },
   "702": { name: "Singapore",    group: "high",         iso3: "SGP", offers: 138202 },
   "764": { name: "Thailand",     group: "upper_middle", iso3: "THA", offers: 57892 },
@@ -765,13 +936,11 @@ countryMeta = ({
 })
 
 benchmarkMeta = ([
-  { name: "Chile", group: "benchmark", iso3: "CHL", offers: 142324 },
   { name: "Mexico", group: "benchmark", iso3: "MEX", offers: 199404 },
   { name: "Poland", group: "benchmark", iso3: "POL", offers: 135027 },
 ])
 
 mapBenchmarkMetaById = ({
-  "152": { name: "Chile",  group: "benchmark", iso3: "CHL", offers: 142324 },
   "484": { name: "Mexico", group: "benchmark", iso3: "MEX", offers: 199404 },
   "616": { name: "Poland", group: "benchmark", iso3: "POL", offers: 135027 },
 })
@@ -804,7 +973,6 @@ labelAnchors = [
   { id: "702", lon: 104,  lat: 1.3,  dx: -55,dy: 8   },
   { id: "360", lon: 118,  lat: -2,   dx: 0,  dy: 14  },
   { id: "356", lon: 79,   lat: 22,   dx: -10,dy: 0   },
-  { id: "152", lon: -71,  lat: -30,  dx: 10, dy: 0   },
   { id: "484", lon: -102, lat: 23,   dx: 10, dy: 0   },
   { id: "616", lon: 19,   lat: 52,   dx: 8,  dy: 0   },
 ]
@@ -1117,10 +1285,12 @@ tooltipHtml = (row) => {
 }
 ```
 
+<div class="pill-row">
 <span class="pill pill-lower">Lower-middle-income: Vietnam, Philippines</span>
 <span class="pill pill-upper">Upper-middle-income: Thailand, Indonesia, Malaysia</span>
 <span class="pill pill-high">High-income: Japan, South Korea, Singapore, Taiwan</span>
-<span class="pill pill-benchmark">Benchmark: India, Chile, Mexico, Poland</span>
+<span class="pill pill-benchmark">Benchmark: India, Mexico, Poland</span>
+</div>
 
 ::: {.section-card}
 ### Relative labour demand
@@ -1256,8 +1426,11 @@ country's labour supply. Click a column header to sort the table.
 
 We collect job advertisements from **Indeed** and **Careerjet**, two large
 aggregators with country-specific sites across the markets covered in this
-study. The analytical sample shown here comprises roughly **1.95 million**
-postings covering March 2025 – March 2026.
+study. The analytical sample shown here comprises roughly **1.86 million**
+postings covering March 2025 – March 2026. Collection ran **daily for a full
+year** because high-volume portals often stop returning results after a limited
+number of pages. Collecting every day reduced the risk of missing vacancies
+that would no longer be reachable if the portals were queried less frequently.
 
 ```{=html}
 <button type="button" class="modal-link-btn" data-bs-toggle="modal" data-bs-target="#dataCollectionModal">
@@ -1277,7 +1450,7 @@ postings covering March 2025 – March 2026.
         <p>For all country-platform combinations, we developed Python web scrapers that retrieve job postings and extract core information such as job title, job description, company name, salary, job and company location, posting date, contract type, remote-work status, industry, company size and revenue, and the original job-post URL.</p>
         <p>Because attribute availability varies across postings, we restrict the analytical sample to offers containing at least a job title, a job description, and the original URL. We additionally remove duplicates with identical titles and descriptions, both within each job board and across boards.</p>
         <p>Both portals impose practical result limits for broad queries. Indeed typically exposes up to 1,000 postings and Careerjet up to 2,000. To improve coverage, we run multiple searches by region within each country and monitor cases where the maximum visible result count is returned, since that suggests that additional postings may be omitted.</p>
-        <p>The scraping pipeline runs daily on a cloud-hosted Python environment. Automated tests alert us to blocking or portal-structure changes, allowing quick maintenance when needed. Retrieved postings are stored in an SQL database that supports efficient querying at scale.</p>
+        <p>The collection pipeline ran daily over a full year. This high-frequency collection schedule helped us capture changing posting intensity over time, while also reducing the risk that short-lived vacancies would be systematically missed.</p>
       </div>
     </div>
   </div>
@@ -1295,12 +1468,12 @@ dataset in six steps: we first identify the posting language, translate
 non-English text into a common language, isolate skill-relevant
 sentences, map extracted skills to ESCO, standardise job titles to ESCO
 occupations using both titles and skill context for disambiguation, and
-then enrich each posting with sector information by assigning NACE
+then enrich each posting with sector information by assigning ISIC/NACE
 economic activity codes.
 
 ```{=html}
 <div class="pipeline-diagram">
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-01" role="button" tabindex="0" aria-label="Jump to Step 01">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">01</div>
       <div class="pipeline-icon" style="background:#e0f2fe;color:#0369a1;">
@@ -1308,9 +1481,9 @@ economic activity codes.
       </div>
     </div>
     <div class="pipeline-label">Language<br>Detection</div>
-    <div class="pipeline-detail">ML-based identification of the source language for each job posting</div>
+    <div class="pipeline-detail">Language identification for each posting, including mixed-language offers</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-02" role="button" tabindex="0" aria-label="Jump to Step 02">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">02</div>
       <div class="pipeline-icon" style="background:#fef3c7;color:#b45309;">
@@ -1318,9 +1491,9 @@ economic activity codes.
       </div>
     </div>
     <div class="pipeline-label">Translation</div>
-    <div class="pipeline-detail">Fine-tuned Gemma-architecture model translates non-English descriptions to English</div>
+    <div class="pipeline-detail">Gemma 3 Translate 4B converts non-English titles and descriptions into English</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-03" role="button" tabindex="0" aria-label="Jump to Step 03">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">03</div>
       <div class="pipeline-icon" style="background:#ccfbf1;color:#0d9488;">
@@ -1330,7 +1503,7 @@ economic activity codes.
     <div class="pipeline-label">Skill-Sentence<br>Filtering</div>
     <div class="pipeline-detail">Fine-tuned BERT-architecture classifier identifies skill-relevant sentences</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-04" role="button" tabindex="0" aria-label="Jump to Step 04">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">04</div>
       <div class="pipeline-icon" style="background:#ede9fe;color:#7c3aed;">
@@ -1338,9 +1511,9 @@ economic activity codes.
       </div>
     </div>
     <div class="pipeline-label">ESCO<br>Mapping</div>
-    <div class="pipeline-detail">Contrastive bi-encoder matches extracted skills to ~14,000 ESCO taxonomy entries</div>
+    <div class="pipeline-detail">Custom contrastive bi-encoder maps skill sentences to ESCO skill entries</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-05" role="button" tabindex="0" aria-label="Jump to Step 05">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">05</div>
       <div class="pipeline-icon" style="background:#dbeafe;color:#1d4ed8;">
@@ -1350,7 +1523,7 @@ economic activity codes.
     <div class="pipeline-label">Job Title<br>Standardisation</div>
     <div class="pipeline-detail">Job titles are mapped to ESCO occupations using titles and extracted skills as context for disambiguation</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-06" role="button" tabindex="0" aria-label="Jump to Step 06">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">06</div>
       <div class="pipeline-icon" style="background:#dcfce7;color:#15803d;">
@@ -1358,49 +1531,443 @@ economic activity codes.
       </div>
     </div>
     <div class="pipeline-label">Data<br>Augmentation</div>
-    <div class="pipeline-detail">NACE economic activity is assigned using the official ESCO-NACE crosswalk and job-ad context for disambiguation</div>
+    <div class="pipeline-detail">ISIC/NACE economic activity is assigned using the official ESCO-NACE crosswalk and job-ad context for disambiguation</div>
   </div>
 </div>
 ```
 
-::: {.callout-note appearance="simple"}
-Our pipeline outperforms the current state of the art by approximately
-3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets
-reported by <a class="paper-link" href="https://arxiv.org/html/2505.24640v1" target="_blank" rel="noopener noreferrer">Decorte et al. (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Decorte, J.-J., Van Hautte, J., Develder, C., &amp; Demeester, T. (2025). <em>Efficient Text Encoders for Labor Market Analysis.</em> <em>IEEE Access</em>, 13, 133596&#8211;133608.</span></a>. These benchmarks consist of job
-postings annotated with ESCO gold-standard skill labels by human
-experts, against which model predictions are evaluated. The reported
-RP@5 scores are 0.822 and 0.838, respectively.
+::: {.pipeline-jump-note}
+Click any card to jump to the detailed description of that step.
 :::
+
+Each step is described in detail below.
+
+:::: {#pipeline-step-01 .step-detail}
+#### [Step 01]{.step-badge .step-badge-blue} Language detection
+
+Comparing skill demand across countries that operate in different
+languages requires, as a first step, reliable identification of the
+language in which each posting was written. This ensures that postings
+already in English can proceed directly to analysis, while those in
+other languages are routed to the appropriate translation track.
+
+We apply a machine-learning-based language detector (<a class="paper-link" href="https://github.com/pemistahl/lingua-py" target="_blank" rel="noopener noreferrer">Lingua<span class="source-link-ext">↗</span></a>)
+independently to both the job title and the full job description of
+every posting. The detector covers all languages present in our sample,
+including CJK scripts (Chinese, Japanese, Korean), Thai, Vietnamese,
+and Latin-script languages (English, Spanish, Malay, Filipino, Polish).
+Per-field detection allows us to handle the common case where a title
+is in English but the body is in the local language. This is important
+because mixed-language postings are common in online vacancies, and
+Lingua performs well even when different parts of the same offer use
+different languages.
+::::
+
+:::: {#pipeline-step-02 .step-detail}
+#### [Step 02]{.step-badge .step-badge-amber} Translation
+
+Cross-country skill comparison requires a common-language
+representation of all job postings. With a corpus of nearly
+**2 million job ads**, machine translation is not an optional
+enhancement but a practical necessity: without it, large-scale
+cross-country comparison would not be feasible in a consistent and
+timely manner. Recent research indicates that LLM-based translation
+systems can deliver high-quality machine translation at scale,
+supporting the efficient processing of large datasets such as the one
+used in this study (see
+<a class="paper-link" href="https://dl.acm.org/doi/10.1007/978-3-031-44693-1_30" target="_blank" rel="noopener noreferrer">Huang et al. (2023)<span class="source-link-ext">↗</span></a>).
+
+Postings already detected as English pass through unchanged. All
+remaining postings are translated with <a class="paper-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/translategemma/" target="_blank" rel="noopener noreferrer">Gemma 3 Translate 4B<span class="source-link-ext">↗</span></a>, an open
+source multilingual translation model designed for high-quality
+instruction following and strong performance across typologically
+different languages. Both **job titles** and **job descriptions** are
+translated into English and stored alongside the originals to allow
+back-referencing when analysts need to inspect the source text. This
+ensures that all downstream steps, including title standardisation,
+operate on a common-language representation.
+
+To validate translation quality, we conducted a **back-translation**
+exercise on a small random sample of Polish postings. In this check,
+texts were translated into English and then translated back into
+Polish, allowing us to verify that the meaning of skills, occupations,
+and task descriptions was preserved with minimal drift.
+
+```{mermaid}
+%%| fig-cap: "Translation routing"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 40, 'rankSpacing': 50}} }%%
+flowchart LR
+    A["Raw posting"] --> B{"Language<br/>detected?"}
+    B -->|"Already English"| C["Keep original text"]
+    B -->|"Other language"| D["Gemma 3 Translate 4B"]
+    D -->|"title + description"| E["Translated English text"]
+    C --> F["Unified English corpus"]
+    E --> F
+```
+::::
+
+:::: {#pipeline-step-03 .step-detail}
+#### [Step 03]{.step-badge .step-badge-teal} Skill-sentence filtering
+
+Job descriptions typically mix skill requirements with administrative
+content such as benefits, company history, or application instructions.
+Isolating the skill-relevant sentences before downstream mapping
+reduces noise and improves the precision of the extracted skill
+profiles.
+
+We use a fine-tuned BERT classifier based on the
+<a class="paper-link" href="https://dl.acm.org/doi/abs/10.1145/3672608.3707960" target="_blank" rel="noopener noreferrer">Malandri et al. (2025)<span class="source-link-ext">↗</span></a>
+SkillLess approach and the
+<a class="paper-link" href="https://huggingface.co/serino28/BERT-OJA-SkillLess" target="_blank" rel="noopener noreferrer">BERT-OJA-SkillLess<span class="source-link-ext">↗</span></a>.
+The model performs binary sentence-level classification,
+labelling each sentence as either skill-relevant or non-skill.
+In our sample, approximately 40--60 % of description text is
+filtered out as non-skill content. Only the retained sentences
+proceed to the ESCO mapping step.
+::::
+
+:::: {#pipeline-step-04 .step-detail}
+#### [Step 04]{.step-badge .step-badge-violet} ESCO skill mapping
+
+The European Skills, Competences, Qualifications and Occupations
+(<a class="paper-link" href="https://esco.ec.europa.eu/" target="_blank" rel="noopener noreferrer">ESCO<span class="source-link-ext">↗</span></a>) taxonomy provides a standardised
+vocabulary of roughly 13,000 skills and competences maintained by the
+European Commission. Mapping extracted skill sentences to ESCO entries
+creates a common analytical framework that enables direct comparison
+across countries and languages.
+
+We employ a **custom contrastive bi-encoder** trained on a massive
+synthetic dataset comprising hundreds of thousands of ESCO-labelled
+examples derived from the ESCO classification structure. The
+bi-encoder learns a **shared representation space** for two different
+objects --- job-ad sentences and standardised ESCO skill labels --- by
+bringing semantically matching pairs closer together while pushing
+non-matching pairs apart. In practical terms, consider a job-ad sentence such as
+*"experience with SQL and data visualisation"*. The model learns to
+place it close to the correct ESCO entries --- *"use query languages"*
+and *"manage databases"* --- and away from everything else. Crucially,
+the training signal is strongest for **hard negatives**: skills that
+are semantically nearby but not a correct match, such as *"use
+programming languages"* or *"develop software"*. These are more
+informative than trivially distant skills like *"negotiate contracts"*,
+because the model must learn fine-grained distinctions within the same
+domain rather than merely separating unrelated concepts. During
+training, correct sentence–skill pairings act as positives while all
+other skills in the same batch act as negatives --- with the hardest
+cases (same-domain, wrong skill) driving most of the learning signal.
+This gives the model a scalable way to learn ranking behaviour across
+the full ~13,000-skill taxonomy without a separate classifier for each
+skill.
+
+```{ojs}
+//| echo: false
+
+{
+  const w = 620, h = 370;
+  const cx = w / 2, cy = h / 2;
+
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .attr("width", w)
+    .attr("style", "font-family: system-ui, -apple-system, sans-serif; max-width: 100%; display: block; margin: 0 auto;");
+
+  /* concentric zones */
+  const zones = [
+    {r: 155, fill: "#fef2f2", stroke: "#fca5a5", label: "Easy negatives", labelY: -148, col: "#dc2626"},
+    {r: 105, fill: "#fefce8", stroke: "#fde68a", label: "Hard negatives", labelY: -98, col: "#b45309"},
+    {r: 52,  fill: "#dcfce7", stroke: "#86efac", label: "Positive matches", labelY: -44, col: "#16a34a"}
+  ];
+
+  zones.forEach(z => {
+    svg.append("circle")
+      .attr("cx", cx).attr("cy", cy).attr("r", z.r)
+      .attr("fill", z.fill).attr("stroke", z.stroke)
+      .attr("stroke-width", 1.5).attr("stroke-dasharray", "5,3");
+    svg.append("text")
+      .attr("x", cx).attr("y", cy + z.labelY)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "9.5px").attr("font-weight", "600")
+      .attr("fill", z.col)
+      .text(z.label);
+  });
+
+  /* centre: the sentence */
+  svg.append("circle")
+    .attr("cx", cx).attr("cy", cy).attr("r", 6)
+    .attr("fill", "#1e40af");
+  svg.append("text")
+    .attr("x", cx).attr("y", cy + 18)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "10.5px").attr("font-weight", "700")
+    .attr("fill", "#1e293b")
+    .text("\"experience with SQL");
+  svg.append("text")
+    .attr("x", cx).attr("y", cy + 30)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "10.5px").attr("font-weight", "700")
+    .attr("fill", "#1e293b")
+    .text("and data visualisation\"");
+
+  /* skill dots */
+  const items = [
+    /* positives */
+    {x: cx-28, y: cy-26, label: "use query languages", tier: "pos"},
+    {x: cx+22, y: cy-18, label: "manage databases", tier: "pos"},
+    /* hard negatives */
+    {x: cx-80, y: cy-50, label: "use programming languages", tier: "hard"},
+    {x: cx+65, y: cy+55, label: "develop software", tier: "hard"},
+    {x: cx+80, y: cy-62, label: "analyse data", tier: "hard"},
+    /* easy negatives */
+    {x: cx-120, y: cy+95, label: "negotiate contracts", tier: "easy"},
+    {x: cx+115, y: cy+110, label: "manage human resources", tier: "easy"},
+    {x: cx-100, y: cy-120, label: "drive vehicles", tier: "easy"},
+  ];
+
+  const colors = {pos: "#16a34a", hard: "#b45309", easy: "#dc2626"};
+  const radii  = {pos: 5, hard: 4.5, easy: 4};
+
+  items.forEach(d => {
+    svg.append("circle")
+      .attr("cx", d.x).attr("cy", d.y).attr("r", radii[d.tier])
+      .attr("fill", colors[d.tier]).attr("opacity", 0.85);
+    svg.append("text")
+      .attr("x", d.x).attr("y", d.y - 9)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "9.5px").attr("font-style", "italic")
+      .attr("fill", "#334155")
+      .text(d.label);
+  });
+
+  /* arrows */
+  svg.append("defs").append("marker")
+    .attr("id", "arrowGreen").attr("viewBox", "0 0 10 10")
+    .attr("refX", 8).attr("refY", 5)
+    .attr("markerWidth", 6).attr("markerHeight", 6)
+    .attr("orient", "auto-start-reverse")
+    .append("path").attr("d", "M 0 0 L 10 5 L 0 10 z").attr("fill", "#16a34a");
+
+  /* pull arrows from dots toward centre */
+  const posItems = items.filter(d => d.tier === "pos");
+  posItems.forEach(d => {
+    const dx = cx - d.x, dy = cy - d.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const nx = dx/len, ny = dy/len;
+    svg.append("line")
+      .attr("x1", d.x + nx*8).attr("y1", d.y + ny*8)
+      .attr("x2", d.x + nx*(len*0.5)).attr("y2", d.y + ny*(len*0.5))
+      .attr("stroke", "#16a34a").attr("stroke-width", 1.5)
+      .attr("marker-end", "url(#arrowGreen)")
+      .attr("opacity", 0.7);
+  });
+
+  /* caption */
+  svg.append("text")
+    .attr("x", cx).attr("y", h - 8)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "10.5px").attr("fill", "#64748b")
+    .text("Simplified 2-D projection of the embedding space (actual representations are high-dimensional). Own elaboration.");
+
+  return svg.node();
+}
+```
+
+This approach is well suited to online job ads because employers often
+describe the same skill in many different ways. By learning semantic
+proximity rather than relying on exact wording, the model can recover
+skills even when the phrasing differs from the ESCO label itself.
+
+Our approach also avoids relying only on one averaged sentence
+representation. Instead, the encoder can attend more strongly to the
+parts of a sentence that are most diagnostic for a given skill, which
+is particularly useful when a single sentence mentions several tasks,
+tools, or competencies at once. This token-level attention mechanism
+has been shown to improve matching quality in multi-skill sentences
+(<a class="paper-link" href="https://arxiv.org/abs/2601.09119" target="_blank" rel="noopener noreferrer">Sun, 2026<span class="source-link-ext">↗</span></a>;
+<a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>).
+
+**Similarity threshold calibration.** &ensp; Not every high-ranking
+candidate is a true match. Following established practice in ESCO
+skill extraction
+(<a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>;
+<a class="paper-link" href="https://recsyshr.aau.dk/wp-content/uploads/2025/09/RecSysHR2025-paper_5.pdf" target="_blank" rel="noopener noreferrer">Bielinski &amp; Brazier, 2025<span class="source-link-ext">↗</span></a>),
+we retain only those candidates whose cosine similarity exceeds a
+calibrated threshold. The threshold is tuned on held-out benchmark
+data (the same HOUSE and TECH datasets used to evaluate overall
+pipeline performance) by selecting the value that maximises the
+trade-off between precision and recall. This step filters out
+low-confidence matches and controls the total number of skills
+assigned per posting.
+
+::: {.callout-note appearance="simple"}
+Our skill-mapping pipeline outperforms the current state of the art by
+approximately 3 percentage points in RP@5 on the HOUSE and TECH
+benchmark datasets reported by <a class="paper-link" href="https://arxiv.org/html/2505.24640v1" target="_blank" rel="noopener noreferrer">Decorte et al. (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Decorte, J.-J., Van Hautte, J., Develder, C., &amp; Demeester, T. (2025). <em>Efficient Text Encoders for Labor Market Analysis.</em> <em>IEEE Access</em>, 13, 133596&#8211;133608.</span></a>. These benchmarks consist of job postings annotated with ESCO gold-standard skill labels by human experts, against which model predictions are evaluated. The reported RP@5 scores are 0.822 and 0.838, respectively.
+:::
+
+```{mermaid}
+%%| fig-cap: "Skill-to-ESCO matching pipeline"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Skill-relevant sentences"] -->|"encode"| B["Contrastive bi-encoder"]
+    B -->|"768-d vector"| C["Sentence embedding"]
+
+    D[("ESCO skill catalogue<br/>~13 000 entries")] -->|"pre-computed<br/>768-d vectors"| E["Reference embedding matrix"]
+
+    C --> F{"Cosine similarity ranking"}
+    E --> F
+
+    F -->|"top-k candidates"| G["Candidate ESCO skills<br/>with similarity scores"]
+    G -->|"score ≥ threshold"| H["Similarity threshold<br/><i style='font-size:0.8em;color:#64748b'>calibrated on held-out benchmarks</i>"]
+    H --> I["Final matched ESCO skills"]
+```
+::::
+
+:::: {#pipeline-step-05 .step-detail}
+#### [Step 05]{.step-badge .step-badge-indigo} Job title standardisation
+
+Raw job titles are highly variable: the same role may appear as
+"Software Engineer", "Backend Developer", "Platform Engineer",
+"Full-Stack Application Developer", or "Senior API Engineer". Likewise,
+an analytical role may appear as "Data Analyst", "BI Analyst",
+"Reporting Specialist", or "Insights Associate". Because titles are
+first translated into English, the standardisation step works on a
+harmonised title field rather than directly on multilingual raw text.
+Mapping each title to a standardised ESCO occupation enables comparable
+occupational analysis and serves as the bridge to sector classification
+in the next step.
+
+Titles are first cleaned by removing common noise (embedded locations,
+salary ranges, seniority prefixes). The cleaned titles are then
+embedded using
+<a class="paper-link" href="https://huggingface.co/TechWolf/JobBERT-v3" target="_blank" rel="noopener noreferrer">JobBERT-v3<span class="source-link-ext">↗</span></a>,
+a domain-specific open model pre-trained on large-scale job market
+data. We pre-compute embeddings for all ~3,000 ESCO occupation labels
+and store them in a <a class="paper-link" href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener noreferrer">FAISS<span class="source-link-ext">↗</span></a>
+vector index for fast retrieval. Each job title is matched to the
+nearest ESCO occupation by cosine similarity, with the similarity
+score retained for downstream quality filtering.
+
+```{mermaid}
+%%| fig-cap: "Job title standardisation"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Translated job title"] --> B["Title cleaning<br/><i style='font-size:0.8em;color:#64748b'>(remove locations, salaries, prefixes)</i>"]
+    B -->|"cleaned text"| C["JobBERT-v3 encoder"]
+    C -->|"768-d vector"| D["Title embedding"]
+
+    D -->|"query"| F{"FAISS nearest-neighbour search"}
+
+    E[("ESCO occupation index<br/>~3 000 occupations<br/><i style='font-size:0.8em;color:#64748b'>pre-computed 768-d vectors</i>")] -->|"index"| F
+
+    F -->|"best match + cosine score"| G["Standardised ESCO occupation"]
+```
+::::
+
+:::: {#pipeline-step-06 .step-detail}
+#### [Step 06]{.step-badge .step-badge-green} Sector classification (ISIC/NACE)
+
+Assigning an economic sector to each job posting enables analysis of
+skill demand by industry---a dimension that is critical for targeted
+workforce development and industrial policy. We classify postings into
+the **ISIC/NACE** industry taxonomy. The underlying crosswalk uses the
+full NACE Rev. 2.1 classification maintained by Eurostat, which provides
+finer sub-division detail (3- and 4-digit codes) than ISIC. However,
+because this report analyses sectoral demand at the **2-digit division
+level**, the results are identical under both systems: at 2 digits,
+NACE Rev. 2.1 and ISIC Rev. 5 share the same division codes and
+boundaries
+(<a class="paper-link" href="https://ec.europa.eu/eurostat/documents/3859598/21633320/KS-GQ-24-007-EN-N.pdf" target="_blank" rel="noopener noreferrer">Eurostat, 2024<span class="source-link-ext">↗</span></a>).
+All results in this report are therefore directly comparable with any
+analysis using either framework.
+
+The assignment relies on the official
+<a class="paper-link" href="https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/nace" target="_blank" rel="noopener noreferrer">ESCO-to-NACE crosswalk<span class="source-link-ext">↗</span></a>,
+which links each ESCO occupation to one or more ISIC/NACE activity
+codes. Three resolution tiers handle different levels of ambiguity:
+
+1. **One-to-one mapping** — the ESCO occupation maps to a single
+   ISIC/NACE code. The assignment is deterministic.
+2. **Same 2-digit code** — all candidate codes share the same 2-digit
+   division (e.g. all fall under *C26*). The shared division is assigned
+   directly, since finer sub-division differences are below the
+   reporting threshold.
+3. **Ambiguous multi-division cases** — candidates span different
+   ISIC/NACE divisions. We resolve these by embedding the job title and
+   description together with each candidate activity label using a
+   multilingual sentence-transformer
+   (<a class="paper-link" href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2" target="_blank" rel="noopener noreferrer">paraphrase-multilingual-MiniLM-L12-v2<span class="source-link-ext">↗</span></a>)
+   and selecting the candidate with the highest cosine similarity. A
+   confidence margin between the top two candidates is recorded to
+   support post-hoc quality auditing.
+
+```{mermaid}
+%%| fig-cap: "ISIC/NACE sector classification"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["ESCO occupation<br/><i style='font-size:0.8em;color:#64748b'>from Step 05</i>"] -->|"look up"| B[("ESCO → ISIC/NACE crosswalk<br/><i style='font-size:0.8em;color:#64748b'>official mapping table</i>")]
+    B --> C{"Number of<br/>candidate ISIC/NACE codes?"}
+
+    C -->|"exactly 1"| D["Deterministic assignment"]
+    C -->|"≥ 2, same 2-digit code"| E["Assign shared<br/>ISIC/NACE division"]
+    C -->|"≥ 2, different divisions"| F["Embedding-based disambiguation"]
+
+    F --> G["Encode job text + each<br/>candidate ISIC/NACE label"]
+    G -->|"384-d vectors"| H{"Cosine similarity comparison"}
+    H -->|"highest score"| I["Assigned ISIC/NACE code<br/>+ confidence margin"]
+
+    D --> J["Final sector label"]
+    E --> J
+    I --> J
+```
+::::
 
 :::
 
 
 ## Results
 
-::: {.section-card}
-### Skills per offer
+### Skill content of job postings
 
-The table below summarises how many ESCO-mapped skills are retained per
-job posting. To show the distribution, it reports the mean together
-with selected percentiles. Click a column header to sort the table.
+::: {.section-card}
+#### Skills per offer
+
+The number of identifiable skills per posting varies substantially
+across countries, reflecting differences not only in underlying labour
+demand but also in how online vacancies are written and used. In some
+markets, postings resemble detailed job descriptions and explicitly
+list technical, language, and transversal requirements, often in more
+standardized HR formats; in others, they are shorter and function
+primarily as vacancy notices, with much of the screening and
+clarification taking place later in the recruitment process.
+Cross-country differences may also partly reflect variation in the
+occupational composition of online demand, as professional and
+technical roles tend to generate more skill-rich vacancy texts than
+more generic or less formal postings. The indicator should therefore
+be interpreted primarily as capturing the explicitness and
+codification of skill demand in online recruitment, rather than as a
+direct measure of job complexity across countries.
+
+The table below reports the distribution of ESCO-mapped skills per
+posting. Click a column header to sort.
 
 ```{ojs}
 //| echo: false
 
 {
   const rows = [
-    { country: "India", mean: 13.68, p10: 2.0, p25: 5.0, median: 12.0, p75: 20.0, p90: 28.0 },
-    { country: "Japan", mean: 10.17, p10: 2.0, p25: 5.0, median: 9.0, p75: 14.0, p90: 19.0 },
-    { country: "South Korea", mean: 6.09, p10: 0.0, p25: 1.0, median: 3.0, p75: 8.0, p90: 16.0 },
-    { country: "Malaysia", mean: 13.82, p10: 1.0, p25: 5.0, median: 12.0, p75: 20.0, p90: 29.0 },
-    { country: "Mexico", mean: 10.70, p10: 2.0, p25: 5.0, median: 9.0, p75: 15.0, p90: 21.0 },
-    { country: "Philippines", mean: 14.70, p10: 3.0, p25: 7.0, median: 13.0, p75: 20.0, p90: 29.0 },
-    { country: "Poland", mean: 17.96, p10: 7.0, p25: 12.0, median: 17.0, p75: 24.0, p90: 30.0 },
-    { country: "Singapore", mean: 16.93, p10: 5.0, p25: 10.0, median: 16.0, p75: 23.0, p90: 31.0 },
-    { country: "Thailand", mean: 10.35, p10: 1.0, p25: 1.0, median: 7.0, p75: 16.0, p90: 26.0 },
-    { country: "Taiwan", mean: 14.73, p10: 1.0, p25: 5.0, median: 12.0, p75: 22.0, p90: 32.0 },
-    { country: "Vietnam", mean: 18.07, p10: 7.0, p25: 11.0, median: 17.0, p75: 23.0, p90: 31.0 },
-    { country: "Overall", mean: 13.22, p10: 2.0, p25: 5.0, median: 12.0, p75: 19.0, p90: 27.0, overall: true },
+    { country: "India", mean: 7.6, p10: 1, p25: 3, median: 6, p75: 11, p90: 16 },
+    { country: "Indonesia", mean: 5.5, p10: 1, p25: 1, median: 3, p75: 8, p90: 14 },
+    { country: "Japan", mean: 5.5, p10: 1, p25: 2, median: 5, p75: 8, p90: 11 },
+    { country: "S. Korea", mean: 3.3, p10: 0, p25: 1, median: 2, p75: 4, p90: 9 },
+    { country: "Malaysia", mean: 7.9, p10: 1, p25: 2, median: 7, p75: 12, p90: 17 },
+    { country: "Mexico", mean: 6.3, p10: 1, p25: 3, median: 5, p75: 9, p90: 13 },
+    { country: "Philippines", mean: 8.2, p10: 1, p25: 3, median: 7, p75: 11, p90: 16 },
+    { country: "Poland", mean: 10.0, p10: 3, p25: 6, median: 10, p75: 13, p90: 17 },
+    { country: "Singapore", mean: 9.0, p10: 2, p25: 5, median: 8, p75: 12, p90: 17 },
+    { country: "Thailand", mean: 5.8, p10: 1, p25: 1, median: 4, p75: 9, p90: 14 },
+    { country: "Taiwan", mean: 8.7, p10: 0, p25: 2, median: 7, p75: 12, p90: 20 },
+    { country: "Vietnam", mean: 9.7, p10: 3, p25: 6, median: 9, p75: 13, p90: 17 },
+    { country: "Overall", mean: 7.2, p10: 1, p25: 2, median: 6, p75: 10, p90: 15, overall: true },
   ];
 
   const table = d3.create("table")
@@ -1409,7 +1976,6 @@ with selected percentiles. Click a column header to sort the table.
   const columns = [
     { key: "country", label: "Country", align: "left", type: "text" },
     { key: "mean", label: "Mean", align: "right", type: "number" },
-    { key: "p10", label: "P10", align: "right", type: "number" },
     { key: "p25", label: "P25", align: "right", type: "number" },
     { key: "median", label: "Median", align: "right", type: "number" },
     { key: "p75", label: "P75", align: "right", type: "number" },
@@ -1445,7 +2011,6 @@ with selected percentiles. Click a column header to sort the table.
         .style("background", row.overall ? "#f8fafc" : null);
       tr.append("td").text(row.country);
       tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.mean));
-      tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p10));
       tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p25));
       tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.median));
       tr.append("td").style("text-align", "right").style("font-variant-numeric", "tabular-nums").text(fmtRate(row.p75));
@@ -1484,8 +2049,1265 @@ with selected percentiles. Click a column header to sort the table.
 ```
 :::
 
+### Sectoral demand structure (ISIC/NACE)
+
 ::: {.section-card}
-### Cross-country comparison
+#### Sectoral heatmap
+
+Each job posting is assigned an economic sector via the ISIC/NACE
+classification derived from the ESCO occupation mapping (see
+[Step 06](#pipeline-step-06) above). At the 2-digit division level used
+in this analysis, NACE Rev. 2.1 and ISIC Rev. 5 are identical. The
+heatmap below shows the share of postings in each ISIC/NACE section
+(1-digit) per country. Clicking on any section row expands a 2-digit
+breakdown showing how demand is distributed across divisions within
+that sector.
+
+```{ojs}
+//| echo: false
+
+nace2d = FileAttachment("nace_2digit_detail.json").json()
+
+{
+  const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
+  const bmList = ["IN","MX","PL"];
+  const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
+  const sections = [
+    {l:"N",n:"Professional, scientific & technical"},
+    {l:"G",n:"Wholesale & retail trade"},
+    {l:"O",n:"Administrative & support"},
+    {l:"K",n:"Telecom, IT & information services"},
+    {l:"I",n:"Accommodation & food service"},
+    {l:"C",n:"Manufacturing"},
+    {l:"H",n:"Transportation & storage"},
+    {l:"R",n:"Human health & social work"},
+    {l:"Q",n:"Education"},
+    {l:"S",n:"Arts, sports & recreation"},
+    {l:"L",n:"Financial & insurance"},
+    {l:"T",n:"Other service activities"},
+    {l:"F",n:"Construction"},
+    {l:"P",n:"Public administration & defence"},
+    {l:"U",n:"Households as employers"},
+    {l:"J",n:"Publishing & broadcasting"},
+    {l:"M",n:"Real estate"},
+    {l:"A",n:"Agriculture & fishing"},
+    {l:"D",n:"Electricity & gas"},
+    {l:"E",n:"Water supply & waste"},
+    {l:"B",n:"Mining & quarrying"}
+  ];
+  const pct = {
+    N:{ID:28.2,IN:26.2,JP:8.4,KR:13.1,MY:25.2,MX:17.5,PH:27.8,PL:20.5,SG:32.8,TH:20.1,TW:15.3,VN:27.6},
+    G:{ID:13.0,IN:8.4,JP:9.2,KR:7.1,MY:11.7,MX:16.3,PH:13.3,PL:18.5,SG:7.8,TH:13.4,TW:16.1,VN:17.0},
+    O:{ID:9.7,IN:14.0,JP:11.4,KR:10.3,MY:13.4,MX:15.2,PH:16.2,PL:9.1,SG:8.7,TH:8.9,TW:9.9,VN:10.9},
+    K:{ID:6.9,IN:11.4,JP:9.8,KR:2.7,MY:4.4,MX:3.0,PH:4.9,PL:12.0,SG:10.3,TH:2.7,TW:2.5,VN:10.2},
+    I:{ID:13.6,IN:5.0,JP:8.1,KR:4.5,MY:14.2,MX:5.6,PH:5.4,PL:1.5,SG:7.4,TH:24.4,TW:9.4,VN:4.7},
+    C:{ID:4.3,IN:4.4,JP:9.8,KR:14.5,MY:5.0,MX:7.8,PH:5.1,PL:8.5,SG:5.1,TH:4.4,TW:12.8,VN:5.5},
+    H:{ID:4.5,IN:2.4,JP:9.6,KR:4.4,MY:5.6,MX:10.1,PH:6.6,PL:6.3,SG:5.1,TH:9.1,TW:6.1,VN:3.5},
+    R:{ID:1.2,IN:4.6,JP:9.3,KR:13.5,MY:2.8,MX:3.1,PH:3.0,PL:4.3,SG:2.8,TH:1.0,TW:4.2,VN:1.2},
+    Q:{ID:3.5,IN:7.6,JP:4.1,KR:6.4,MY:2.9,MX:2.5,PH:2.1,PL:2.1,SG:4.3,TH:2.0,TW:3.6,VN:2.8},
+    S:{ID:3.4,IN:2.1,JP:3.0,KR:2.5,MY:3.6,MX:2.6,PH:2.2,PL:1.9,SG:2.3,TH:3.6,TW:3.5,VN:1.9},
+    L:{ID:2.4,IN:3.3,JP:0.5,KR:1.0,MY:1.5,MX:6.1,PH:3.1,PL:3.5,SG:3.7,TH:1.2,TW:1.4,VN:4.5},
+    T:{ID:2.5,IN:1.8,JP:2.4,KR:1.9,MY:2.5,MX:3.6,PH:2.1,PL:3.4,SG:2.5,TH:2.9,TW:2.3,VN:1.8},
+    F:{ID:0.7,IN:0.9,JP:4.2,KR:2.5,MY:1.0,MX:1.6,PH:1.0,PL:2.1,SG:1.7,TH:0.9,TW:3.6,VN:1.3},
+    P:{ID:2.5,IN:2.1,JP:3.5,KR:2.5,MY:1.9,MX:1.6,PH:2.5,PL:2.2,SG:2.4,TH:2.6,TW:3.0,VN:2.3},
+    U:{ID:0.1,IN:0.2,JP:3.0,KR:8.2,MY:0.4,MX:0.3,PH:0.4,PL:0.4,SG:0.1,TH:0.5,TW:0.6,VN:0.2},
+    J:{ID:1.2,IN:3.2,JP:0.8,KR:1.1,MY:1.9,MX:0.4,PH:1.1,PL:1.4,SG:1.1,TH:0.7,TW:1.9,VN:2.4},
+    M:{ID:0.7,IN:1.1,JP:0.9,KR:0.8,MY:0.6,MX:0.8,PH:1.2,PL:0.6,SG:0.9,TH:0.5,TW:0.9,VN:0.9},
+    A:{ID:0.7,IN:0.4,JP:0.6,KR:1.6,MY:0.7,MX:0.7,PH:0.9,PL:0.7,SG:0.4,TH:0.5,TW:1.4,VN:1.0},
+    D:{ID:0.3,IN:0.5,JP:0.4,KR:0.5,MY:0.3,MX:0.5,PH:0.6,PL:0.5,SG:0.3,TH:0.3,TW:0.6,VN:0.2},
+    E:{ID:0.2,IN:0.1,JP:0.7,KR:0.7,MY:0.2,MX:0.4,PH:0.3,PL:0.3,SG:0.1,TH:0.2,TW:0.4,VN:0.2},
+    B:{ID:0.2,IN:0.3,JP:0.4,KR:0.3,MY:0.2,MX:0.3,PH:0.1,PL:0.2,SG:0.2,TH:0.2,TW:0.6,VN:0.1}
+  };
+  const detail = nace2d;
+
+  const color = d3.scaleSequential(d3.interpolateYlOrRd).domain([0, 33]);
+  const subColor = d3.scaleSequential(d3.interpolateBlues).domain([0, 100]);
+
+  const wrap = d3.create("div")
+    .style("font-family","system-ui, -apple-system, sans-serif")
+    .style("font-size","12px");
+
+  /* ── toggle buttons ── */
+  const btnBar = wrap.append("div")
+    .style("display","flex").style("gap","0").style("margin-bottom","12px");
+
+  const btnStyle = (active) =>
+    `padding:6px 18px;font-size:12px;font-weight:${active?700:500};cursor:pointer;border:1px solid #cbd5e1;`
+    + `background:${active?"#0f172a":"#fff"};color:${active?"#fff":"#475569"};`
+    + `transition:all .15s`;
+
+  const btnEA = btnBar.append("button")
+    .attr("style", btnStyle(true) + ";border-radius:6px 0 0 6px")
+    .text("East Asia");
+  const btnBM = btnBar.append("button")
+    .attr("style", btnStyle(false) + ";border-radius:0 6px 6px 0;border-left:none")
+    .text("Benchmarks");
+
+  /* ── table host ── */
+  const tableHost = wrap.append("div");
+  const legendHost = wrap.append("div")
+    .style("margin-top","10px").style("font-size","11px")
+    .style("color","#64748b").style("line-height","1.6");
+
+  function shortName(name, n) {
+    return name.length > n ? name.slice(0, n - 1) + "\u2026" : name;
+  }
+
+  function cellBg(val, scale) {
+    const bg = scale(val);
+    return `background:${bg};color:${val > 18 ? "#fff" : "#1e293b"}`;
+  }
+
+  function buildTable(countries) {
+    tableHost.html("");
+    legendHost.html("");
+
+    const tbl = tableHost.append("table")
+      .style("border-collapse","collapse").style("width","auto");
+
+    /* header */
+    const ch = tbl.append("thead").append("tr");
+    ch.append("th").style("text-align","right").style("padding","2px 6px")
+      .style("font-size","10px").style("color","#94a3b8").text("ISIC/NACE section");
+    countries.forEach(c => {
+      ch.append("th").style("padding","2px 6px").style("text-align","center")
+        .style("font-size","11px").style("font-weight","700")
+        .style("color","#334155").style("min-width","48px").text(c);
+    });
+
+    const tbody = tbl.append("tbody");
+
+    sections.forEach(s => {
+      const divs = detail[s.l] || [];
+      const hasDivs = divs.length > 1;
+
+      const tr = tbody.append("tr").style("cursor", hasDivs ? "pointer" : "default");
+      const labelTd = tr.append("td")
+        .style("text-align","right").style("padding","3px 6px")
+        .style("white-space","nowrap").style("font-size","11px")
+        .style("color","#475569");
+      labelTd.html(`${hasDivs ? '<span class="nace-arrow" style="display:inline-block;width:14px;font-size:9px;transition:transform .2s">\u25B6</span>' : '<span style="display:inline-block;width:14px"></span>'}${s.l}\u2002${s.n}`);
+
+      countries.forEach(c => {
+        const val = pct[s.l][c];
+        tr.append("td")
+          .attr("style", `text-align:center;padding:2px 6px;border-radius:3px;font-size:10px;font-weight:${val >= 10 ? 700 : 400};${cellBg(val, color)}`)
+          .text(val.toFixed(1));
+      });
+
+      const subRows = [];
+      if (hasDivs) {
+        divs.forEach(d => {
+          const sr = tbody.append("tr").style("display","none");
+          sr.append("td")
+            .style("text-align","right").style("padding","2px 6px 2px 24px")
+            .style("font-size","10px").style("color","#94a3b8")
+            .style("white-space","nowrap")
+            .text(`${d.div} ${shortName(d.name, 38)}`);
+          countries.forEach(c => {
+            const val = d.pct[c] || 0;
+            sr.append("td")
+              .attr("style", `text-align:center;padding:1px 6px;border-radius:3px;font-size:9px;${cellBg(val, subColor)}`)
+              .text(val.toFixed(0));
+          });
+          subRows.push(sr);
+        });
+
+        let open = false;
+        tr.on("click", () => {
+          open = !open;
+          labelTd.select(".nace-arrow").style("transform", open ? "rotate(90deg)" : "rotate(0deg)");
+          subRows.forEach(sr => sr.style("display", open ? "table-row" : "none"));
+        });
+      }
+    });
+
+    /* legend */
+    const items = countries.map(c =>
+      `<span style="font-weight:700">${c}</span>\u2009${countryFull[c]}`
+    );
+    legendHost.html(items.join(" \u00b7 "));
+  }
+
+  /* initial render */
+  buildTable(eaList);
+
+  btnEA.on("click", () => {
+    btnEA.attr("style", btnStyle(true) + ";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(false) + ";border-radius:0 6px 6px 0;border-left:none");
+    buildTable(eaList);
+  });
+  btnBM.on("click", () => {
+    btnEA.attr("style", btnStyle(false) + ";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(true) + ";border-radius:0 6px 6px 0;border-left:none");
+    buildTable(bmList);
+  });
+
+  return wrap.node();
+}
+```
+
+::: {.callout-tip appearance="simple"}
+##### Statistical test: do countries differ in sectoral composition?
+
+A global $\chi^2$ test of independence on the 12×21 contingency table
+(country × ISIC/NACE section) yields $\chi^2 = 393{,}255$, $df = 220$,
+$p < 0.001$, confirming that sectoral demand structures differ
+significantly across the 12 countries. The overall effect size is
+Cramér's $V = 0.14$, indicating a moderate but meaningful departure
+from homogeneity.
+
+**Pairwise similarity** (Cramér's $V$, lower = more similar):
+
+| Most similar pairs | $V$  | Most different pairs | $V$  |
+|-----|------|------|------|
+| Indonesia – Malaysia    | 0.12 | S. Korea – Vietnam   | 0.46 |
+| Malaysia – Thailand     | 0.17 | Indonesia – S. Korea | 0.44 |
+| India – Singapore       | 0.17 | S. Korea – Thailand  | 0.44 |
+| Indonesia – Singapore   | 0.17 | S. Korea – Singapore | 0.43 |
+:::
+
+#### Macroeconomic and demographic context
+
+The tables below provide a reference frame for interpreting the sectoral
+demand patterns. All data are from the
+<a class="paper-link" href="https://data.worldbank.org/indicator" target="_blank" rel="noopener noreferrer">World Bank Open Data<span class="source-link-ext">↗</span></a>
+(latest available year, 2023–2024), except Taiwan, for which data are
+sourced from the National Statistics Bureau and the National Development
+Council.
+
+```{ojs}
+//| echo: false
+
+macroCtx = FileAttachment("macro_context.json").json()
+
+{
+  const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
+  const bmList = ["IN","MX","PL"];
+  const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",
+    MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",
+    PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
+  const d = macroCtx;
+
+  const wrap = d3.create("div")
+    .style("font-family","system-ui,-apple-system,sans-serif")
+    .style("font-size","12px");
+
+  /* ── toggle ── */
+  const btnBar = wrap.append("div").style("display","flex").style("gap","0")
+    .style("margin-bottom","12px");
+  const btnStyle = (active) =>
+    `padding:6px 18px;font-size:12px;font-weight:${active?700:500};`
+    + `cursor:pointer;border:1px solid #cbd5e1;`
+    + `background:${active?"#0f172a":"#fff"};color:${active?"#fff":"#475569"};`
+    + `transition:all .15s`;
+  const btnEA = btnBar.append("button")
+    .attr("style", btnStyle(true)+";border-radius:6px 0 0 6px")
+    .text("East Asia");
+  const btnBM = btnBar.append("button")
+    .attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none")
+    .text("Benchmarks");
+
+  const host = wrap.append("div");
+
+  /* ── helpers ── */
+  function fmt(v,dec) {
+    return v!=null ? v.toLocaleString("en",{minimumFractionDigits:dec,
+      maximumFractionDigits:dec}) : "\u2014";
+  }
+  function fmtK(v) {
+    return v!=null ? v.toLocaleString("en",{maximumFractionDigits:0}) : "\u2014";
+  }
+
+  const incomeOrder = {"High":3,"Upper-middle":2,"Lower-middle":1,"Low":0};
+  const incomeColor = {"High":"#16a34a","Upper-middle":"#3b82f6",
+    "Lower-middle":"#f59e0b"};
+
+  /* ── generic sortable table builder ── */
+  function sortableTable(parent, title, cols, rows, defaultSortCol,
+                         defaultAsc, sourceHtml) {
+    parent.append("div").style("font-weight","700").style("font-size","12px")
+      .style("margin","18px 0 6px").style("color","#0f172a").text(title);
+
+    const tblWrap = parent.append("div");
+    let sortCol = defaultSortCol;
+    let sortAsc = defaultAsc;
+
+    function render() {
+      tblWrap.html("");
+      const sorted = [...rows].sort((a,b) => {
+        const va = a.vals[sortCol], vb = b.vals[sortCol];
+        if (va == null && vb == null) return 0;
+        if (va == null) return 1;
+        if (vb == null) return -1;
+        const cmp = typeof va === "string"
+          ? va.localeCompare(vb) : va - vb;
+        return sortAsc ? cmp : -cmp;
+      });
+
+      const tbl = tblWrap.append("table")
+        .style("border-collapse","collapse").style("margin-bottom","4px");
+      const thead = tbl.append("thead").append("tr");
+      cols.forEach((c,i) => {
+        const arrow = sortCol === i
+          ? (sortAsc ? " \u25B2" : " \u25BC") : "";
+        thead.append("th")
+          .style("text-align", c.align || "right")
+          .style("padding","4px 10px")
+          .style("font-size","10px").style("color","#94a3b8")
+          .style("font-weight","600")
+          .style("border-bottom","1px solid #e2e8f0")
+          .style("white-space","nowrap")
+          .style("cursor","pointer")
+          .style("user-select","none")
+          .text(c.label + arrow)
+          .on("click", () => {
+            if (sortCol === i) sortAsc = !sortAsc;
+            else { sortCol = i; sortAsc = c.defaultAsc ?? false; }
+            render();
+          });
+      });
+
+      sorted.forEach(row => {
+        const tr = tbl.append("tbody").append("tr");
+        cols.forEach((c,i) => {
+          const v = row.vals[i];
+          const td = tr.append("td")
+            .style("padding","3px 10px")
+            .style("text-align", c.align || "right")
+            .style("font-size","11px")
+            .style("font-variant-numeric","tabular-nums");
+          if (c.render) c.render(td, v, row);
+          else td.text(v != null ? v : "\u2014");
+        });
+      });
+
+      if (sourceHtml) {
+        tblWrap.append("div").style("font-size","9px").style("color","#b0b8c4")
+          .style("margin-top","2px").style("line-height","1.4").html(sourceHtml);
+      }
+    }
+    render();
+  }
+
+  /* ── build all tables ── */
+  function build(countries) {
+    host.html("");
+
+    /* ── Table 1: Demographics ── */
+    const rows1 = countries.map(cc => {
+      const r = d[cc]||{};
+      return {cc, vals: [
+        countryFull[cc],
+        r.income_group || "",
+        r.gdp_cap_ppp,
+        r.old_age_dep,
+        r.fertility
+      ]};
+    });
+    const cols1 = [
+      {label:"Country", align:"left", defaultAsc:true,
+        render:(td,v)=>td.style("font-weight","600").text(v)},
+      {label:"Income group", align:"left", defaultAsc:false,
+        render:(td,v,row)=>{
+          td.style("font-size","10px").style("font-weight","600")
+            .style("color",incomeColor[v]||"#475569").text(v);
+          row.vals[1] = incomeOrder[v]||0;
+        }},
+      {label:"GDP/cap PPP ($)", defaultAsc:false,
+        render:(td,v)=>td.text(fmtK(v))},
+      {label:"Old-age dep. ratio", defaultAsc:false,
+        render:(td,v)=>{
+          const c = v>=25?"#dc2626":v>=15?"#f59e0b":"#475569";
+          td.style("color",c).style("font-weight",v>=25?"700":"400")
+            .text(fmt(v,1));
+        }},
+      {label:"Fertility rate", defaultAsc:true,
+        render:(td,v)=>{
+          const c = v<1.3?"#dc2626":v<1.8?"#f59e0b":"#475569";
+          td.style("color",c).style("font-weight",v<1.3?"700":"400")
+            .text(fmt(v,2));
+        }}
+    ];
+    sortableTable(host, "Demographic structure and income level",
+      cols1, rows1, 3, false,
+      "WDI: <code>NY.GDP.PCAP.PP.CD</code>, <code>SP.POP.DPND.OL</code>, "
+      + "<code>SP.DYN.TFRT.IN</code>. "
+      + "Taiwan: DGBAS National Accounts &amp; MOI Demographic Statistics.");
+
+    /* ── Table 2: FDI ── */
+    const rows2 = countries.map(cc => {
+      const r = d[cc]||{};
+      return {cc, vals: [
+        countryFull[cc],
+        r.fdi_pct_2024,
+        r.fdi_pct_avg,
+        r.fdi_bn_2024,
+        r.fdi_bn_avg
+      ]};
+    });
+    const barRender = (td,v) => {
+      td.style("min-width","90px");
+      td.append("div").style("text-align","right").style("font-size","11px")
+        .style("font-variant-numeric","tabular-nums").text(fmt(v,1));
+      const barW = Math.min((v||0)/30*100,100);
+      td.append("div").style("width","100%").style("height","4px")
+        .style("background","#e2e8f0").style("border-radius","2px")
+        .style("margin-top","2px")
+        .append("div").style("width",barW+"%").style("height","100%")
+        .style("background","#3b82f6").style("border-radius","2px")
+        .style("min-width", v>0?"2px":"0");
+    };
+    const cols2 = [
+      {label:"Country", align:"left", defaultAsc:true,
+        render:(td,v)=>td.style("font-weight","600").text(v)},
+      {label:"FDI % GDP (2024)", defaultAsc:false, render:barRender},
+      {label:"FDI % GDP (5-yr avg)", defaultAsc:false, render:barRender},
+      {label:"FDI US$ bn (2024)", defaultAsc:false,
+        render:(td,v)=>td.text(fmt(v,1))},
+      {label:"FDI US$ bn (5-yr avg)", defaultAsc:false,
+        render:(td,v)=>td.text(fmt(v,1))}
+    ];
+    sortableTable(host, "Foreign direct investment, net inflows",
+      cols2, rows2, 1, false,
+      "WDI: <code>BX.KLT.DINV.WD.GD.ZS</code>, "
+      + "<code>BX.KLT.DINV.CD.WD</code>. 5-yr avg = 2020\u20132024. "
+      + "Taiwan: Investment Commission, MOEA. "
+      + "Singapore FDI/GDP reflects its financial-hub role "
+      + "(gross flows exceed GDP).");
+
+    /* ── Table 3: Economic structure ── */
+    const rows3 = countries.map(cc => {
+      const r = d[cc]||{};
+      return {cc, vals: [
+        countryFull[cc],
+        r.manuf_pct,
+        r.services_pct,
+        r.exports_pct
+      ]};
+    });
+    const cols3 = [
+      {label:"Country", align:"left", defaultAsc:true,
+        render:(td,v)=>td.style("font-weight","600").text(v)},
+      {label:"Manufacturing (% GDP)", defaultAsc:false,
+        render:(td,v)=>td.text(fmt(v,1))},
+      {label:"Services (% GDP)", defaultAsc:false,
+        render:(td,v)=>td.text(fmt(v,1))},
+      {label:"Exports (% GDP)", defaultAsc:false,
+        render:(td,v)=>td.text(fmt(v,1))}
+    ];
+    sortableTable(host, "Economic structure",
+      cols3, rows3, 1, false,
+      "WDI: <code>NV.IND.MANF.ZS</code>, <code>NV.SRV.TOTL.ZS</code>, "
+      + "<code>NE.EXP.GNFS.ZS</code>. "
+      + "Taiwan: DGBAS National Accounts.");
+
+    /* ── definitions ── */
+    host.append("div").style("font-size","10px").style("color","#94a3b8")
+      .style("margin-top","12px").style("line-height","1.5")
+      .html("<b>Old-age dependency ratio</b> = number of people aged 65+ "
+        + "per 100 working-age population (15\u201364); higher values "
+        + "indicate a larger elderly population relative to working-age "
+        + "adults (e.g.\u00a0Japan\u2019s 50.7 means roughly one senior "
+        + "for every two workers). "
+        + "<b>Fertility rate</b> (total, births per woman) = average "
+        + "number of children born per woman over her lifetime; a rate "
+        + "below ~2.1 implies the population will shrink without "
+        + "net immigration (e.g.\u00a0South Korea\u2019s 0.75 is the "
+        + "lowest recorded globally). Click any column header to sort.");
+  }
+
+  build(eaList);
+  btnEA.on("click", () => {
+    btnEA.attr("style", btnStyle(true)+";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(false)
+      +";border-radius:0 6px 6px 0;border-left:none");
+    build(eaList);
+  });
+  btnBM.on("click", () => {
+    btnEA.attr("style", btnStyle(false)+";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(true)
+      +";border-radius:0 6px 6px 0;border-left:none");
+    build(bmList);
+  });
+
+  return wrap.node();
+}
+```
+
+#### Sectoral demand patterns across East Asia
+
+Several structural patterns emerge from the sectoral heatmap, which can
+be read against the macroeconomic indicators above. The cross-country
+variation reflects differences in income level, productive structure,
+demographic trajectory, FDI exposure, and the degree of formalization of
+national labour markets.
+
+**Manufacturing (C): high-tech industrial economies overrepresent
+manufacturing in online demand.** South Korea (14.5% of postings),
+Taiwan (12.8%) and Japan (9.8%) display the largest manufacturing
+shares. However, the relationship between manufacturing's share of GDP
+and its share of online job postings is not linear. Taiwan's
+manufacturing sector accounts for 36.4% of GDP---the highest in the
+sample---yet only 12.8% of postings, while Thailand (24.3% of GDP) and
+Vietnam (24.4%) generate only 4.4% and 5.5% of postings respectively.
+The key differentiator is *what kind* of manufacturing drives demand:
+Korea's and Japan's semiconductor, automotive and precision-engineering
+industries generate high volumes of formal online vacancies for skilled
+workers (engineers, technicians, quality specialists), whereas
+manufacturing in Southeast Asia is more labour-intensive and relies
+more heavily on informal recruitment channels. This is reinforced by
+the pattern within ISIC/NACE section N (Professional, scientific and
+technical activities): *architectural and engineering services*
+(ISIC/NACE division 71) represent 38% of professional-sector postings
+in Japan and 32% in Korea, compared with only 8–9% in Indonesia,
+Vietnam or India. In other words, the high-tech industrial base in
+Japan, Korea and Taiwan generates demand that spills over into
+engineering services, amplifying these countries' industrial footprint
+beyond section C alone.
+
+**Professional and scientific activities (N): FDI composition matters
+more than FDI volume.** Singapore (32.8%), Indonesia (28.2%), the
+Philippines (27.8%) and Vietnam (27.6%) lead in ISIC/NACE section N,
+while Japan (8.4%) and Korea (13.1%) trail far behind. The 2-digit
+decomposition explains why: 54–56% of section N postings in Singapore,
+Indonesia, India and the Philippines consist of *activities of head
+offices and management consultancy* (ISIC/NACE division 70). This
+aligns with FDI patterns---Singapore channels 24.7% of GDP through
+foreign direct investment, Vietnam 4.2%, the Philippines 2.0%---and
+with the presence of regional headquarters, shared-service centres and
+international consulting firms in these economies. In Japan (FDI/GDP:
+0.4%) and Korea (0.7%), ISIC/NACE division 70 is notably smaller
+(33–34%), while engineering services (division 71) dominate the
+professional sector, reflecting domestic industrial demand rather than
+external corporate activity.
+
+**Accommodation and food services (I) track tourism dependence.**
+Thailand (24.4%), Malaysia (14.2%) and Indonesia (13.6%) stand out.
+These are upper-middle-income economies where services account for a
+large share of GDP (59.2%, 53.7% and 43.8% respectively) and tourism
+is a major contributor. In high-income economies---Japan (8.1%), Korea
+(4.5%), Singapore (7.4%)---the hospitality sector's share of online
+postings is markedly lower relative to overall services orientation
+(services represent 69.8%, 57.5% and 73.0% of GDP).
+
+**Health and social work (R): demographic pressure meets labour market
+formalization.** The most distinctive country-level finding concerns
+ISIC/NACE section R. South Korea (13.5%) and Japan (9.3%) far exceed
+the shares observed in Southeast Asian economies (1.0–2.8%), even
+though health systems across the region face similar underlying
+challenges. The 2-digit breakdown reveals that *residential care
+activities* (ISIC/NACE division 87) account for 48% of section R
+postings in Korea and 37% in Japan, while *social work activities
+without accommodation* (ISIC/NACE division 88) adds another 27–28%.
+This demand for elderly care workers, home-visit aides and social
+workers is a direct reflection of population ageing: Japan's old-age
+dependency ratio has reached 50.7---by far the highest in the
+sample---and South Korea's fertility rate of 0.75 is the lowest in the
+world. Poland (old-age dependency: 31.0) also has a relatively elevated
+share in section R (4.3%), consistent with this interpretation.
+
+However, the high online visibility of care occupations in Japan and
+Korea also reflects the degree of *labour market formalization*: in
+these countries, care work is overwhelmingly provided through regulated
+institutions---licensed nursing homes, certified home-care agencies,
+municipal social welfare offices---that post vacancies on formal job
+platforms. In lower-income economies with younger populations
+(Philippines: old-age dependency 8.2, Indonesia: 10.7), much of the
+care economy operates informally and does not appear in online postings.
+The observed gap therefore captures both a real demographic demand
+effect and a measurement artefact linked to formalization.
+
+**IT and telecommunications (K): sectoral classification, not
+technological backwardness.** Poland (12.0%), India (11.4%), Singapore
+(10.3%), Vietnam (10.2%) and Japan (9.8%) lead in ISIC/NACE section K,
+which is almost entirely composed of *computer programming, consultancy
+and related activities* (ISIC/NACE division 62; 82–91% across all
+countries). The relatively low shares in Korea (2.7%) and Taiwan (2.5%)
+are counterintuitive given these countries' technological
+sophistication---Korea's manufacturing alone represents 26.6% of GDP
+and Taiwan's 36.4%, both dominated by electronics and semiconductors.
+The explanation lies in how firms organize and classify IT functions:
+Korean and Taiwanese conglomerates (Samsung, TSMC, SK Hynix, LG) embed
+software engineers and data scientists within manufacturing divisions,
+where vacancies are classified under ISIC/NACE section C
+(Manufacturing) or division N/71 (Engineering) rather than as standalone
+software services (section K). India and Vietnam, by contrast, have
+large IT outsourcing and offshoring sectors---serving external
+clients---that are classified explicitly as software services,
+amplifying section K.
+
+**Financial services (L) reflect financial-sector maturity and
+formalization dynamics.** Mexico (6.1%), Vietnam (4.5%) and Singapore
+(3.7%) lead---reflecting, respectively, a large domestic banking sector
+with high turnover, a rapidly formalizing financial system in a
+lower-middle-income economy (GDP/cap: $16,386 PPP), and a global
+financial hub. Japan (0.5%) and Korea (1.0%) record the lowest shares;
+their mature financial sectors, with low turnover, generate
+proportionally fewer new vacancies relative to total market size.
+
+**Wholesale and retail trade (G) is largest in economies undergoing
+retail formalization**---Poland (18.5%), Vietnam (17.0%), Mexico (16.3%),
+Taiwan (16.1%)---and smallest in Korea (7.1%) and Singapore (7.8%),
+where the sector has consolidated and e-commerce has reduced the
+intensity of vacancy creation per unit of retail output.
+
+In summary, the sectoral composition of online job demand reflects real
+structural differences that are consistent with macroeconomic
+fundamentals. High-income East Asian economies display a pronounced
+high-tech manufacturing and engineering orientation---visible not only
+in section C but also in the engineering-services component of section
+N---alongside demographically driven care-sector demand in section R.
+Southeast Asian and benchmark economies exhibit stronger service-sector
+profiles shaped by tourism (section I), FDI-driven consulting and
+shared-service centres (section N / division 70), and the expanding
+formalization of retail and financial employment. These patterns offer
+actionable signals for workforce development policy: for ageing
+societies, the priority lies in scaling up care-sector training and
+migration pathways; for FDI-receiving economies, it lies in upgrading
+professional and managerial skills to move up the value chain from
+back-office operations toward higher-value functions.
+
+#### Online demand vs. actual employment structure
+
+The table below contrasts the occupational composition of online job
+postings (**demand**) with actual employment shares from national
+labour force surveys reported to the ILO (**employment**), both at
+the ISCO-08 Major Group level (1-digit).
+
+For each country we compute the **Index of Dissimilarity**, originally
+developed to measure residential segregation by race and gender. The
+same functional form is widely applied in labour market mismatch
+research — for instance,
+<a class="paper-link" href="https://link.springer.com/article/10.1007/s11135-023-01707-7" target="_blank" rel="noopener noreferrer">Beręsewicz et al. (2024)<span class="source-link-ext">↗</span></a>
+uses it to quantify educational and occupational mismatch between
+online job postings and employer-survey data in Poland.
+
+$$
+\text{Mismatch}_j = \frac{1}{2} \sum_{i} \left| D_{ij} - E_{ij} \right|
+$$
+
+where $D_{ij}$ is the share of online job postings in ISCO group $i$
+for country $j$ and $E_{ij}$ is the corresponding employment share
+from national labour force surveys. The index expresses the percentage
+of the employment structure that would need to shift between
+occupational groups to match the composition of online demand.
+
+Use the country selector below to browse the detailed breakdown.
+The summary bar chart ranks all countries by mismatch.
+
+```{ojs}
+//| echo: false
+
+isco1ds = FileAttachment("isco1_demand_supply.json").json()
+
+{
+  const eaList = ["JP","KR","TH","MY","SG","ID","VN","PH"];
+  const bmList = ["IN","MX","PL"];
+  const allList = [...eaList, ...bmList];
+  const countryFull = {JP:"Japan",KR:"S. Korea",TH:"Thailand",MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
+  const iscoNames = {
+    "0":"Armed forces","1":"Managers","2":"Professionals",
+    "2+3":"Professionals & Technicians",
+    "3":"Technicians & assoc. prof.","4":"Clerical support",
+    "5":"Service & sales","6":"Skilled agriculture",
+    "7":"Craft & trades","8":"Plant & machine operators",
+    "9":"Elementary occupations"
+  };
+  const iscoKeys = ["1","2","3","4","5","6","7","8","9"];
+  const d = isco1ds;
+
+  const wrap = d3.create("div")
+    .style("font-family","system-ui,-apple-system,sans-serif")
+    .style("font-size","13px").style("max-width","920px");
+
+  /* ──── shared toggle helper ──── */
+  const btnStyle = (active) =>
+    `padding:6px 18px;font-size:12px;font-weight:${active?700:500};cursor:pointer;border:1px solid #cbd5e1;`
+    + `background:${active?"#0f172a":"#fff"};color:${active?"#fff":"#475569"};transition:all .15s`;
+
+  /* ──── 1. MISMATCH BAR CHART ──── */
+  wrap.append("div").style("font-weight","700").style("font-size","14px")
+    .style("margin-bottom","10px").style("color","#0f172a")
+    .text("Index of Dissimilarity by country (pp)");
+
+  const barToggle = wrap.append("div").style("display","flex").style("gap","0").style("margin-bottom","12px");
+  const barBtnEA = barToggle.append("button").attr("style", btnStyle(true)+";border-radius:6px 0 0 6px").text("East Asia");
+  const barBtnBM = barToggle.append("button").attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none").text("Benchmarks");
+
+  const barHost = wrap.append("div").style("margin-bottom","24px");
+
+  function renderBars(countries, color) {
+    barHost.html("");
+    const ranked = countries
+      .filter(cc => d[cc] && d[cc].mismatch != null)
+      .map(cc => ({cc, m: d[cc].mismatch}))
+      .sort((a,b) => a.m - b.m);
+    const maxM = Math.max(...ranked.map(r => r.m), 1);
+
+    ranked.forEach(r => {
+      const row = barHost.append("div")
+        .style("display","flex").style("align-items","center")
+        .style("margin-bottom","3px");
+      const label = (r.cc === "JP" || r.cc === "MY") ? r.cc + "*" : r.cc;
+      row.append("div").style("width","34px").style("text-align","right")
+        .style("font-weight","600").style("font-size","11px")
+        .style("color","#0f172a").style("margin-right","8px")
+        .text(label);
+      const barWrap = row.append("div")
+        .style("flex","1").style("height","18px")
+        .style("background","#f1f5f9").style("border-radius","4px")
+        .style("position","relative").style("overflow","hidden");
+      barWrap.append("div")
+        .style("height","100%").style("border-radius","4px")
+        .style("background", color)
+        .style("width", `${(r.m / (maxM * 1.1)) * 100}%`);
+      row.append("div").style("width","40px").style("text-align","right")
+        .style("font-size","11px").style("font-weight","600")
+        .style("color","#475569").style("margin-left","6px")
+        .text(r.m.toFixed(1));
+    });
+
+    const hasJP = countries.includes("JP");
+    const hasMY = countries.includes("MY");
+    if (hasJP || hasMY) {
+      const notes = [];
+      if (hasJP) notes.push("JP: Japan's JSOC merges ISCO groups 2+3; group 7 from 2023 (dropped from 2024).");
+      if (hasMY) notes.push("MY: employment data from 2014 only.");
+      barHost.append("div").style("font-size","10px").style("color","#94a3b8")
+        .style("margin-top","6px").style("font-style","italic")
+        .html("* " + notes.join(" "));
+    }
+  }
+
+  renderBars(eaList, "#3b82f6");
+  barBtnEA.on("click", () => {
+    barBtnEA.attr("style", btnStyle(true)+";border-radius:6px 0 0 6px");
+    barBtnBM.attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none");
+    renderBars(eaList, "#3b82f6");
+  });
+  barBtnBM.on("click", () => {
+    barBtnEA.attr("style", btnStyle(false)+";border-radius:6px 0 0 6px");
+    barBtnBM.attr("style", btnStyle(true)+";border-radius:0 6px 6px 0;border-left:none");
+    renderBars(bmList, "#94a3b8");
+  });
+
+  /* ──── 2. SKILL-LEVEL MISMATCH & POLARIZATION ──── */
+  const polData = {};
+  allList.forEach(cc => {
+    const dem = d[cc].demand || {};
+    const sup = d[cc].supply || {};
+    const m23 = d[cc].merge_2_3 === true;
+    const hs_d = (dem["1"]||0) + (dem["2"]||0) + (dem["3"]||0);
+    const hs_e = m23
+      ? (sup["1"]||0) + (sup["2"]||0)
+      : (sup["1"]||0) + (sup["2"]||0) + (sup["3"]||0);
+    const rm_d = ["4","5","6","7","8","9"].reduce((s,k)=>s+(dem[k]||0),0);
+    const rm_e = ["4","5","6","7","8","9"].reduce((s,k)=>s+(sup[k]||0),0);
+    polData[cc] = {
+      hs_d: Math.round(hs_d*10)/10, hs_e: Math.round(hs_e*10)/10,
+      hs_delta: Math.round((hs_d-hs_e)*10)/10,
+      rm_d: Math.round(rm_d*10)/10, rm_e: Math.round(rm_e*10)/10,
+      rm_delta: Math.round((rm_d-rm_e)*10)/10,
+      polar: Math.round((hs_d-hs_e-(rm_d-rm_e))*10)/10
+    };
+  });
+
+  wrap.append("div").style("font-weight","700").style("font-size","14px")
+    .style("margin","20px 0 6px").style("color","#0f172a")
+    .text("Skill-level mismatch decomposition");
+  wrap.append("div").style("font-size","12px").style("color","#64748b")
+    .style("margin-bottom","12px")
+    .html("High-skill = ISCO 1–3 (Managers, Professionals, Technicians). "
+      + "Mid-/lower-skill = ISCO 4–9 (Clerical, Service, Agriculture, Craft, Operators, Elementary). "
+      + "Polarization index = Δ<sub>high-skill</sub> − Δ<sub>mid-/lower-skill</sub>.");
+
+  const polToggle = wrap.append("div").style("display","flex").style("gap","0").style("margin-bottom","12px");
+  const polBtnEA = polToggle.append("button").attr("style", btnStyle(true)+";border-radius:6px 0 0 6px").text("East Asia");
+  const polBtnBM = polToggle.append("button").attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none").text("Benchmarks");
+  const polHost = wrap.append("div").style("margin-bottom","24px");
+
+  function renderPolarization(countries) {
+    polHost.html("");
+    const sorted = [...countries].sort((a,b) => polData[b].polar - polData[a].polar);
+    const maxPol = Math.max(...sorted.map(cc => Math.abs(polData[cc].polar)), 1);
+    const maxDelta = Math.max(...sorted.map(cc => Math.max(Math.abs(polData[cc].hs_delta), Math.abs(polData[cc].rm_delta))), 1);
+
+    const tbl = polHost.append("table")
+      .style("border-collapse","collapse").style("width","100%").style("max-width","780px");
+
+    const hdr = tbl.append("thead").append("tr").style("border-bottom","2px solid #e2e8f0");
+    hdr.append("th").style("text-align","left").style("padding","6px 8px").style("font-size","11px").style("color","#64748b").text("");
+    hdr.append("th").attr("colspan",3).style("text-align","center").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#2563eb").style("border-bottom","2px solid #bfdbfe").text("High-skill (ISCO 1–3)");
+    hdr.append("th").attr("colspan",3).style("text-align","center").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#dc2626").style("border-bottom","2px solid #fecaca").text("Mid-/lower-skill (ISCO 4–9)");
+    hdr.append("th").style("text-align","center").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#0f172a").style("font-weight","700").text("Polarization");
+
+    const hdr2 = tbl.append("thead").append("tr").style("border-bottom","1px solid #e2e8f0");
+    hdr2.append("th").style("padding","2px 8px");
+    ["Demand","Empl.","Δ"].forEach(t => hdr2.append("th").style("text-align","right").style("padding","2px 6px")
+      .style("font-size","10px").style("color","#94a3b8").text(t));
+    ["Demand","Empl.","Δ"].forEach(t => hdr2.append("th").style("text-align","right").style("padding","2px 6px")
+      .style("font-size","10px").style("color","#94a3b8").text(t));
+    hdr2.append("th").style("padding","2px 8px");
+
+    const tbody = tbl.append("tbody");
+    sorted.forEach((cc,i) => {
+      const p = polData[cc];
+      const bg = i % 2 === 0 ? "#f8fafc" : "#fff";
+      const tr = tbody.append("tr").style("background", bg);
+
+      const label = (cc === "JP" || cc === "MY") ? cc + "*" : cc;
+      tr.append("td").style("padding","4px 8px").style("font-weight","600")
+        .style("font-size","12px").style("white-space","nowrap").text(label);
+
+      const numStyle = "text-align:right;padding:4px 6px;font-size:12px;font-variant-numeric:tabular-nums;";
+      tr.append("td").attr("style", numStyle + "color:#64748b").text(p.hs_d.toFixed(1));
+      tr.append("td").attr("style", numStyle + "color:#94a3b8").text(p.hs_e.toFixed(1));
+      const hsCol = p.hs_delta > 0 ? "#16a34a" : "#dc2626";
+      tr.append("td").attr("style", numStyle + `color:${hsCol};font-weight:600`)
+        .text((p.hs_delta > 0 ? "+" : "") + p.hs_delta.toFixed(1));
+
+      tr.append("td").attr("style", numStyle + "color:#64748b").text(p.rm_d.toFixed(1));
+      tr.append("td").attr("style", numStyle + "color:#94a3b8").text(p.rm_e.toFixed(1));
+      const rmCol = p.rm_delta > 0 ? "#16a34a" : "#dc2626";
+      tr.append("td").attr("style", numStyle + `color:${rmCol};font-weight:600`)
+        .text((p.rm_delta > 0 ? "+" : "") + p.rm_delta.toFixed(1));
+
+      /* polarization bar + value */
+      const polTd = tr.append("td").style("padding","4px 8px").style("min-width","140px");
+      const polRow = polTd.append("div").style("display","flex").style("align-items","center").style("gap","6px");
+      const barW = Math.round(Math.abs(p.polar) / maxPol * 80);
+      polRow.append("div").style("width", barW + "px").style("height","12px")
+        .style("border-radius","3px")
+        .style("background", p.polar > 60 ? "#ef4444" : p.polar > 30 ? "#f59e0b" : "#22c55e");
+      polRow.append("span").style("font-size","12px").style("font-weight","700")
+        .style("color","#0f172a").style("font-variant-numeric","tabular-nums")
+        .text((p.polar > 0 ? "+" : "") + p.polar.toFixed(1));
+    });
+
+    polHost.append("div").style("margin-top","8px").style("font-size","10px")
+      .style("color","#94a3b8").style("line-height","1.6")
+      .html("Polarization index = Δ<sub>high-skill</sub> − Δ<sub>mid-/lower-skill</sub>. "
+        + "Higher values indicate that online demand is more skewed toward high-skill occupations relative to actual employment. "
+        + '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#22c55e;vertical-align:middle"></span> &lt; 30 pp &ensp;'
+        + '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f59e0b;vertical-align:middle"></span> 30–60 pp &ensp;'
+        + '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#ef4444;vertical-align:middle"></span> &gt; 60 pp');
+  }
+
+  renderPolarization(eaList);
+  polBtnEA.on("click", () => {
+    polBtnEA.attr("style", btnStyle(true)+";border-radius:6px 0 0 6px");
+    polBtnBM.attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none");
+    renderPolarization(eaList);
+  });
+  polBtnBM.on("click", () => {
+    polBtnEA.attr("style", btnStyle(false)+";border-radius:6px 0 0 6px");
+    polBtnBM.attr("style", btnStyle(true)+";border-radius:0 6px 6px 0;border-left:none");
+    renderPolarization(bmList);
+  });
+
+  /* ──── 3. COUNTRY DETAIL TABLE ──── */
+  wrap.append("div").style("font-weight","700").style("font-size","14px")
+    .style("margin","8px 0 10px").style("color","#0f172a")
+    .text("Detailed ISCO breakdown by country");
+
+  const ctrl = wrap.append("div")
+    .style("display","flex").style("gap","10px")
+    .style("align-items","center").style("margin-bottom","12px")
+    .style("flex-wrap","wrap");
+
+  const detBtnBar = ctrl.append("div").style("display","flex").style("gap","0");
+  const detBtnEA = detBtnBar.append("button").attr("style", btnStyle(true)+";border-radius:6px 0 0 6px").text("East Asia");
+  const detBtnBM = detBtnBar.append("button").attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none").text("Benchmarks");
+
+  ctrl.append("label").style("font-weight","600").style("font-size","12px").text("Country:");
+  const selCC = ctrl.append("select")
+    .style("padding","5px 10px").style("border","1px solid #cbd5e1")
+    .style("border-radius","6px").style("font-size","12px");
+
+  function populateSelect(countries) {
+    selCC.selectAll("option").remove();
+    countries.forEach(cc => {
+      const yr = d[cc] ? (d[cc].supply_year || "n/a") : "n/a";
+      const star = (cc === "JP" || cc === "MY") ? " *" : "";
+      selCC.append("option").attr("value", cc)
+        .text(`${countryFull[cc]} (${cc})${star} — empl. ${yr}`);
+    });
+  }
+  populateSelect(eaList);
+
+  detBtnEA.on("click", () => {
+    detBtnEA.attr("style", btnStyle(true)+";border-radius:6px 0 0 6px");
+    detBtnBM.attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none");
+    populateSelect(eaList);
+    renderDetail(eaList[0]);
+  });
+  detBtnBM.on("click", () => {
+    detBtnEA.attr("style", btnStyle(false)+";border-radius:6px 0 0 6px");
+    detBtnBM.attr("style", btnStyle(true)+";border-radius:0 6px 6px 0;border-left:none");
+    populateSelect(bmList);
+    renderDetail(bmList[0]);
+  });
+
+  const detailHost = wrap.append("div");
+
+  function renderDetail(cc) {
+    detailHost.html("");
+    const cd = d[cc];
+    if (!cd) return;
+    const dem = cd.demand || {};
+    const sup = cd.supply || {};
+    const yr = cd.supply_year || "n/a";
+    const mm = cd.mismatch;
+    const merging = cd.merge_2_3 === true;
+
+    /* mismatch badge */
+    const badge = detailHost.append("div")
+      .style("display","inline-block").style("padding","6px 14px")
+      .style("border-radius","8px").style("margin-bottom","10px")
+      .style("background", mm > 50 ? "#fef2f2" : mm > 30 ? "#fffbeb" : "#f0fdf4")
+      .style("border", `1px solid ${mm > 50 ? "#fca5a5" : mm > 30 ? "#fde68a" : "#86efac"}`);
+    badge.append("span").style("font-weight","700").style("font-size","18px")
+      .style("color","#0f172a").text(mm != null ? mm.toFixed(1) : "n/a");
+    badge.append("span").style("font-size","11px").style("color","#64748b")
+      .style("margin-left","6px").text("pp mismatch");
+
+    /* table */
+    const tbl = detailHost.append("table")
+      .style("border-collapse","collapse").style("width","100%")
+      .style("max-width","640px");
+
+    const hdr = tbl.append("thead").append("tr")
+      .style("border-bottom","2px solid #e2e8f0");
+    hdr.append("th").style("text-align","left").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#64748b").text("ISCO-08 Major Group");
+    hdr.append("th").style("text-align","right").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#3b82f6").text("Demand (%)");
+    hdr.append("th").style("text-align","right").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#64748b").text(`Empl. (%) ${yr}`);
+    hdr.append("th").style("text-align","right").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#475569").text("Gap (pp)");
+    hdr.append("th").style("text-align","left").style("padding","6px 8px")
+      .style("font-size","11px").style("color","#94a3b8").style("width","120px").text("");
+
+    const tbody = tbl.append("tbody");
+    const barScale = 30;
+
+    const rowKeys = merging
+      ? ["1","2+3","4","5","6","7","8","9"]
+      : iscoKeys;
+
+    rowKeys.forEach((k,i) => {
+      let di, ei, label;
+      if (k === "2+3") {
+        di = (dem["2"] || 0) + (dem["3"] || 0);
+        ei = sup["2"] || 0;
+        label = "2+3  " + iscoNames["2+3"];
+      } else {
+        di = dem[k] || 0;
+        ei = sup[k] || 0;
+        label = k + "  " + (iscoNames[k] || k);
+      }
+      const hasSup = ei > 0;
+      const gap = hasSup ? di - ei : null;
+      const gapColor = gap == null ? "#94a3b8" : gap > 2 ? "#16a34a" : gap < -2 ? "#dc2626" : "#64748b";
+      const bg = i % 2 === 0 ? "#f8fafc" : "#fff";
+
+      const tr = tbody.append("tr").style("background",bg);
+      tr.append("td").style("padding","4px 8px").style("font-size","12px")
+        .style("white-space","nowrap").text(label);
+      tr.append("td").style("text-align","right").style("padding","4px 8px")
+        .style("font-size","12px").style("font-variant-numeric","tabular-nums")
+        .style("color","#0f172a").text(di.toFixed(1));
+      tr.append("td").style("text-align","right").style("padding","4px 8px")
+        .style("font-size","12px").style("font-variant-numeric","tabular-nums")
+        .style("color","#64748b").text(hasSup ? ei.toFixed(1) : "n/a");
+      tr.append("td").style("text-align","right").style("padding","4px 8px")
+        .style("font-size","12px").style("font-weight","600")
+        .style("font-variant-numeric","tabular-nums")
+        .style("color", gapColor)
+        .text(gap != null ? (gap > 0 ? "+" : "") + gap.toFixed(1) : "—");
+
+      /* mini diverging bar */
+      const barTd = tr.append("td").style("padding","4px 8px");
+      if (gap != null) {
+        const barDiv = barTd.append("div")
+          .style("display","flex").style("align-items","center")
+          .style("height","12px");
+        const mid = 60;
+        const barW = Math.min(Math.abs(gap) / barScale * mid, mid);
+        if (gap < 0) {
+          barDiv.append("div").style("flex","1").style("display","flex")
+            .style("justify-content","flex-end")
+            .append("div").style("height","8px").style("border-radius","2px")
+            .style("background","#fca5a5").style("width", barW + "px");
+          barDiv.append("div").style("width","1px").style("height","12px")
+            .style("background","#cbd5e1");
+          barDiv.append("div").style("flex","1");
+        } else {
+          barDiv.append("div").style("flex","1");
+          barDiv.append("div").style("width","1px").style("height","12px")
+            .style("background","#cbd5e1");
+          barDiv.append("div").style("flex","1").style("display","flex")
+            .style("justify-content","flex-start")
+            .append("div").style("height","8px").style("border-radius","2px")
+            .style("background","#86efac").style("width", barW + "px");
+        }
+      }
+    });
+
+    /* country-specific caveats */
+    if (cc === "JP") {
+      detailHost.append("div").style("margin-top","6px").style("font-size","10px")
+        .style("color","#94a3b8").style("font-style","italic")
+        .html("Note: Japan's Standard Occupational Classification (JSOC) merges ISCO groups 2 and 3 into one category. "
+          + "Groups 2+3 are shown combined for comparability. Group 7 last reported in 2023 (merged into 8 from 2024). "
+          + "Mismatch index computed on comparable groups.");
+    }
+    if (cc === "MY") {
+      detailHost.append("div").style("margin-top","6px").style("font-size","10px")
+        .style("color","#94a3b8").style("font-style","italic")
+        .text("Note: Malaysia's latest available ILOSTAT data is from 2014. The mismatch index may be affected by structural change since then.");
+    }
+  }
+
+  renderDetail("JP");
+  selCC.on("change", function() { renderDetail(this.value); });
+
+  /* ──── 3. FOOTNOTE ──── */
+  const fn = wrap.append("div").style("margin-top","14px").style("font-size","10px")
+    .style("color","#94a3b8").style("line-height","1.6");
+  fn.html(`<b>Demand</b> = share of online job postings (this study, 03.2025–03.2026). `
+    + `<b>Employment</b> = share of total employment from national labour force surveys reported to `
+    + `<a class="paper-link" href="https://ilostat.ilo.org/topics/employment/" target="_blank" rel="noopener noreferrer">ILOSTAT<span class="source-link-ext">↗</span></a> `
+    + `(indicator <code>EMP_TEMP_SEX_OCU_NB</code>, latest available year per country). `
+    + `<b>Gap</b> = demand − employment (pp). `
+    + `Green bars indicate demand exceeds employment; red bars indicate employment exceeds demand. `
+    + `Taiwan excluded (no ISCO-08 data in ILOSTAT). `
+    + `Malaysia: employment data from 2014 only. `
+    + `Japan: JSOC merges ISCO 2+3; group 7 from 2023 (dropped from 2024). Mismatch computed on comparable groups.`);
+
+  return wrap.node();
+}
+```
+
+#### Top occupation groups by sector
+
+The table below shows the five most frequent ISCO-08 occupation groups
+(4-digit level) within each ISIC/NACE section, per country. Use the
+selectors to browse sectors and compare across countries.
+
+```{ojs}
+//| echo: false
+
+isco4data = FileAttachment("nace_isco4_top5.json").json()
+
+{
+  const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
+  const bmList = ["IN","MX","PL"];
+  const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
+  const d = isco4data;
+
+  const sectionKeys = Object.keys(d).sort();
+  const sectionOpts = sectionKeys.map(k => ({key:k, label:`${k}  ${d[k].name}`}));
+
+  const wrap = d3.create("div")
+    .style("font-family","system-ui,-apple-system,sans-serif")
+    .style("font-size","12px");
+
+  /* ── controls ── */
+  const ctrl = wrap.append("div")
+    .style("display","flex").style("gap","16px")
+    .style("align-items","center").style("margin-bottom","12px")
+    .style("flex-wrap","wrap");
+
+  /* toggle East Asia / Benchmarks */
+  const btnBar = ctrl.append("div").style("display","flex").style("gap","0");
+  const btnStyle = (active) =>
+    `padding:5px 14px;font-size:11px;font-weight:${active?700:500};cursor:pointer;border:1px solid #cbd5e1;`
+    + `background:${active?"#0f172a":"#fff"};color:${active?"#fff":"#475569"};transition:all .15s`;
+  const btnEA = btnBar.append("button").attr("style", btnStyle(true)+";border-radius:6px 0 0 6px").text("East Asia");
+  const btnBM = btnBar.append("button").attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none").text("Benchmarks");
+
+  ctrl.append("label").style("font-weight","600").style("font-size","12px").text("Sector:");
+  const selSect = ctrl.append("select")
+    .style("padding","4px 8px").style("border","1px solid #cbd5e1")
+    .style("border-radius","6px").style("font-size","12px");
+  sectionOpts.forEach(o => {
+    selSect.append("option").attr("value", o.key).text(o.label);
+  });
+  selSect.property("value", "N");
+
+  const tableHost = wrap.append("div");
+
+  let activeGroup = "ea";
+
+  function shortOcc(name, n) {
+    return name.length > n ? name.slice(0, n - 1) + "\u2026" : name;
+  }
+
+  function render(letter) {
+    tableHost.html("");
+    const sect = d[letter];
+    if (!sect) return;
+
+    const countries = activeGroup === "ea" ? eaList : bmList;
+    const barMax = 60;
+
+    const grid = tableHost.append("div")
+      .style("display","grid")
+      .style("grid-template-columns","repeat(auto-fill, minmax(320px, 1fr))")
+      .style("gap","10px");
+
+    countries.forEach(cc => {
+      const cd = sect.countries[cc];
+      if (!cd || cd.total === 0) return;
+
+      const card = grid.append("div")
+        .style("border","1px solid #e2e8f0").style("border-radius","8px")
+        .style("padding","8px 12px").style("background","#fff");
+
+      card.append("div")
+        .style("font-weight","700").style("font-size","12px").style("color","#0f172a")
+        .style("margin-bottom","4px")
+        .html(`${countryFull[cc]} <span style="font-weight:400;color:#94a3b8;font-size:11px">${cc} \u00b7 ${cd.total.toLocaleString()} postings</span>`);
+
+      const tbl = card.append("table")
+        .style("width","100%").style("border-collapse","collapse");
+
+      cd.top.forEach((item, idx) => {
+        const tr = tbl.append("tr");
+        tr.append("td")
+          .style("padding","2px 4px").style("font-size","10px")
+          .style("color","#94a3b8").style("width","36px")
+          .style("text-align","right").style("font-variant-numeric","tabular-nums")
+          .text(item.code);
+        const nameTd = tr.append("td")
+          .style("padding","2px 6px").style("font-size","11px");
+        nameTd.append("div").style("margin-bottom","1px").text(shortOcc(item.name, 40));
+        nameTd.append("div").style("display","flex").style("align-items","center").style("gap","4px");
+        nameTd.select("div:last-child").append("div")
+          .style("height","6px").style("border-radius","3px")
+          .style("background","#3b82f6")
+          .style("width", `${Math.max(item.pct / barMax * 100, 2)}%`)
+          .style("min-width","3px");
+        nameTd.select("div:last-child").append("span")
+          .style("font-size","10px").style("color","#64748b")
+          .style("white-space","nowrap")
+          .text(`${item.pct}%`);
+      });
+    });
+  }
+
+  render("N");
+  selSect.on("change", function() { render(this.value); });
+  btnEA.on("click", () => {
+    activeGroup = "ea";
+    btnEA.attr("style", btnStyle(true)+";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(false)+";border-radius:0 6px 6px 0;border-left:none");
+    render(selSect.property("value"));
+  });
+  btnBM.on("click", () => {
+    activeGroup = "bm";
+    btnEA.attr("style", btnStyle(false)+";border-radius:6px 0 0 6px");
+    btnBM.attr("style", btnStyle(true)+";border-radius:0 6px 6px 0;border-left:none");
+    render(selSect.property("value"));
+  });
+
+  return wrap.node();
+}
+```
+
+```{ojs}
+//| echo: false
+
+{
+  /* ───────── COUNTRY PROFILES ───────── */
+  const profiles = {
+    JP: {full:"Japan", n:"296,749", over:[{s:"U",n:"Households",p:3.0,r:2.5},{s:"F",n:"Construction",p:4.2,r:2.3},{s:"E",n:"Water & waste",p:0.7,r:2.2}], under:[{s:"L",n:"Financial & insurance",p:0.5,r:0.2},{s:"N",n:"Professional & scientific",p:8.4,r:0.4}]},
+    KR: {full:"S. Korea", n:"132,148", over:[{s:"U",n:"Households",p:8.2,r:6.8},{s:"R",n:"Health & social work",p:13.5,r:3.2},{s:"C",n:"Manufacturing",p:14.5,r:2.0}], under:[{s:"K",n:"Telecom & IT",p:2.7,r:0.4},{s:"L",n:"Financial & insurance",p:1.0,r:0.4}]},
+    TW: {full:"Taiwan", n:"55,217", over:[{s:"F",n:"Construction",p:3.6,r:2.0},{s:"C",n:"Manufacturing",p:12.8,r:1.8},{s:"A",n:"Agriculture",p:1.4,r:1.7}], under:[{s:"K",n:"Telecom & IT",p:2.5,r:0.4},{s:"L",n:"Financial & insurance",p:1.4,r:0.5}]},
+    TH: {full:"Thailand", n:"57,892", over:[{s:"I",n:"Accommodation & food",p:24.4,r:2.8},{s:"H",n:"Transport & storage",p:9.1,r:1.5},{s:"S",n:"Arts, sports & recreation",p:3.6,r:1.3}], under:[{s:"R",n:"Health & social work",p:1.0,r:0.2},{s:"K",n:"Telecom & IT",p:2.7,r:0.4}]},
+    MY: {full:"Malaysia", n:"171,586", over:[{s:"I",n:"Accommodation & food",p:14.2,r:1.6},{s:"J",n:"Publishing & broadcasting",p:1.9,r:1.3},{s:"S",n:"Arts, sports & recreation",p:3.6,r:1.3}], under:[{s:"U",n:"Households",p:0.4,r:0.3},{s:"E",n:"Water & waste",p:0.2,r:0.6}]},
+    SG: {full:"Singapore", n:"138,202", over:[{s:"K",n:"Telecom & IT",p:10.3,r:1.5},{s:"N",n:"Professional & scientific",p:32.8,r:1.5},{s:"L",n:"Financial & insurance",p:3.7,r:1.4}], under:[{s:"U",n:"Households",p:0.1,r:0.1},{s:"E",n:"Water & waste",p:0.1,r:0.3}]},
+    ID: {full:"Indonesia", n:"113,460", over:[{s:"I",n:"Accommodation & food",p:13.6,r:1.6},{s:"N",n:"Professional & scientific",p:28.2,r:1.3},{s:"S",n:"Arts, sports & recreation",p:3.4,r:1.3}], under:[{s:"U",n:"Households",p:0.1,r:0.1},{s:"R",n:"Health & social work",p:1.2,r:0.3}]},
+    VN: {full:"Vietnam", n:"145,549", over:[{s:"J",n:"Publishing & broadcasting",p:2.4,r:1.7},{s:"L",n:"Financial & insurance",p:4.5,r:1.7},{s:"K",n:"Telecom & IT",p:10.2,r:1.5}], under:[{s:"U",n:"Households",p:0.2,r:0.2},{s:"R",n:"Health & social work",p:1.2,r:0.3}]},
+    PH: {full:"Philippines", n:"187,818", over:[{s:"M",n:"Real estate",p:1.2,r:1.5},{s:"O",n:"Admin & support",p:16.2,r:1.4},{s:"N",n:"Professional & scientific",p:27.8,r:1.3}], under:[{s:"U",n:"Households",p:0.4,r:0.3},{s:"F",n:"Construction",p:1.0,r:0.6}]}
+  };
+  const benchProfiles = {
+    IN: {full:"India", n:"224,187", over:[{s:"J",n:"Publishing & broadcasting",p:3.2,r:2.2},{s:"Q",n:"Education",p:7.6,r:2.1},{s:"K",n:"Telecom & IT",p:11.4,r:1.7}], under:[{s:"U",n:"Households",p:0.2,r:0.2},{s:"E",n:"Water & waste",p:0.1,r:0.3}]},
+    MX: {full:"Mexico", n:"199,404", over:[{s:"L",n:"Financial & insurance",p:6.1,r:2.3},{s:"H",n:"Transport & storage",p:10.1,r:1.7},{s:"T",n:"Other services",p:3.6,r:1.5}], under:[{s:"U",n:"Households",p:0.3,r:0.2},{s:"J",n:"Publishing & broadcasting",p:0.4,r:0.3}]},
+    PL: {full:"Poland", n:"135,027", over:[{s:"K",n:"Telecom & IT",p:12.0,r:1.8},{s:"G",n:"Wholesale & retail",p:18.5,r:1.5},{s:"T",n:"Other services",p:3.4,r:1.4}], under:[{s:"I",n:"Accommodation & food",p:1.5,r:0.2},{s:"U",n:"Households",p:0.4,r:0.3}]}
+  };
+
+  const overColor = "#dcfce7";
+  const underColor = "#fee2e2";
+
+  function makeCard(card, p) {
+    card.append("div")
+      .style("font-weight","700").style("font-size","13px")
+      .style("margin-bottom","2px").style("color","#0f172a")
+      .html(`${p.full} <span style="font-weight:400;color:#64748b">(${p.n} postings)</span>`);
+    const tbl = card.append("table")
+      .style("width","100%").style("border-collapse","collapse").style("margin-top","6px");
+    const renderRow = (item, bg) => {
+      const tr = tbl.append("tr");
+      tr.append("td").style("padding","1px 4px").style("border-radius","4px")
+        .style("background",bg).style("font-weight","600")
+        .style("text-align","center").style("width","36px").text(`${item.r}\u00d7`);
+      tr.append("td").style("padding","1px 6px").text(`${item.s} ${item.n}`);
+      tr.append("td").style("padding","1px 4px").style("text-align","right")
+        .style("color","#64748b").text(`${item.p}%`);
+    };
+    p.over.forEach(item => renderRow(item, overColor));
+    p.under.forEach(item => renderRow(item, underColor));
+  }
+
+  const wrap = d3.create("div").style("font-family","system-ui,-apple-system,sans-serif").style("font-size","12px");
+
+  wrap.append("div").style("font-weight","700").style("font-size","14px")
+    .style("margin","0.6rem 0 8px").style("color","#0f172a").text("East Asia");
+  const eaGrid = wrap.append("div")
+    .style("display","grid").style("grid-template-columns","repeat(auto-fill, minmax(280px, 1fr))")
+    .style("gap","12px");
+  for (const [cc, p] of Object.entries(profiles)) {
+    const card = eaGrid.append("div")
+      .style("border","1px solid #e2e8f0").style("border-radius","10px")
+      .style("padding","10px 14px").style("background","#fff");
+    makeCard(card, p);
+  }
+
+  wrap.append("div").style("font-weight","700").style("font-size","14px")
+    .style("margin","1.2rem 0 8px").style("color","#64748b").text("Benchmark countries");
+  const bmGrid = wrap.append("div")
+    .style("display","grid").style("grid-template-columns","repeat(auto-fill, minmax(280px, 1fr))")
+    .style("gap","12px");
+  for (const [cc, p] of Object.entries(benchProfiles)) {
+    const card = bmGrid.append("div")
+      .style("border","1px solid #e2e8f0").style("border-radius","10px")
+      .style("padding","10px 14px").style("background","#fff")
+      .style("border-color","#cbd5e1");
+    makeCard(card, p);
+  }
+
+  return wrap.node();
+}
+```
+
+The cards above show each country's **most distinctive sectors**
+relative to the 12-country average. Green values indicate
+overrepresentation ($> 1\times$ average), red values indicate
+underrepresentation ($< 1\times$ average).
+
+:::
+
+### Skill composition
+
+::: {.section-card}
+#### Cross-country comparison
 
 The charts below compare the composition of mapped ESCO concepts across
 three selected countries. Shares are normalised within each country
@@ -1502,22 +3324,31 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 {
   const data = await categoryData;
   const countries = data.country_order;
-  const countryButtons = [
-    { key: "India", label: "India", enabled: true },
+  const eastAsiaButtons = [
     { key: "Japan", label: "Japan", enabled: true },
     { key: "South Korea", label: "South Korea", enabled: true },
-    { key: "Malaysia", label: "Malaysia", enabled: true },
-    { key: "Philippines", label: "Philippines", enabled: true },
     { key: "Singapore", label: "Singapore", enabled: true },
-    { key: "Thailand", label: "Thailand", enabled: true },
     { key: "Taiwan", label: "Taiwan", enabled: true },
+    { key: "Malaysia", label: "Malaysia", enabled: true },
+    { key: "Thailand", label: "Thailand", enabled: true },
+    { key: "Indonesia", label: "Indonesia", enabled: true },
     { key: "Vietnam", label: "Vietnam", enabled: true },
+    { key: "Philippines", label: "Philippines", enabled: true },
+  ];
+  const benchmarkButtons = [
+    { key: "India", label: "India", enabled: true },
     { key: "Mexico", label: "Mexico", enabled: true },
     { key: "Poland", label: "Poland", enabled: true },
-    { key: "Indonesia", label: "Indonesia", enabled: false },
-    { key: "Chile", label: "Chile", enabled: false },
   ];
-  let selectedCountries = ["Japan", "Singapore", "Vietnam", "India", "Poland"];
+  const countryButtons = [...eastAsiaButtons, ...benchmarkButtons];
+  const eastAsiaCountries = eastAsiaButtons.map(d => d.key);
+  const benchmarkCountries = benchmarkButtons.map(d => d.key);
+  const regionPalette = {
+    "East Asia": "#2563eb",
+    "Benchmark": "#7c3aed"
+  };
+  let layoutMode = "separate";
+  let selectedCountries = ["Japan", "Singapore", "Indonesia", "India", "Poland"];
   const skillCodes = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"];
 
   const wrap = d3.create("div");
@@ -1525,11 +3356,23 @@ categoryData = FileAttachment("esco_category_shares.json").json()
   const controls = wrap.append("div").attr("class", "compare-controls");
   const box = controls.append("div").attr("class", "compare-control");
   box.append("label").text("Select up to 5 countries");
-  const buttonGroup = box.append("div").attr("class", "country-button-group");
+  const buttonGroup = box.append("div").attr("class", "country-group-wrap");
+
+  const eaGroup = buttonGroup.append("div").attr("class", "country-group");
+  eaGroup.append("div").attr("class", "country-group-label").text("East Asia");
+  const eaPills = eaGroup.append("div").attr("class", "country-group-pills");
+
+  const bmGroup = buttonGroup.append("div").attr("class", "country-group");
+  bmGroup.append("div").attr("class", "country-group-label").text("Benchmark");
+  const bmPills = bmGroup.append("div").attr("class", "country-group-pills");
+
+  const viewBox = controls.append("div").attr("class", "compare-control");
+  viewBox.append("label").text("Show");
+  const viewToggle = viewBox.append("div").attr("class", "view-toggle-group");
 
   wrap.append("div")
     .attr("class", "compare-note")
-    .text("Each cell shows the share of the selected country in the most aggregated ESCO skill and knowledge groups. You can compare up to five countries at once.");
+    .text("Each cell shows the share of the selected country in the most aggregated ESCO skill and knowledge groups. You can compare up to five countries at once and switch between an East Asia vs benchmark view and an all-countries view.");
 
   const chartHost = wrap.append("div").attr("class", "compare-charts");
 
@@ -1538,14 +3381,34 @@ categoryData = FileAttachment("esco_category_shares.json").json()
     return text.length > n ? `${text.slice(0, n - 1)}…` : text;
   };
 
+  const regionForCountry = country => (
+    benchmarkCountries.includes(country) ? "Benchmark" : "East Asia"
+  );
+
+  const orderSelectedCountries = selected => {
+    if (layoutMode === "combined") return [...selected];
+    return [
+      ...selected.filter(country => regionForCountry(country) === "East Asia"),
+      ...selected.filter(country => regionForCountry(country) === "Benchmark"),
+    ];
+  };
+
   function drawHeatmap({rows, selected, paletteInterpolator}) {
-    const margin = {top: 20, right: 14, bottom: 10, left: 270};
+    const eastAsiaSelected = selected.filter(country => regionForCountry(country) === "East Asia");
+    const benchmarkSelected = selected.filter(country => regionForCountry(country) === "Benchmark");
+    const showSeparatedGroups = layoutMode === "separate" && eastAsiaSelected.length && benchmarkSelected.length;
+    const groupGap = showSeparatedGroups ? 28 : 0;
+    const margin = {top: showSeparatedGroups ? 52 : 34, right: 14, bottom: 10, left: 270};
     const cellW = 92;
     const cellH = 30;
-    const width = margin.left + selected.length * cellW + margin.right;
+    const width = margin.left + selected.length * cellW + groupGap + margin.right;
     const height = margin.top + rows.length * cellH + margin.bottom;
     const maxShare = d3.max(rows.flatMap(r => selected.map(c => r.values[c] || 0))) || 0.001;
     const color = d3.scaleSequential([0, maxShare], paletteInterpolator);
+    const xForColumn = i => {
+      const isBenchmarkBlock = showSeparatedGroups && i >= eastAsiaSelected.length;
+      return margin.left + i * cellW + (isBenchmarkBlock ? groupGap : 0);
+    };
 
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height])
@@ -1554,10 +3417,31 @@ categoryData = FileAttachment("esco_category_shares.json").json()
       .style("max-width", "100%")
       .style("height", "auto");
 
+    if (showSeparatedGroups) {
+      const groups = [
+        { label: "East Asia", count: eastAsiaSelected.length, offset: 0 },
+        { label: "Benchmark", count: benchmarkSelected.length, offset: eastAsiaSelected.length },
+      ];
+      groups.forEach(group => {
+        const startX = xForColumn(group.offset);
+        const endX = xForColumn(group.offset + group.count - 1) + cellW - 4;
+        svg.append("text")
+          .attr("x", (startX + endX) / 2)
+          .attr("y", 31)
+          .attr("text-anchor", "middle")
+          .attr("font-size", 11)
+          .attr("font-weight", 800)
+          .attr("letter-spacing", "0.06em")
+          .attr("fill", regionPalette[group.label])
+          .text(group.label.toUpperCase());
+      });
+    }
+
     selected.forEach((country, i) => {
+      const xCenter = xForColumn(i) + cellW / 2;
       svg.append("text")
-        .attr("x", margin.left + i * cellW + cellW / 2)
-        .attr("y", margin.top - 12)
+        .attr("x", xCenter)
+        .attr("y", margin.top - 10)
         .attr("text-anchor", "middle")
         .attr("font-size", 12)
         .attr("font-weight", 700)
@@ -1582,12 +3466,11 @@ categoryData = FileAttachment("esco_category_shares.json").json()
       rowLabel.append("tspan")
         .attr("fill", "#334155")
         .attr("font-weight", 700)
-        .attr("text-decoration", "underline")
         .text(row.label);
 
       selected.forEach((country, c) => {
         const value = row.values[country] || 0;
-        const x = margin.left + c * cellW;
+        const x = xForColumn(c);
         svg.append("rect")
           .attr("x", x)
           .attr("y", y)
@@ -1611,7 +3494,7 @@ categoryData = FileAttachment("esco_category_shares.json").json()
   }
 
   function render() {
-    const selected = selectedCountries;
+    const selected = orderSelectedCountries(selectedCountries);
     chartHost.selectAll("*").remove();
 
     const skillRows = skillCodes.map(code => ({
@@ -1652,24 +3535,54 @@ categoryData = FileAttachment("esco_category_shares.json").json()
     }));
   }
 
-  const buttons = buttonGroup.selectAll("button")
-    .data(countryButtons)
+  const pillClass = d => `country-pill${d.enabled ? "" : " disabled"}${selectedCountries.includes(d.key) ? " active" : ""}`;
+
+  const handleClick = function(event, d) {
+    if (!d.enabled) return;
+    const isSelected = selectedCountries.includes(d.key);
+    if (isSelected) {
+      if (selectedCountries.length === 1) return;
+      selectedCountries = selectedCountries.filter(v => v !== d.key);
+    } else {
+      if (selectedCountries.length >= 5) return;
+      selectedCountries = [...selectedCountries, d.key];
+    }
+    allButtons.attr("class", pillClass);
+    render();
+  };
+
+  const eaButtons = eaPills.selectAll("button")
+    .data(eastAsiaButtons)
     .join("button")
       .attr("type", "button")
-      .attr("class", d => `country-pill${d.enabled ? "" : " disabled"}${selectedCountries.includes(d.key) ? " active" : ""}`)
+      .attr("class", pillClass)
       .property("disabled", d => !d.enabled)
       .text(d => d.label)
-      .on("click", function(event, d) {
-        if (!d.enabled) return;
-        const isSelected = selectedCountries.includes(d.key);
-        if (isSelected) {
-          if (selectedCountries.length === 1) return;
-          selectedCountries = selectedCountries.filter(v => v !== d.key);
-        } else {
-          if (selectedCountries.length >= 5) return;
-          selectedCountries = [...selectedCountries, d.key];
-        }
-        buttons.attr("class", btn => `country-pill${btn.enabled ? "" : " disabled"}${selectedCountries.includes(btn.key) ? " active" : ""}`);
+      .on("click", handleClick);
+
+  const bmButtons = bmPills.selectAll("button")
+    .data(benchmarkButtons)
+    .join("button")
+      .attr("type", "button")
+      .attr("class", pillClass)
+      .property("disabled", d => !d.enabled)
+      .text(d => d.label)
+      .on("click", handleClick);
+
+  const allButtons = d3.selectAll([...eaButtons.nodes(), ...bmButtons.nodes()]);
+
+  const toggleLabel = () => (
+    layoutMode === "separate" ? "Show combined" : "Show East Asia / Benchmark"
+  );
+  const toggleButtons = viewToggle.selectAll("button")
+    .data([0])
+    .join("button")
+      .attr("type", "button")
+      .attr("class", "view-toggle-btn active")
+      .text(() => toggleLabel())
+      .on("click", function() {
+        layoutMode = layoutMode === "separate" ? "combined" : "separate";
+        toggleButtons.text(() => toggleLabel());
         render();
       });
 
@@ -1680,8 +3593,10 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 ```
 :::
 
+### Digital skills
+
 ::: {.section-card}
-### Digital skills prevalence
+#### Digital skills prevalence
 
 Using the digital skill classification from
 <a class="paper-link" href="https://ideas.repec.org/p/wbk/hdgens/203091.html" target="_blank" rel="noopener noreferrer">Angel-Urdinola et al. (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Angel-Urdinola, D., Chinen, M. H., &amp; Rodon Casarramona, G. (2025). <em>Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches.</em> <em>Education Notes</em>, (203091).</span></a>, we
@@ -1702,118 +3617,250 @@ digitalData = FileAttachment("digital_skill_offer_shares.json").json()
 {
   const data = await digitalData;
   const levelOrder = ["Basic", "Intermediate", "Advanced"];
+  const eastAsiaCountries = new Set([
+    "Japan", "South Korea", "Singapore", "Taiwan",
+    "Malaysia", "Thailand", "Indonesia", "Vietnam", "Philippines"
+  ]);
+  const regionPalette = {
+    "East Asia": "#2563eb",
+    "Benchmark": "#7c3aed"
+  };
+  let layoutMode = "separate";
   const palette = {
     Basic: "#93c5fd",
     Intermediate: "#3b82f6",
     Advanced: "#1d4ed8"
   };
+  const regionForCountry = country => (
+    eastAsiaCountries.has(country) ? "East Asia" : "Benchmark"
+  );
 
-  const rows = [...data.rows]
+  const baseRows = [...data.rows]
     .map(d => ({
       country: d.country,
       Basic: d.shares.Basic,
       Intermediate: d.shares.Intermediate,
       Advanced: d.shares.Advanced
-    }))
-    .sort((a, b) => b.Advanced - a.Advanced);
+    }));
 
-  const margin = {top: 34, right: 24, bottom: 28, left: 150};
-  const rowH = 30;
-  const width = 860;
-  const height = margin.top + rows.length * rowH + margin.bottom;
+  const wrap = d3.create("div");
+  const controls = wrap.append("div").attr("class", "compare-controls");
+  const viewControl = controls.append("div").attr("class", "compare-control");
+  viewControl.append("label").text("Show");
+  const viewToggle = viewControl.append("div").attr("class", "view-toggle-group");
+  wrap.append("div")
+    .attr("class", "compare-note")
+    .text("Switch between an East Asia vs benchmark view and a single all-countries ranking.");
+  const chartHost = wrap.append("div");
 
-  const svg = d3.create("svg")
-    .attr("viewBox", [0, 0, width, height])
-    .attr("width", width)
-    .attr("height", height)
-    .style("max-width", "100%")
-    .style("height", "auto");
+  const orderedRows = () => {
+    const byAdvanced = (a, b) => b.Advanced - a.Advanced;
+    if (layoutMode === "combined") {
+      return {
+        rows: [...baseRows].sort(byAdvanced),
+        groups: [],
+      };
+    }
+    const eaRows = baseRows
+      .filter(row => regionForCountry(row.country) === "East Asia")
+      .sort(byAdvanced);
+    const benchmarkRows = baseRows
+      .filter(row => regionForCountry(row.country) === "Benchmark")
+      .sort(byAdvanced);
+    return {
+      rows: [...eaRows, ...benchmarkRows],
+      groups: [
+        { label: "East Asia", count: eaRows.length, startIndex: 0 },
+        { label: "Benchmark", count: benchmarkRows.length, startIndex: eaRows.length },
+      ].filter(group => group.count > 0),
+    };
+  };
 
-  const x = d3.scaleLinear()
-    .domain([0, 1])
-    .range([margin.left, width - margin.right]);
+  function render() {
+    const { rows, groups } = orderedRows();
+    const margin = {top: 34, right: 24, bottom: 28, left: 150};
+    const rowH = 30;
+    const width = 860;
+    const groupGap = layoutMode === "separate" && groups.length > 1 ? 22 : 0;
+    const benchmarkStartIndex = layoutMode === "separate" && groups.length > 1 ? groups[1].startIndex : null;
+    const yForRow = i => margin.top + i * rowH + (benchmarkStartIndex != null && i >= benchmarkStartIndex ? groupGap : 0);
+    const height = margin.top + rows.length * rowH + groupGap + margin.bottom;
 
-  const legend = svg.append("g")
-    .attr("transform", `translate(${margin.left}, 14)`);
+    chartHost.selectAll("*").remove();
 
-  levelOrder.forEach((level, i) => {
-    const g = legend.append("g").attr("transform", `translate(${i * 160}, 0)`);
-    g.append("rect")
-      .attr("width", 14)
-      .attr("height", 14)
-      .attr("rx", 3)
-      .attr("fill", palette[level]);
-    g.append("text")
-      .attr("x", 20)
-      .attr("y", 11)
-      .attr("font-size", 12)
-      .attr("font-weight", 700)
-      .attr("fill", "#334155")
-      .text(level);
-  });
+    const svg = d3.create("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .attr("width", width)
+      .attr("height", height)
+      .style("max-width", "100%")
+      .style("height", "auto");
 
-  rows.forEach((row, i) => {
-    const y0 = margin.top + i * rowH;
+    const x = d3.scaleLinear()
+      .domain([0, 1])
+      .range([margin.left, width - margin.right]);
 
-    svg.append("text")
-      .attr("x", margin.left - 12)
-      .attr("y", y0 + 17)
-      .attr("text-anchor", "end")
-      .attr("font-size", 12)
-      .attr("font-weight", 700)
-      .attr("fill", "#334155")
-      .text(row.country);
+    const legend = svg.append("g")
+      .attr("transform", `translate(${margin.left}, 14)`);
 
-    let x0 = margin.left;
-    levelOrder.forEach((level, j) => {
-      const value = row[level];
-      const w = x(value) - x(0);
-      svg.append("rect")
-        .attr("x", x0)
-        .attr("y", y0 + 5)
-        .attr("width", w)
-        .attr("height", 20)
-        .attr("rx", 6)
+    levelOrder.forEach((level, i) => {
+      const g = legend.append("g").attr("transform", `translate(${i * 160}, 0)`);
+      g.append("rect")
+        .attr("width", 14)
+        .attr("height", 14)
+        .attr("rx", 3)
         .attr("fill", palette[level]);
-
-      if (w > 54) {
-        svg.append("text")
-          .attr("x", x0 + w / 2)
-          .attr("y", y0 + 19)
-          .attr("text-anchor", "middle")
-          .attr("font-size", 11)
-          .attr("font-weight", 700)
-          .attr("fill", j === 0 ? "#1e3a8a" : "#ffffff")
-          .text(d3.format(".1%")(value));
-      }
-      x0 += w;
+      g.append("text")
+        .attr("x", 20)
+        .attr("y", 11)
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+        .attr("fill", "#334155")
+        .text(level);
     });
-  });
 
-  return svg.node();
+    if (layoutMode === "separate") {
+      groups.forEach(group => {
+        const y = yForRow(group.startIndex) - 8;
+        svg.append("text")
+          .attr("x", margin.left - 12)
+          .attr("y", y)
+          .attr("text-anchor", "end")
+          .attr("font-size", 11)
+          .attr("font-weight", 800)
+          .attr("letter-spacing", "0.06em")
+          .attr("fill", regionPalette[group.label])
+          .text(group.label.toUpperCase());
+      });
+    }
+
+    rows.forEach((row, i) => {
+      const y0 = yForRow(i);
+
+      svg.append("text")
+        .attr("x", margin.left - 12)
+        .attr("y", y0 + 17)
+        .attr("text-anchor", "end")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+        .attr("fill", "#334155")
+        .text(row.country);
+
+      let x0 = margin.left;
+      levelOrder.forEach((level, j) => {
+        const value = row[level];
+        const w = x(value) - x(0);
+        svg.append("rect")
+          .attr("x", x0)
+          .attr("y", y0 + 5)
+          .attr("width", w)
+          .attr("height", 20)
+          .attr("rx", 6)
+          .attr("fill", palette[level]);
+
+        if (w > 54) {
+          svg.append("text")
+            .attr("x", x0 + w / 2)
+            .attr("y", y0 + 19)
+            .attr("text-anchor", "middle")
+            .attr("font-size", 11)
+            .attr("font-weight", 700)
+            .attr("fill", j === 0 ? "#1e3a8a" : "#ffffff")
+            .text(d3.format(".1%")(value));
+        }
+        x0 += w;
+      });
+    });
+
+    chartHost.append(() => svg.node());
+  }
+
+  const toggleLabel = () => (
+    layoutMode === "separate" ? "Show combined" : "Show East Asia / Benchmark"
+  );
+  const toggleButtons = viewToggle.selectAll("button")
+    .data([0])
+    .join("button")
+      .attr("type", "button")
+      .attr("class", "view-toggle-btn active")
+      .text(() => toggleLabel())
+      .on("click", function() {
+        layoutMode = layoutMode === "separate" ? "combined" : "separate";
+        toggleButtons.text(() => toggleLabel());
+        render();
+      });
+
+  render();
+  return wrap.node();
 }
 ```
 :::
 
+::: {.section-card}
+#### Digital skill composition in East Asia
+
+Across all twelve countries, advanced ICT skills dominate the digital
+skill mix, typically accounting for 50-72% of all classified digital
+skill mentions. This pattern is unlikely to reflect the full spectrum
+of digital capability used at work. Rather, it suggests that basic
+digital skills such as office applications, email, and web use are
+increasingly taken for granted by employers and therefore rarely listed
+explicitly, whereas more specialised requirements are more likely to be
+spelled out in online job postings.
+
+The country profiles below show that East Asia is not characterised by
+a single model of digital demand. Instead, the composition of advanced
+digital skills points to several distinct trajectories. **Japan** and
+**Vietnam** are more strongly oriented toward software development and
+digital production workflows. **South Korea** and **Taiwan** display a
+more engineering- and hardware-intensive pattern, consistent with their
+electronics and semiconductor ecosystems. **Singapore** stands out as a
+cloud- and platform-oriented digital hub, while **Malaysia** and **the
+Philippines** show a more mixed profile in which digital demand is more
+closely tied to business systems, reporting, administration, and
+service delivery. **Indonesia** occupies an intermediate position, with
+stronger links to business ICT systems and mobile ecosystems, while
+**Thailand** shows a more diffuse profile without one dominant advanced
+specialisation.
+
+These differences matter because they suggest that similar headline
+shares of advanced digital skills may mask very different forms of
+structural transformation. In some countries, digitalisation is closely
+linked to software engineering and data-intensive production. In
+others, it is more closely associated with digitally enabled
+manufacturing, enterprise systems, or service-sector process
+management. The lower section of this report shows that it is the
+*content* of advanced demand, rather than its aggregate share alone,
+that most clearly differentiates country profiles.
+
+Among the benchmark countries, **Poland** is closest to Singapore in
+its overall advanced orientation, while **India** combines broad IT
+capabilities with a wider services and digital content ecosystem.
+**Mexico** sits closer to the business-process digitalisation pattern,
+with a stronger mix of advanced and intermediate business tools.
+
+Basic digital skills remain a minority component everywhere (10-21%),
+underscoring that explicit digital requirements in online postings are
+overwhelmingly non-trivial.
+:::
 
 :::: {.section-card}
-### Country-specific digital skills and knowledge
+#### Country-specific digital skills and knowledge
 
 To identify digital skills and knowledge that are particularly
 characteristic of individual countries, we apply the log-likelihood
 ratio (`G²`) test following <a class="paper-link" href="https://aclanthology.org/J93-1003.pdf" target="_blank" rel="noopener noreferrer">Dunning (1993)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Dunning, T. (1993). <em>Accurate Methods for the Statistics of Surprise and Coincidence.</em> <em>Computational Linguistics</em>, 19(1), 61&#8211;74.</span></a>, a method widely used in
 corpus-based analysis to compare term distributions across text
 collections. Here, the same logic is applied to extracted ESCO concepts:
-the test assesses whether specific digital skills or digital knowledge
-items occur in a given country’s job postings in a systematically
+the test assesses whether specific digital concepts (skills and
+knowledge) occur in a given country’s job postings in a systematically
 different way than would be expected based on their distribution in the
 other analysed countries.
 
-For this section, **digital skills** are defined as ESCO concepts in the
-`S5` branch (`working with computers`), while **digital knowledge** is
-defined as ESCO’s ICT knowledge branch (`06*`). Higher `G²` values
-indicate concepts that are more distinctive for the selected country
-relative to the rest of the sample.
+The digital concepts are defined using the ESCO digital skills
+collection, which identifies 1,284 ESCO concepts associated with
+digital competencies. Higher `G²` values indicate concepts that are
+more distinctive for the selected country relative to the rest of the
+sample. Click on a concept name to reveal its full ESCO definition.
 
 ```{ojs}
 //| echo: false
@@ -1822,94 +3869,135 @@ digitalKeyness = FileAttachment("digital_keyness.json").json()
 
 {
   const data = await digitalKeyness;
-  const countryOrder = [
-    "Japan",
-    "South Korea",
-    "Singapore",
-    "Taiwan",
-    "Malaysia",
-    "Thailand",
-    "Vietnam",
-    "Philippines",
-    "India",
-    "Mexico",
-    "Poland"
-  ].filter(country => data.countries[country]);
+  const eaCountries = [
+    "Japan","South Korea","Singapore","Taiwan",
+    "Malaysia","Thailand","Indonesia","Vietnam","Philippines",
+  ].filter(c => data.countries[c]);
+  const bmCountries = ["India","Mexico","Poland"].filter(c => data.countries[c]);
+  const countryOrder = [...eaCountries, ...bmCountries];
 
   let selectedCountry = countryOrder[0];
+  let showAll = false;
+  const INITIAL = 20;
 
-  const wrap = d3.create("div");
+  const wrap = d3.create("div")
+    .style("font-family","system-ui,-apple-system,sans-serif")
+    .style("font-size","13px");
+
   const controls = wrap.append("div").attr("class", "compare-controls");
   const control = controls.append("div").attr("class", "compare-control");
   control.append("label").text("Select country");
-  const buttonGroup = control.append("div").attr("class", "country-button-group");
-  wrap.append("div")
-    .attr("class", "compare-note")
-    .text("Tables are ranked by G². Only concepts with at least 3 mentions in the selected country and 10 mentions in the pooled sample are shown.");
+  const buttonGroup = control.append("div").attr("class", "country-group-wrap");
 
-  const meta = wrap.append("div").attr("class", "keyness-meta");
-  const charts = wrap.append("div").attr("class", "compare-charts");
+  const eaGroup2 = buttonGroup.append("div").attr("class", "country-group");
+  eaGroup2.append("div").attr("class", "country-group-label").text("East Asia");
+  const eaPills2 = eaGroup2.append("div").attr("class", "country-group-pills");
 
-  function renderTable(title, rows) {
-    const panel = charts.append("div");
-    panel.append("div")
-      .attr("class", "compare-panel-title")
-      .text(title);
+  const bmGroup2 = buttonGroup.append("div").attr("class", "country-group");
+  bmGroup2.append("div").attr("class", "country-group-label").text("Benchmark");
+  const bmPills2 = bmGroup2.append("div").attr("class", "country-group-pills");
 
-    const tableWrap = panel.append("div").attr("class", "keyness-table-wrap");
-    const table = tableWrap.append("table").attr("class", "table table-sm keyness-table");
-    const thead = table.append("thead").append("tr");
-    ["Concept", "Mentions", "Per 1k", "Rest of sample", "G²"].forEach(label => {
-      thead.append("th").text(label);
-    });
+  wrap.append("div").attr("class","compare-note")
+    .text("Ranked by G² log-likelihood ratio. Click a concept name to see its ESCO definition.");
 
-    const tbody = table.append("tbody");
-    rows.forEach(row => {
-      const tr = tbody.append("tr");
-      const concept = tr.append("td");
-      concept.append("div")
-        .attr("style", "font-weight:700;color:#0f172a;")
-        .text(row.label);
-      concept.append("div")
-        .attr("class", "keyness-code")
-        .text(row.code);
-      tr.append("td").text(d3.format(",")(row.country_count));
-      tr.append("td").text(d3.format(".1f")(row.country_rate * 1000));
-      tr.append("td").text(d3.format(".1f")(row.other_rate * 1000));
-      tr.append("td").text(d3.format(".1f")(row.g2));
-    });
-
-    if (!rows.length) {
-      const tr = tbody.append("tr");
-      tr.append("td")
-        .attr("colspan", 5)
-        .attr("style", "color:#64748b;")
-        .text("No concepts meet the display threshold for this country.");
-    }
-  }
+  const meta = wrap.append("div").attr("class","keyness-meta");
+  const tableHost = wrap.append("div");
 
   function render() {
     const countryMeta = data.countries[selectedCountry];
-    meta.text(
-      `Selected country: ${selectedCountry}. Based on ${d3.format(",")(countryMeta.digital_skill_mentions)} digital skill mentions and ${d3.format(",")(countryMeta.digital_knowledge_mentions)} digital knowledge mentions.`
-    );
+    const totalMentions = (countryMeta.digital_skill_mentions || 0)
+      + (countryMeta.digital_knowledge_mentions || 0);
+    meta.text(`${selectedCountry}: ${d3.format(",")(totalMentions)} digital concept mentions across ${d3.format(",")(countryMeta.offers)} postings.`);
 
-    charts.selectAll("*").remove();
-    renderTable("Digital knowledge", data.knowledge[selectedCountry] || []);
-    renderTable("Digital skills", data.skills[selectedCountry] || []);
-  }
+    tableHost.html("");
+    const allRows = data.merged[selectedCountry] || [];
+    const visibleRows = showAll ? allRows : allRows.slice(0, INITIAL);
 
-  const buttons = buttonGroup.selectAll("button")
-    .data(countryOrder)
-    .join("button")
-      .attr("type", "button")
-      .attr("class", country => `country-pill${country === selectedCountry ? " active" : ""}`)
-      .text(country => country)
-      .on("click", function(event, country) {
-        selectedCountry = country;
-        buttons.attr("class", value => `country-pill${value === selectedCountry ? " active" : ""}`);
+    const tbl = tableHost.append("table")
+      .style("border-collapse","collapse").style("width","100%");
+
+    const hdr = tbl.append("thead").append("tr")
+      .style("border-bottom","2px solid #e2e8f0");
+    [["#","30px","left"],["Concept","","left"],["Code","80px","left"],
+     ["Mentions","70px","right"],["Per 1k","60px","right"],
+     ["Rest","60px","right"],["G²","70px","right"]].forEach(([label,w,align]) => {
+      const th = hdr.append("th").style("padding","6px 6px")
+        .style("font-size","11px").style("color","#64748b")
+        .style("text-align",align).text(label);
+      if (w) th.style("width",w);
+    });
+
+    const tbody = tbl.append("tbody");
+    visibleRows.forEach((row, i) => {
+      const bg = i % 2 === 0 ? "#f8fafc" : "#fff";
+      const tr = tbody.append("tr").style("background",bg);
+
+      tr.append("td").style("padding","4px 6px").style("font-size","11px")
+        .style("color","#94a3b8").style("text-align","left")
+        .style("font-variant-numeric","tabular-nums").text(i + 1);
+
+      const conceptTd = tr.append("td").style("padding","4px 6px");
+      const labelDiv = conceptTd.append("div")
+        .style("font-weight","600").style("font-size","12px")
+        .style("color","#0f172a").style("cursor","pointer")
+        .text(row.label);
+
+      const descDiv = conceptTd.append("div")
+        .style("display","none").style("font-size","11px")
+        .style("color","#64748b").style("margin-top","4px")
+        .style("padding","6px 8px").style("background","#f1f5f9")
+        .style("border-radius","6px").style("line-height","1.5")
+        .text(row.description || "No description available.");
+
+      labelDiv.on("click", () => {
+        const visible = descDiv.style("display") !== "none";
+        descDiv.style("display", visible ? "none" : "block");
+      });
+
+      tr.append("td").style("padding","4px 6px").style("font-size","11px")
+        .style("color","#94a3b8").style("font-family","monospace")
+        .text(row.code);
+
+      const ns = "text-align:right;padding:4px 6px;font-size:12px;font-variant-numeric:tabular-nums;";
+      tr.append("td").attr("style", ns + "color:#0f172a;font-weight:600")
+        .text(d3.format(",")(row.country_count));
+      tr.append("td").attr("style", ns + "color:#3b82f6")
+        .text(d3.format(".1f")(row.country_rate * 1000));
+      tr.append("td").attr("style", ns + "color:#94a3b8")
+        .text(d3.format(".1f")(row.other_rate * 1000));
+      tr.append("td").attr("style", ns + "color:#0f172a;font-weight:600")
+        .text(d3.format(",.0f")(row.g2));
+    });
+
+    if (allRows.length > INITIAL) {
+      const moreDiv = tableHost.append("div")
+        .style("text-align","center").style("margin-top","10px");
+      const moreBtn = moreDiv.append("button")
+        .style("padding","6px 20px").style("font-size","12px")
+        .style("border","1px solid #cbd5e1").style("border-radius","6px")
+        .style("background","#fff").style("color","#475569")
+        .style("cursor","pointer").style("font-weight","600")
+        .text(showAll ? "Show top 20" : `Show all ${allRows.length}`);
+      moreBtn.on("click", () => {
+        showAll = !showAll;
         render();
       });
+    }
+  }
+
+  const pillClass2 = country => `country-pill${country === selectedCountry ? " active" : ""}`;
+  const handleClick2 = function(event, country) {
+    selectedCountry = country;
+    showAll = false;
+    allButtons2.attr("class", pillClass2);
+    render();
+  };
+
+  const eaBtn2 = eaPills2.selectAll("button").data(eaCountries).join("button")
+    .attr("type","button").attr("class",pillClass2).text(c=>c).on("click",handleClick2);
+  const bmBtn2 = bmPills2.selectAll("button").data(bmCountries).join("button")
+    .attr("type","button").attr("class",pillClass2).text(c=>c).on("click",handleClick2);
+  const allButtons2 = d3.selectAll([...eaBtn2.nodes(), ...bmBtn2.nodes()]);
 
   render();
   return wrap.node();
@@ -1918,18 +4006,141 @@ digitalKeyness = FileAttachment("digital_keyness.json").json()
 ::::
 
 
+
+:::: {.section-card}
+#### Advanced and intermediate digital profiles
+
+The summary below focuses on the `Advanced` layer, where cross-country
+differences are most pronounced.
+
+<div style="display:flex; gap:1.2rem; align-items:center; margin:0.6rem 0 0.8rem 0; font-size:0.88rem;">
+<span style="display:inline-flex; align-items:center; gap:0.35rem;"><span class="skill-pill-common" style="font-size:0.78rem;">example</span> = most frequent within the country (Common)</span>
+<span style="display:inline-flex; align-items:center; gap:0.35rem;"><span class="skill-pill-distinctive" style="font-size:0.78rem;">example</span> = statistically over-represented vs. the rest of the sample (Distinctive, by G²)</span>
+</div>
+
+<div style="overflow-x:auto; margin: 0.75rem 0 1rem 0;">
+<table style="width:100%; border-collapse:collapse; font-size:0.95rem; text-align:left;">
+<caption style="caption-side:bottom; text-align:left; color:#64748b; padding-top:0.5rem;">
+Advanced digital profiles across East Asia. Each country row separates the most common advanced concepts from the most distinctive ones relative to the rest of the sample.
+</caption>
+<thead>
+<tr style="border-bottom:2px solid #cbd5e1;">
+<th style="padding:8px; text-align:left;">Country</th>
+<th style="padding:8px; text-align:left;">Characteristic labels</th>
+<th style="padding:8px; text-align:left;">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Japan</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">web programming</span><span class="skill-pill-common">systems development life-cycle</span><span class="skill-pill-common">mobile device management</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">integrated development environment software</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">A strongly software-engineering profile, with unusually high salience of development workflows, development environments, and cloud-linked delivery.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>South Korea</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">electronics</span><span class="skill-pill-common">electrical engineering</span><span class="skill-pill-common">semiconductors</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">use CAD software</span><span class="skill-pill-distinctive">CAM software</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">The clearest hardware and advanced manufacturing profile in the region.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Singapore</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">computer science</span><span class="skill-pill-common">cloud technologies</span><span class="skill-pill-common">computer engineering</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">Android (mobile operating systems)</span><span class="skill-pill-distinctive">mobile device management</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">A digital hub profile centred on cloud, mobile, and software deployment.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Taiwan</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">electrical engineering</span><span class="skill-pill-common">principles of artificial intelligence</span><span class="skill-pill-common">computer engineering</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">hardware architectures</span><span class="skill-pill-distinctive">semiconductors</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">An electronics and AI-intensive profile with strong hardware and semiconductor linkages.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Malaysia</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">manage administrative systems</span><span class="skill-pill-common">computer science</span><span class="skill-pill-common">perform data analysis</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">financial engineering</span><span class="skill-pill-distinctive">develop reporting software</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">A hybrid profile combining business systems, analytics, and some finance-related digital specialisation.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Thailand</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">perform data analysis</span><span class="skill-pill-common">computer science</span><span class="skill-pill-common">electrical engineering</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">collect mapping data</span><span class="skill-pill-distinctive">manage keys for data protection</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">A more diffuse advanced profile, with data, security, and technical presentation tools rather than one dominant specialisation.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Indonesia</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">computer science</span><span class="skill-pill-common">perform data analysis</span><span class="skill-pill-common">business ICT systems</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">Android (mobile operating systems)</span><span class="skill-pill-distinctive">mobile device management</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">Business ICT systems, mobile ecosystems, and applied digital operations are more prominent than frontier engineering specialisation.</td>
+</tr>
+<tr style="border-bottom:1px solid #e2e8f0;">
+<td style="padding:8px; vertical-align:top;"><strong>Vietnam</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">computer science</span><span class="skill-pill-common">perform data analysis</span><span class="skill-pill-common">computer engineering</span><span class="skill-pill-common">Java</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">NoSQL</span><span class="skill-pill-distinctive">use object-oriented programming</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">One of the strongest software-development profiles in the sample, with programming and data architecture particularly salient.</td>
+</tr>
+<tr>
+<td style="padding:8px; vertical-align:top;"><strong>Philippines</strong></td>
+<td style="padding:8px; vertical-align:top;"><div><span class="skill-pill-row"><span class="skill-pill-common">manage administrative systems</span><span class="skill-pill-common">perform data analysis</span><span class="skill-pill-common">perform ICT troubleshooting</span></span></div><div style="margin-top:6px;"><span class="skill-pill-row"><span class="skill-pill-distinctive">manage project metrics</span><span class="skill-pill-distinctive">develop reporting software</span></span></div></td>
+<td style="padding:8px; vertical-align:top;">ICT support, reporting, and service-delivery tools stand out more than frontier engineering skills.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+The Intermediate layer is much more homogeneous across countries.
+Most economies are dominated by office software, spreadsheets,
+accounting systems, CRM tools, and related business applications,
+indicating that these competencies increasingly form part of the common
+digital operating infrastructure of formal labour markets. What stands
+out, therefore, is not a wholly different intermediate model for each
+country, but a small number of country-specific emphases. In **Japan**,
+intermediate demand is more closely associated with engineering systems
+and decision-support tools. In **South Korea**, the clearest distinctive
+elements relate to production systems, manufacturing equipment, and
+program a CNC controller. In **Singapore**, the profile remains close
+to a broad corporate-services model, with some additional salience of
+call-centre and technical security tools. In **Thailand**, the main
+signal is a stronger emphasis on confidentiality, presentation, and
+content-support tools. In **Indonesia**, the intermediate layer leans
+more toward digital marketing, customer-service technologies, and social
+media-related tasks. In **Vietnam**, distinctive signals are concentrated
+in office software, video editing, and digital marketing. In **the
+Philippines**, the clearest additions are billing, accounting, and
+process-management tools, consistent with a BPO and shared-services
+profile.
+:::::
+
 ## References
 
 ::: {#refs}
-Decorte, J.-J., Van Hautte, J., Develder, C., & Demeester, T. (2025).
-Efficient Text Encoders for Labor Market Analysis.
-*IEEE Access*, 13, 133596–133608.
-
 Angel-Urdinola, D., Chinen, M. H., & Rodon Casarramona, G. (2025).
 Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches.
 *Education Notes*, (203091).
 
+Beręsewicz, M., Cherniaiev, H., Mantaj, A., & Pater, R. (2024).
+Text analysis of job offers for mismatch of educational characteristics to labour market demands.
+*Quality & Quantity*, 58, 1799–1825.
+<https://doi.org/10.1007/s11135-023-01707-7>
+
+Bielinski, A., & Brazier, D. (2025).
+From Retrieval to Ranking: A Two-Stage Neural Framework for Automated Skill Extraction.
+In *Proceedings of the RecSysHR 2025 Workshop*.
+
+Decorte, J.-J., Van Hautte, J., Develder, C., & Demeester, T. (2025).
+Efficient Text Encoders for Labor Market Analysis.
+*IEEE Access*, 13, 133596–133608.
+
 Dunning, T. (1993).
 Accurate Methods for the Statistics of Surprise and Coincidence.
 *Computational Linguistics*, 19(1), 61-74.
+
+Eurostat. (2024).
+*NACE Rev. 2.1: Statistical Classification of Economic Activities in the European Community*.
+Luxembourg: Publications Office of the European Union.
+[KS-GQ-24-007-EN-N](https://ec.europa.eu/eurostat/documents/3859598/21633320/KS-GQ-24-007-EN-N.pdf).
+
+Huang, H., Wu, Z., Wang, M., Li, M., & Wang, X. (2023).
+Towards Making the Most of LLM for Translation Quality Estimation.
+In *Natural Language Processing and Chinese Computing: 12th CCF International Conference, NLPCC 2023, Proceedings, Part I* (pp. 375-386).
+
+Malandri, L., Mercorio, F., & Serino, A. (2025).
+SkiLLMo: Normalized ESCO Skill Extraction through Transformer Models.
+In *Proceedings of the 40th ACM/SIGAPP Symposium on Applied Computing* (pp. 1969-1978).
+
+Sun, Y. (2026).
+Contrastive Bi-Encoder Models for Multi-Label Skill Extraction: Enhancing ESCO Ontology Matching with BERT and Attention Mechanisms.
+*arXiv preprint*, arXiv:2601.09119.
 :::
