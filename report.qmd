@@ -3599,7 +3599,7 @@ categoryData = FileAttachment("esco_category_shares.json").json()
 #### Digital skills prevalence
 
 Using the digital skill classification from
-<a class="paper-link" href="https://openknowledge.worldbank.org/entities/publication/fff2f3aa-3e52-4623-94de-db5f8067d112" target="_blank" rel="noopener noreferrer">Chinen &amp; Montorsi (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Chinen, M., &amp; Montorsi, C. (2025). <em>Exploring Digital Skills Demand: Key Insights from Online Job Vacancies in South Africa, Nigeria, Kenya, and Uganda.</em> Education Working Paper Series, No. 21. Washington, DC: World Bank.</span></a>, we
+<a class="paper-link" href="https://openknowledge.worldbank.org/entities/publication/fff2f3aa-3e52-4623-94de-db5f8067d112" target="_blank" rel="noopener noreferrer">Chenin &amp; Montorsi (2025)<span class="source-link-ext">↗</span><span class="paper-tooltip" role="tooltip">Chenin, M., &amp; Montorsi, C. (2025). <em>Exploring Digital Skills Demand: Key Insights from Online Job Vacancies in South Africa, Nigeria, Kenya, and Uganda.</em> Education Working Paper Series, No. 21. Washington, DC: World Bank.</span></a>, we
 identify ESCO skills associated with **basic**, **intermediate**, and
 **advanced** digital capabilities. In broad terms, **basic** digital
 skills cover routine use of standard software and digital tools,
@@ -4106,7 +4106,7 @@ profile.
 ## References
 
 ::: {#refs}
-Chinen, M., & Montorsi, C. (2025).
+Chenin, M., & Montorsi, C. (2025).
 Exploring Digital Skills Demand: Key Insights from Online Job Vacancies in South Africa, Nigeria, Kenya, and Uganda.
 *Education Working Paper Series*, No. 21. Washington, DC: World Bank.
 <https://openknowledge.worldbank.org/entities/publication/fff2f3aa-3e52-4623-94de-db5f8067d112>
