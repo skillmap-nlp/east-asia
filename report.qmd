@@ -1683,9 +1683,8 @@ The summary bar chart ranks all countries by mismatch.
 ```{ojs}
 //| echo: false
 
-isco1ds = FileAttachment("isco1_demand_supply.json").json()
-
 {
+  const isco1ds = await FileAttachment("isco1_demand_supply.json").json();
   const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
   const bmList = ["IN","MX","PL"];
   const allList = [...eaList, ...bmList];
@@ -2109,9 +2108,8 @@ that sector.
 ```{ojs}
 //| echo: false
 
-nace2d = FileAttachment("nace_2digit_detail.json").json()
-
 {
+  const nace2d = await FileAttachment("nace_2digit_detail.json").json();
   const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
   const bmList = ["IN","MX","PL"];
   const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
@@ -2322,9 +2320,8 @@ Council.
 ```{ojs}
 //| echo: false
 
-macroCtx = FileAttachment("macro_context.json").json()
-
 {
+  const macroCtx = await FileAttachment("macro_context.json").json();
   const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
   const bmList = ["IN","MX","PL"];
   const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",
@@ -2721,9 +2718,8 @@ selectors to browse sectors and compare across countries.
 ```{ojs}
 //| echo: false
 
-isco4data = FileAttachment("nace_isco4_top5.json").json()
-
 {
+  const isco4data = await FileAttachment("nace_isco4_top5.json").json();
   const eaList = ["JP","KR","TW","TH","MY","SG","ID","VN","PH"];
   const bmList = ["IN","MX","PL"];
   const countryFull = {JP:"Japan",KR:"S. Korea",TW:"Taiwan",TH:"Thailand",MY:"Malaysia",SG:"Singapore",ID:"Indonesia",VN:"Vietnam",PH:"Philippines",IN:"India",MX:"Mexico",PL:"Poland"};
@@ -2936,12 +2932,9 @@ per-country reference data.
 ```{ojs}
 //| echo: false
 
-categoryData = FileAttachment("esco_category_shares.json").json()
-stratData = FileAttachment("esco_category_shares_stratified.json").json()
-
 {
-  const data = await categoryData;
-  const strat = await stratData;
+  const data = await FileAttachment("esco_category_shares.json").json();
+  const strat = await FileAttachment("esco_category_shares_stratified.json").json();
   const viewState = { mode: "stratified", estimator: "pooled" };
 
   const iso2 = {
@@ -3544,11 +3537,9 @@ shares normalised separately for each country and group. Use the
 ```{ojs}
 //| echo: false
 
-iscoGroupDistributionData = FileAttachment("skill_distribution_by_isco_group.json").json()
-
 {
-  const dist = await iscoGroupDistributionData;
-  const meta = await categoryData;
+  const dist = await FileAttachment("skill_distribution_by_isco_group.json").json();
+  const meta = await FileAttachment("esco_category_shares.json").json();
 
   const iso2 = {
     "Japan": "JP", "South Korea": "KR", "Taiwan": "TW", "Thailand": "TH",
@@ -3981,10 +3972,8 @@ Intermediate, and Advanced sum to 100% of classified digital-skill mentions.
 ```{ojs}
 //| echo: false
 
-digitalData = FileAttachment("digital_skill_bia_by_country_after_ict_merge.csv").csv({typed: true})
-
 {
-  const data = await digitalData;
+  const data = await FileAttachment("digital_skill_bia_by_country_after_ict_merge.csv").csv({typed: true});
   const levelOrder = ["Basic", "Intermediate", "Advanced"];
   const eastAsiaCountries = new Set([
     "Japan", "South Korea", "Singapore", "Taiwan",
