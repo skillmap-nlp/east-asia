@@ -942,7 +942,7 @@ include-in-header:
         if (title && !document.querySelector(".report-eyebrow")) {
           const tag = document.createElement("span");
           tag.className = "report-eyebrow";
-          tag.textContent = "PROGRESS REPORT";
+          tag.textContent = "ANALYTICAL NOTE";
           title.parentNode.insertBefore(tag, title);
         }
 
@@ -1759,7 +1759,7 @@ isco1ds = FileAttachment("isco1_demand_supply.json").json()
       const notes = [];
       if (hasJP) notes.push("JP: Japan's JSOC merges ISCO groups 2+3; group 7 from 2023 (dropped from 2024).");
       if (hasTW) notes.push("TW: DGBAS/ROC occupational classification, ISCO-08-based but not ILOSTAT-harmonised.");
-      if (hasMY) notes.push("MY: employment data from 2014 only.");
+      if (hasMY) notes.push("MY: employment data from 2024.");
       barHost.append("div").style("font-size","10px").style("color","#94a3b8")
         .style("margin-top","6px").style("font-style","italic")
         .html("* " + notes.join(" "));
@@ -1939,7 +1939,7 @@ isco1ds = FileAttachment("isco1_demand_supply.json").json()
     if (cc === "MY") {
       detailHost.append("div").style("margin-top","6px").style("font-size","10px")
         .style("color","#94a3b8").style("font-style","italic")
-        .text("Note: Malaysia's latest available ILOSTAT data is from 2014. The mismatch index may be affected by structural change since then.");
+        .text("Note: Malaysia employment data are from 2024.");
     }
     if (cc === "TW") {
       detailHost.append("div").style("margin-top","6px").style("font-size","10px")
@@ -1961,7 +1961,7 @@ isco1ds = FileAttachment("isco1_demand_supply.json").json()
     + `<b>Gap</b> = demand − employment (pp). `
     + `Green bars indicate demand exceeds employment; red bars indicate employment exceeds demand. `
     + `Armed forces excluded from both distributions. Taiwan uses ROC occupational classification, ISCO-08-based but not ILOSTAT-harmonised. `
-    + `Malaysia: employment data from 2014 only. `
+    + `Malaysia: employment data from 2024. `
     + `Japan: JSOC merges ISCO 2+3; group 7 from 2023 (dropped from 2024). Mismatch computed on comparable groups.`);
 
   return wrap.node();
@@ -2844,22 +2844,9 @@ isco4data = FileAttachment("nace_isco4_top5.json").json()
 
 {
   /* ───────── COUNTRY PROFILES ───────── */
-  const profiles = {
-    JP: {full:"Japan", n:"296,749", over:[{s:"U",n:"Households",p:3.0,r:2.5},{s:"F",n:"Construction",p:4.2,r:2.3},{s:"E",n:"Water & waste",p:0.7,r:2.2}], under:[{s:"L",n:"Financial & insurance",p:0.5,r:0.2},{s:"N",n:"Professional & scientific",p:8.4,r:0.4}]},
-    KR: {full:"S. Korea", n:"132,148", over:[{s:"U",n:"Households",p:8.2,r:6.8},{s:"R",n:"Health & social work",p:13.5,r:3.2},{s:"C",n:"Manufacturing",p:14.5,r:2.0}], under:[{s:"K",n:"Telecom & IT",p:2.7,r:0.4},{s:"L",n:"Financial & insurance",p:1.0,r:0.4}]},
-    TW: {full:"Taiwan", n:"55,217", over:[{s:"F",n:"Construction",p:3.6,r:2.0},{s:"C",n:"Manufacturing",p:12.8,r:1.8},{s:"A",n:"Agriculture",p:1.4,r:1.7}], under:[{s:"K",n:"Telecom & IT",p:2.5,r:0.4},{s:"L",n:"Financial & insurance",p:1.4,r:0.5}]},
-    TH: {full:"Thailand", n:"57,892", over:[{s:"I",n:"Accommodation & food",p:24.4,r:2.8},{s:"H",n:"Transport & storage",p:9.1,r:1.5},{s:"S",n:"Arts, sports & recreation",p:3.6,r:1.3}], under:[{s:"R",n:"Health & social work",p:1.0,r:0.2},{s:"K",n:"Telecom & IT",p:2.7,r:0.4}]},
-    MY: {full:"Malaysia", n:"171,586", over:[{s:"I",n:"Accommodation & food",p:14.2,r:1.6},{s:"J",n:"Publishing & broadcasting",p:1.9,r:1.3},{s:"S",n:"Arts, sports & recreation",p:3.6,r:1.3}], under:[{s:"U",n:"Households",p:0.4,r:0.3},{s:"E",n:"Water & waste",p:0.2,r:0.6}]},
-    SG: {full:"Singapore", n:"138,202", over:[{s:"K",n:"Telecom & IT",p:10.3,r:1.5},{s:"N",n:"Professional & scientific",p:32.8,r:1.5},{s:"L",n:"Financial & insurance",p:3.7,r:1.4}], under:[{s:"U",n:"Households",p:0.1,r:0.1},{s:"E",n:"Water & waste",p:0.1,r:0.3}]},
-    ID: {full:"Indonesia", n:"113,460", over:[{s:"I",n:"Accommodation & food",p:13.6,r:1.6},{s:"N",n:"Professional & scientific",p:28.2,r:1.3},{s:"S",n:"Arts, sports & recreation",p:3.4,r:1.3}], under:[{s:"U",n:"Households",p:0.1,r:0.1},{s:"R",n:"Health & social work",p:1.2,r:0.3}]},
-    VN: {full:"Vietnam", n:"145,549", over:[{s:"J",n:"Publishing & broadcasting",p:2.4,r:1.7},{s:"L",n:"Financial & insurance",p:4.5,r:1.7},{s:"K",n:"Telecom & IT",p:10.2,r:1.5}], under:[{s:"U",n:"Households",p:0.2,r:0.2},{s:"R",n:"Health & social work",p:1.2,r:0.3}]},
-    PH: {full:"Philippines", n:"187,818", over:[{s:"M",n:"Real estate",p:1.2,r:1.5},{s:"O",n:"Admin & support",p:16.2,r:1.4},{s:"N",n:"Professional & scientific",p:27.8,r:1.3}], under:[{s:"U",n:"Households",p:0.4,r:0.3},{s:"F",n:"Construction",p:1.0,r:0.6}]}
-  };
-  const benchProfiles = {
-    IN: {full:"India", n:"224,187", over:[{s:"J",n:"Publishing & broadcasting",p:3.2,r:2.2},{s:"Q",n:"Education",p:7.6,r:2.1},{s:"K",n:"Telecom & IT",p:11.4,r:1.7}], under:[{s:"U",n:"Households",p:0.2,r:0.2},{s:"E",n:"Water & waste",p:0.1,r:0.3}]},
-    MX: {full:"Mexico", n:"199,404", over:[{s:"L",n:"Financial & insurance",p:6.1,r:2.3},{s:"H",n:"Transport & storage",p:10.1,r:1.7},{s:"T",n:"Other services",p:3.6,r:1.5}], under:[{s:"U",n:"Households",p:0.3,r:0.2},{s:"J",n:"Publishing & broadcasting",p:0.4,r:0.3}]},
-    PL: {full:"Poland", n:"135,027", over:[{s:"K",n:"Telecom & IT",p:12.0,r:1.8},{s:"G",n:"Wholesale & retail",p:18.5,r:1.5},{s:"T",n:"Other services",p:3.4,r:1.4}], under:[{s:"I",n:"Accommodation & food",p:1.5,r:0.2},{s:"U",n:"Households",p:0.4,r:0.3}]}
-  };
+  const allProfiles = await FileAttachment("nace_distinctive_profiles.json").json();
+  const profiles = Object.fromEntries(["JP","KR","TW","TH","MY","SG","ID","VN","PH"].map(cc => [cc, allProfiles[cc]]));
+  const benchProfiles = Object.fromEntries(["IN","MX","PL"].map(cc => [cc, allProfiles[cc]]));
 
   const overColor = "#dcfce7";
   const underColor = "#fee2e2";
@@ -3198,14 +3185,17 @@ stratData = FileAttachment("esco_category_shares_stratified.json").json()
     if (categorySort === "default") return [...baseCountries];
     const row = rows.find(d => d.code === categorySort);
     if (!row) return [...baseCountries];
-    return [...baseCountries].sort((a, b) =>
+    const sorter = (a, b) =>
       (row.values[b] || 0) - (row.values[a] || 0) ||
-      iso2[a].localeCompare(iso2[b])
-    );
+      iso2[a].localeCompare(iso2[b]);
+    return [
+      ...eastAsia.filter(c => baseCountries.includes(c)).sort(sorter),
+      ...benchmark.filter(c => baseCountries.includes(c)).sort(sorter)
+    ];
   }
 
   function drawHeatmap({ rows, columns, paletteInterpolator, metaLookup, groupedColumns }) {
-    const eastAsiaCount = baseCountries.filter(c => regionFor(c) === "East Asia").length;
+    const eastAsiaCount = columns.filter(c => regionFor(c) === "East Asia").length;
     const groupGap = groupedColumns ? 18 : 0;
     const margin = { top: groupedColumns ? 44 : 28, right: 12, bottom: 6, left: 40 };
     const cellW = 46, cellH = 26, pad = 3;
@@ -3433,8 +3423,8 @@ stratData = FileAttachment("esco_category_shares_stratified.json").json()
     );
     makeSelect(
       tools,
-      `${title}: sort countries by category`,
-      [{ value: "default", label: "Countries: default" }, ...baseRows.map(r => ({ value: r.code, label: `Countries by ${r.code}` }))],
+      `${title}: sort columns by row`,
+      [{ value: "default", label: "Columns: default" }, ...baseRows.map(r => ({ value: r.code, label: `Columns by ${r.code}` }))],
       value => { state.categorySort = value; renderPanel(panelRef); }
     );
     tools.append("button")
@@ -3463,7 +3453,7 @@ stratData = FileAttachment("esco_category_shares_stratified.json").json()
       columns,
       paletteInterpolator: panel.paletteInterpolator,
       metaLookup: panel.metaLookup,
-      groupedColumns: panel.state.categorySort === "default"
+      groupedColumns: true
     }));
     codeLegend(panel.legend, rows.map(r => r.code), panel.metaLookup, panel.accent);
   }
