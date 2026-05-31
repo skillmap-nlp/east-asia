@@ -1,7 +1,7 @@
 {
   "JP": {
     "full": "Japan",
-    "n": "275,239",
+    "n": "302,262",
     "over": [
       {
         "s": "E",
@@ -10,54 +10,54 @@
         "r": 2.4
       },
       {
-        "s": "U",
-        "n": "Households",
-        "p": 2.4,
+        "s": "R",
+        "n": "Health & social work",
+        "p": 8.1,
         "r": 2.2
       },
       {
         "s": "F",
         "n": "Construction",
         "p": 2.9,
-        "r": 2.1
+        "r": 2.2
       }
     ],
     "under": [
       {
         "s": "L",
         "n": "Financial & insurance",
-        "p": 0.7,
+        "p": 0.6,
         "r": 0.3
       },
       {
         "s": "N",
         "n": "Professional & scientific",
-        "p": 7.1,
+        "p": 6.8,
         "r": 0.4
       }
     ]
   },
   "KR": {
     "full": "S. Korea",
-    "n": "137,539",
+    "n": "169,933",
     "over": [
       {
         "s": "U",
         "n": "Households",
-        "p": 7.8,
+        "p": 7.9,
         "r": 7.1
       },
       {
         "s": "R",
         "n": "Health & social work",
-        "p": 12.2,
-        "r": 3.3
+        "p": 11.9,
+        "r": 3.2
       },
       {
         "s": "E",
         "n": "Water & waste",
-        "p": 0.6,
-        "r": 2.4
+        "p": 0.7,
+        "r": 2.6
       }
     ],
     "under": [
@@ -70,25 +70,25 @@
       {
         "s": "I",
         "n": "Accommodation & food",
-        "p": 4.1,
+        "p": 4.3,
         "r": 0.5
       }
     ]
   },
   "TW": {
     "full": "Taiwan",
-    "n": "98,419",
+    "n": "117,672",
     "over": [
-      {
-        "s": "K",
-        "n": "Telecom & IT",
-        "p": 15.5,
-        "r": 2.0
-      },
       {
         "s": "B",
         "n": "Mining",
-        "p": 0.3,
+        "p": 0.4,
+        "r": 2.0
+      },
+      {
+        "s": "K",
+        "n": "Telecom & IT",
+        "p": 13.9,
         "r": 1.8
       },
       {
@@ -108,31 +108,31 @@
       {
         "s": "L",
         "n": "Financial & insurance",
-        "p": 1.1,
+        "p": 1.2,
         "r": 0.5
       }
     ]
   },
   "TH": {
     "full": "Thailand",
-    "n": "53,646",
+    "n": "65,544",
     "over": [
       {
         "s": "I",
         "n": "Accommodation & food",
-        "p": 23.7,
-        "r": 2.9
-      },
-      {
-        "s": "H",
-        "n": "Transport & storage",
-        "p": 9.2,
-        "r": 1.6
+        "p": 22.3,
+        "r": 2.8
       },
       {
         "s": "S",
         "n": "Arts, sports & recreation",
-        "p": 3.7,
+        "p": 4.0,
+        "r": 1.6
+      },
+      {
+        "s": "H",
+        "n": "Transport & storage",
+        "p": 8.6,
         "r": 1.5
       }
     ],
@@ -141,7 +141,7 @@
         "s": "R",
         "n": "Health & social work",
         "p": 0.9,
-        "r": 0.2
+        "r": 0.3
       },
       {
         "s": "K",
@@ -153,24 +153,24 @@
   },
   "MY": {
     "full": "Malaysia",
-    "n": "148,510",
+    "n": "176,662",
     "over": [
       {
         "s": "I",
         "n": "Accommodation & food",
-        "p": 14.2,
+        "p": 13.8,
         "r": 1.7
       },
       {
         "s": "S",
         "n": "Arts, sports & recreation",
-        "p": 3.3,
+        "p": 3.4,
         "r": 1.4
       },
       {
         "s": "O",
         "n": "Admin & support",
-        "p": 12.6,
+        "p": 12.5,
         "r": 1.2
       }
     ],
@@ -179,36 +179,36 @@
         "s": "U",
         "n": "Households",
         "p": 0.4,
-        "r": 0.3
+        "r": 0.4
       },
       {
         "s": "K",
         "n": "Telecom & IT",
-        "p": 4.2,
+        "p": 4.1,
         "r": 0.5
       }
     ]
   },
   "SG": {
     "full": "Singapore",
-    "n": "127,315",
+    "n": "149,582",
     "over": [
       {
         "s": "L",
         "n": "Financial & insurance",
-        "p": 3.5,
-        "r": 1.5
+        "p": 3.8,
+        "r": 1.6
       },
       {
         "s": "N",
         "n": "Professional & scientific",
-        "p": 26.1,
+        "p": 26.2,
         "r": 1.4
       },
       {
         "s": "K",
         "n": "Telecom & IT",
-        "p": 9.8,
+        "p": 10.0,
         "r": 1.3
       }
     ],
@@ -229,7 +229,7 @@
   },
   "ID": {
     "full": "Indonesia",
-    "n": "99,286",
+    "n": "113,505",
     "over": [
       {
         "s": "I",
@@ -246,8 +246,8 @@
       {
         "s": "N",
         "n": "Professional & scientific",
-        "p": 24.4,
-        "r": 1.4
+        "p": 24.3,
+        "r": 1.3
       }
     ],
     "under": [
@@ -267,24 +267,24 @@
   },
   "VN": {
     "full": "Vietnam",
-    "n": "109,169",
+    "n": "134,424",
     "over": [
       {
-        "s": "J",
-        "n": "Publishing & broadcasting",
-        "p": 1.6,
+        "s": "M",
+        "n": "Real estate",
+        "p": 0.9,
         "r": 1.5
       },
       {
         "s": "G",
         "n": "Wholesale & retail",
-        "p": 16.6,
+        "p": 15.8,
         "r": 1.4
       },
       {
-        "s": "M",
-        "n": "Real estate",
-        "p": 0.8,
+        "s": "J",
+        "n": "Publishing & broadcasting",
+        "p": 1.6,
         "r": 1.4
       }
     ],
@@ -305,7 +305,7 @@
   },
   "PH": {
     "full": "Philippines",
-    "n": "147,590",
+    "n": "175,615",
     "over": [
       {
         "s": "O",
@@ -317,7 +317,7 @@
         "s": "D",
         "n": "Utilities",
         "p": 0.5,
-        "r": 1.5
+        "r": 1.4
       },
       {
         "s": "M",
@@ -337,19 +337,19 @@
         "s": "B",
         "n": "Mining",
         "p": 0.1,
-        "r": 0.6
+        "r": 0.5
       }
     ]
   },
   "IN": {
     "full": "India",
-    "n": "192,433",
+    "n": "223,220",
     "over": [
       {
         "s": "J",
         "n": "Publishing & broadcasting",
         "p": 2.9,
-        "r": 2.6
+        "r": 2.5
       },
       {
         "s": "Q",
@@ -381,18 +381,18 @@
   },
   "MX": {
     "full": "Mexico",
-    "n": "187,822",
+    "n": "219,762",
     "over": [
       {
         "s": "L",
         "n": "Financial & insurance",
-        "p": 5.8,
-        "r": 2.5
+        "p": 5.4,
+        "r": 2.3
       },
       {
         "s": "H",
         "n": "Transport & storage",
-        "p": 9.9,
+        "p": 10.0,
         "r": 1.7
       },
       {
@@ -412,46 +412,46 @@
       {
         "s": "J",
         "n": "Publishing & broadcasting",
-        "p": 0.3,
+        "p": 0.4,
         "r": 0.3
       }
     ]
   },
   "PL": {
     "full": "Poland",
-    "n": "112,000",
+    "n": "134,784",
     "over": [
       {
         "s": "K",
         "n": "Telecom & IT",
-        "p": 12.2,
+        "p": 12.4,
         "r": 1.6
       },
       {
         "s": "G",
         "n": "Wholesale & retail",
-        "p": 17.4,
+        "p": 16.8,
         "r": 1.5
       },
       {
         "s": "L",
         "n": "Financial & insurance",
-        "p": 3.1,
-        "r": 1.3
+        "p": 3.3,
+        "r": 1.4
       }
     ],
     "under": [
       {
         "s": "I",
         "n": "Accommodation & food",
-        "p": 1.4,
+        "p": 1.3,
         "r": 0.2
       },
       {
         "s": "U",
         "n": "Households",
         "p": 0.5,
-        "r": 0.5
+        "r": 0.4
       }
     ]
   }

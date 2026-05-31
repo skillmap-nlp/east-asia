@@ -1,15 +1,15 @@
 {
   "JP": {
     "demand": {
-      "1": 8.4,
-      "2": 27.8,
-      "3": 14.9,
-      "4": 4.6,
-      "5": 18.6,
+      "1": 8.0,
+      "2": 27.0,
+      "3": 14.8,
+      "4": 4.8,
+      "5": 18.8,
       "6": 0.3,
-      "7": 7.0,
-      "8": 9.5,
-      "9": 9.0
+      "7": 6.9,
+      "8": 10.1,
+      "9": 9.3
     },
     "supply": {
       "1": 1.9,
@@ -22,21 +22,21 @@
       "9": 11.5
     },
     "supply_year": "2023",
-    "mismatch": 32.1,
+    "mismatch": 31.4,
     "note": "Japan JSOC merges ISCO 2+3; supply group 2 includes technicians. Armed forces and unknown occupations excluded from demand and employment shares.",
     "merge_2_3": true
   },
   "KR": {
     "demand": {
-      "1": 9.6,
-      "2": 26.9,
-      "3": 19.6,
-      "4": 3.7,
-      "5": 17.6,
-      "6": 0.9,
-      "7": 7.4,
-      "8": 8.1,
-      "9": 6.1
+      "1": 9.8,
+      "2": 26.1,
+      "3": 19.2,
+      "4": 3.8,
+      "5": 18.2,
+      "6": 1.0,
+      "7": 7.6,
+      "8": 8.3,
+      "9": 6.0
     },
     "supply": {
       "1": 1.5,
@@ -50,20 +50,20 @@
       "9": 14.1
     },
     "supply_year": "2024",
-    "mismatch": 24.1,
+    "mismatch": 23.6,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "TW": {
     "demand": {
-      "1": 9.9,
-      "2": 43.9,
-      "3": 15.5,
-      "4": 4.3,
-      "5": 10.3,
+      "1": 10.0,
+      "2": 42.7,
+      "3": 15.9,
+      "4": 4.4,
+      "5": 9.9,
       "6": 0.6,
-      "7": 6.0,
-      "8": 4.2,
-      "9": 5.2
+      "7": 6.4,
+      "8": 4.8,
+      "9": 5.3
     },
     "supply": {
       "1": 3.1,
@@ -77,20 +77,20 @@
       "9": 5.4
     },
     "supply_year": "2024",
-    "mismatch": 37.0,
+    "mismatch": 35.9,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "TH": {
     "demand": {
-      "1": 19.6,
-      "2": 20.2,
-      "3": 15.9,
-      "4": 9.2,
-      "5": 23.4,
+      "1": 20.0,
+      "2": 20.9,
+      "3": 16.3,
+      "4": 9.1,
+      "5": 22.2,
       "6": 0.3,
-      "7": 3.0,
-      "8": 3.7,
-      "9": 4.7
+      "7": 3.1,
+      "8": 3.5,
+      "9": 4.5
     },
     "supply": {
       "1": 3.3,
@@ -104,19 +104,19 @@
       "9": 12.2
     },
     "supply_year": "2024",
-    "mismatch": 48.4,
+    "mismatch": 48.6,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "MY": {
     "demand": {
-      "1": 19.0,
+      "1": 19.1,
       "2": 24.0,
-      "3": 19.2,
+      "3": 19.1,
       "4": 10.5,
-      "5": 17.7,
+      "5": 17.6,
       "6": 0.5,
-      "7": 2.8,
-      "8": 3.1,
+      "7": 2.9,
+      "8": 3.2,
       "9": 3.3
     },
     "supply": {
@@ -137,14 +137,14 @@
   "SG": {
     "demand": {
       "1": 22.0,
-      "2": 37.9,
-      "3": 19.7,
+      "2": 38.6,
+      "3": 19.5,
       "4": 4.7,
-      "5": 8.4,
+      "5": 8.1,
       "6": 0.3,
-      "7": 2.6,
-      "8": 1.9,
-      "9": 2.6
+      "7": 2.5,
+      "8": 1.8,
+      "9": 2.5
     },
     "supply": {
       "1": 17.9,
@@ -158,16 +158,16 @@
       "9": 7.4
     },
     "supply_year": "2025",
-    "mismatch": 15.2,
+    "mismatch": 15.6,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "ID": {
     "demand": {
       "1": 21.9,
-      "2": 30.6,
+      "2": 30.7,
       "3": 14.8,
-      "4": 7.2,
-      "5": 18.3,
+      "4": 7.3,
+      "5": 18.0,
       "6": 0.4,
       "7": 2.3,
       "8": 2.0,
@@ -185,20 +185,20 @@
       "9": 19.5
     },
     "supply_year": "2023",
-    "mismatch": 59.1,
+    "mismatch": 59.4,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "VN": {
     "demand": {
-      "1": 15.8,
-      "2": 37.6,
-      "3": 18.9,
-      "4": 11.2,
-      "5": 8.9,
+      "1": 15.7,
+      "2": 37.3,
+      "3": 19.2,
+      "4": 11.5,
+      "5": 8.8,
       "6": 0.7,
-      "7": 2.8,
+      "7": 2.7,
       "8": 1.7,
-      "9": 2.3
+      "9": 2.4
     },
     "supply": {
       "1": 0.9,
@@ -212,20 +212,20 @@
       "9": 24.2
     },
     "supply_year": "2024",
-    "mismatch": 70.1,
+    "mismatch": 70.2,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "PH": {
     "demand": {
-      "1": 17.3,
+      "1": 17.5,
       "2": 25.7,
-      "3": 21.4,
+      "3": 21.5,
       "4": 13.7,
-      "5": 11.5,
+      "5": 11.3,
       "6": 0.7,
       "7": 3.1,
-      "8": 3.2,
-      "9": 3.4
+      "8": 3.1,
+      "9": 3.3
     },
     "supply": {
       "1": 4.0,
@@ -239,15 +239,15 @@
       "9": 28.1
     },
     "supply_year": "2023",
-    "mismatch": 56.7,
+    "mismatch": 57.0,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "IN": {
     "demand": {
       "1": 13.1,
-      "2": 41.5,
-      "3": 18.7,
-      "4": 10.2,
+      "2": 41.7,
+      "3": 18.6,
+      "4": 10.0,
       "5": 9.6,
       "6": 0.1,
       "7": 3.1,
@@ -271,14 +271,14 @@
   },
   "MX": {
     "demand": {
-      "1": 13.1,
-      "2": 18.1,
-      "3": 21.1,
+      "1": 13.0,
+      "2": 18.0,
+      "3": 21.3,
       "4": 10.3,
-      "5": 18.9,
+      "5": 18.3,
       "6": 0.4,
-      "7": 5.3,
-      "8": 5.7,
+      "7": 5.4,
+      "8": 5.9,
       "9": 7.2
     },
     "supply": {
@@ -293,20 +293,20 @@
       "9": 20.2
     },
     "supply_year": "2025",
-    "mismatch": 34.5,
+    "mismatch": 34.6,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   },
   "PL": {
     "demand": {
       "1": 9.7,
-      "2": 36.7,
-      "3": 17.0,
-      "4": 8.0,
-      "5": 15.3,
+      "2": 37.2,
+      "3": 17.3,
+      "4": 7.8,
+      "5": 14.7,
       "6": 0.5,
-      "7": 5.4,
+      "7": 5.3,
       "8": 3.8,
-      "9": 3.6
+      "9": 3.5
     },
     "supply": {
       "1": 7.5,
@@ -320,7 +320,7 @@
       "9": 4.6
     },
     "supply_year": "2025",
-    "mismatch": 20.9,
+    "mismatch": 21.1,
     "note": "Armed forces and unknown occupations excluded from demand and employment shares."
   }
 }
