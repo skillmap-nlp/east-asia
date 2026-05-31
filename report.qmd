@@ -4541,12 +4541,7 @@ digitalCooccurrenceData = FileAttachment("digital_cooccurrence_links.json").json
   function current() { return digitalCooccurrenceData[state.country]; }
 
   function updateSummary() {
-    const t = current().totals || {};
-    if (!t.total_offers) { summary.html(""); return; }
-    summary.html(
-      `Digital skills appear in <strong>${(t.dig_rate).toFixed(1)}%</strong> of ${fmtInt(t.total_offers)} ${state.country} postings`
-      + ` · Basic ${fmtInt(t.basic_offers)} · Intermediate ${fmtInt(t.intermediate_offers)} · Advanced ${fmtInt(t.advanced_offers)}.`
-    );
+    summary.html("");
   }
 
   function renderView() {
