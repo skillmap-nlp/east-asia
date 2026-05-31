@@ -4575,8 +4575,11 @@ digitalCooccurrenceData = FileAttachment("digital_cooccurrence_links.json").json
       if (e.npmi > maxv) maxv = e.npmi;
     });
 
-    const cell = 26, labelW = 270, labelTop = 232, legendH = 46;
-    const W = labelW + n * cell + 24, H = labelTop + n * cell + 24;
+    const cell = 26, labelW = 270, labelTop = 232;
+    const gridBottom = labelTop + n * cell;
+    const legendY = gridBottom + 34;
+    const W = Math.max(labelW + n * cell + 24, labelW + 240 + LEVELS.length * 96 + 10);
+    const H = legendY + 30;
     const color = d3.scaleSequential(d3.interpolateBlues).domain([0, maxv]);
     const scroller = host.append("div").style("overflow", "auto").style("max-height", "680px");
     const svg = scroller.append("svg").attr("width", W).attr("height", H).style("font-family", "system-ui,sans-serif");
@@ -4632,12 +4635,12 @@ digitalCooccurrenceData = FileAttachment("digital_cooccurrence_links.json").json
     const defs = svg.append("defs");
     const grad = defs.append("linearGradient").attr("id", "dcNpmiGrad");
     d3.range(0, 1.01, 0.1).forEach(t => grad.append("stop").attr("offset", `${t * 100}%`).attr("stop-color", color(t * maxv)));
-    const lg = svg.append("g").attr("transform", `translate(${labelW}, ${H - legendH + 14})`);
+    const lg = svg.append("g").attr("transform", `translate(${labelW}, ${legendY})`);
     lg.append("text").attr("y", -4).style("font-size", "10px").style("fill", "#64748b").text("Pairing strength (NPMI)");
     lg.append("rect").attr("width", 180).attr("height", 10).attr("rx", 2).style("fill", "url(#dcNpmiGrad)");
     lg.append("text").attr("y", 24).style("font-size", "9px").style("fill", "#94a3b8").text("weaker");
     lg.append("text").attr("x", 180).attr("y", 24).style("font-size", "9px").style("fill", "#94a3b8").style("text-anchor", "end").text(`stronger (${maxv.toFixed(2)})`);
-    const ll = svg.append("g").attr("transform", `translate(${labelW + 240}, ${H - legendH + 8})`);
+    const ll = svg.append("g").attr("transform", `translate(${labelW + 240}, ${legendY + 2})`);
     LEVELS.forEach((lv, i) => {
       const g = ll.append("g").attr("transform", `translate(${i * 96}, 0)`);
       g.append("circle").attr("r", 5).attr("cy", -2).attr("fill", LEVEL_COLOR[lv]);
