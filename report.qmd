@@ -4756,7 +4756,7 @@ digitalCooccurrenceData = FileAttachment("digital_cooccurrence_links.json").json
         const tr = tb.append("tr").style("border-bottom", "1px solid #e2e8f0");
         tr.append("td").style("padding", "5px 8px").style("color", "#94a3b8").text(i + 1);
         tr.append("td").style("padding", "5px 8px").text(p.title);
-        tr.append("td").style("padding", "5px 8px").html(`<span style="background:${PILLAR_COLOR[p.pillar] || "#888"};color:#fff;padding:1px 7px;border-radius:999px;font-size:0.75rem;">${escapeHtml(truncS(p.glabel, 28))}</span>`);
+        tr.append("td").style("padding", "5px 8px").html(`<span title="${escapeHtml(p.glabel)}" style="display:inline-block;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;background:${PILLAR_COLOR[p.pillar] || "#888"};color:#fff;padding:2px 9px;border-radius:999px;font-size:0.75rem;line-height:1.4;">${escapeHtml(truncS(p.glabel, 28))}</span>`);
         tr.append("td").style("padding", "5px 8px").style("text-align", "right").style("font-weight", "600").text(`+${p.premium_pp.toFixed(1)}pp`);
         tr.append("td").style("padding", "5px 8px").style("text-align", "right").text(`${p.lift.toFixed(1)}×`);
         tr.append("td").style("padding", "5px 8px").style("text-align", "right").text(`${p.dig_pct.toFixed(1)}%`);
