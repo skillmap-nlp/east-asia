@@ -4296,7 +4296,7 @@ digMix = FileAttachment("digital_level_composition.json").json()
     "India": "#64748b", "Mexico": "#94a3b8", "Poland": "#16a34a"
   };
 
-  const state = { country: "Japan" };
+  const state = { country: "Indonesia" };
 
   // precomputed composition share (%) for a country-month-level
   const share = (country, ym, key) => {
