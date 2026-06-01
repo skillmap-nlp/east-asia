@@ -5090,9 +5090,8 @@ postings. The series runs from March 2025 to April 2026.
 
 {
   const months = semiData.months;
-  const state = { series: "Other East Asia" };
-  const focusCountries = new Set(["Taiwan", "Japan", "South Korea", "Singapore"]);
-  const seriesList = [["Taiwan", "Taiwan"], ["Japan", "Japan"], ["South Korea", "South Korea"], ["Singapore", "Singapore"], ["Other East Asia", "Other East Asia (pooled)"]];
+  const state = { series: "Taiwan" };
+  const seriesList = [["Taiwan", "Taiwan"], ["Japan", "Japan"], ["South Korea", "South Korea"], ["Singapore", "Singapore"], ["Malaysia", "Malaysia"], ["Thailand", "Thailand"], ["Indonesia", "Indonesia"], ["Vietnam", "Vietnam"], ["Philippines", "Philippines"]];
 
   const erfc = x => {
     const z = Math.abs(x), t = 1 / (1 + 0.5 * z);
@@ -5119,17 +5118,8 @@ postings. The series runs from March 2025 to April 2026.
 
   const MIN_POSTINGS = 500;
   const countsFor = name => {
-    if (name !== "Other East Asia") {
-      const m = semiData.byCountryMonth[name];
-      return { total: months.map(x => m[x].total), signal: months.map(x => m[x].semi) };
-    }
-    const total = months.map(() => 0), signal = months.map(() => 0);
-    Object.entries(semiData.countries).forEach(([country, meta]) => {
-      if (meta.group !== "East Asia" || focusCountries.has(country)) return;
-      const m = semiData.byCountryMonth[country];
-      months.forEach((ym, i) => { total[i] += m[ym].total; signal[i] += m[ym].semi; });
-    });
-    return { total, signal };
+    const m = semiData.byCountryMonth[name];
+    return { total: months.map(x => m[x].total), signal: months.map(x => m[x].semi) };
   };
   const seriesShare = name => {
     const { total, signal } = countsFor(name);
@@ -5137,15 +5127,14 @@ postings. The series runs from March 2025 to April 2026.
   };
 
   const wrap = d3.create("div").style("font-family", "system-ui,-apple-system,sans-serif");
-  const bar = wrap.append("div").style("display", "flex").style("align-items", "center").style("gap", "0.5rem").style("margin", "0.1rem 0 1rem 0");
-  bar.append("span").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").text("Market");
+  const bar = wrap.append("div").style("display", "grid").style("grid-template-columns", "auto minmax(0, 1fr) auto").style("align-items", "start").style("gap", "0.45rem 0.75rem").style("margin", "0.1rem 0 1.25rem 0");
+  bar.append("span").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").style("padding-top", "7px").text("Market");
   const btnStyle = active => `padding:5px 12px;font-size:12px;font-weight:${active ? 700 : 500};cursor:pointer;border:1px solid #cbd5e1;background:${active ? "#0f172a" : "#fff"};color:${active ? "#fff" : "#475569"}`;
-  const box = bar.append("div").style("display", "flex").style("flex-wrap", "wrap");
+  const box = bar.append("div").style("display", "flex").style("flex-wrap", "wrap").style("gap", "0.35rem");
   const btns = seriesList.map(([val, txt], i) => {
-    const radius = i === 0 ? "6px 0 0 6px" : (i === seriesList.length - 1 ? "0 6px 6px 0" : "0");
-    const b = box.append("button").attr("style", btnStyle(state.series === val) + `;border-radius:${radius}` + (i > 0 ? ";border-left:none" : "")).text(txt);
-    b.on("click", () => { state.series = val; btns.forEach(o => o.b.attr("style", btnStyle(state.series === o.val) + `;border-radius:${o.radius}` + (o.first ? "" : ";border-left:none"))); render(); });
-    return { val, b, radius, first: i === 0 };
+    const b = box.append("button").attr("style", btnStyle(state.series === val) + ";border-radius:6px").text(txt);
+    b.on("click", () => { state.series = val; btns.forEach(o => o.b.attr("style", btnStyle(state.series === o.val) + ";border-radius:6px")); render(); });
+    return { val, b };
   });
   // xlsx export of the plotted series (reliable months only; February omitted).
   async function ensureXlsx() {
@@ -5182,7 +5171,7 @@ postings. The series runs from March 2025 to April 2026.
     }
   }
   bar.append("button").attr("type", "button")
-    .attr("style", "margin-left:auto;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .attr("style", "padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569;white-space:nowrap")
     .text("xlsx").on("click", exportXlsx);
   const plot = wrap.append("div");
   wrap.style("position", "relative");
@@ -5203,7 +5192,7 @@ postings. The series runs from March 2025 to April 2026.
     }).filter(d => d != null);
     const relPts = allPts.filter(d => d.reliable);
     const ys = relPts.map(d => d.v);            // trend stats use reliable months only
-    const W = 720, H = 300, m = { t: 14, r: 16, b: 44, l: 46 };
+    const W = 720, H = 316, m = { t: 30, r: 16, b: 44, l: 46 };
     const iw = W - m.l - m.r, ih = H - m.t - m.b;
     const svg = plot.append("svg").attr("viewBox", `0 0 ${W} ${H}`).style("width", "100%").style("max-width", `${W}px`).style("height", "auto").style("font-family", "system-ui,sans-serif");
     const gph = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
@@ -5218,7 +5207,7 @@ postings. The series runs from March 2025 to April 2026.
       const isUn = unreliable.has(mn);
       gph.append("text").attr("x", x(i)).attr("y", ih + 22).attr("text-anchor", "middle").attr("font-size", "9.5px").attr("fill", isUn ? "#b45309" : "#94a3b8").text(mn.slice(2));
     });
-    gph.append("text").attr("x", -m.l + 2).attr("y", -2).attr("font-size", "10px").attr("fill", "#64748b").text("per 10k postings");
+    gph.append("text").attr("x", 0).attr("y", -16).attr("font-size", "10px").attr("fill", "#64748b").text("per 10k postings");
 
     let fit = null;
     if (ys.length >= 2) {
@@ -5465,9 +5454,8 @@ As before, we track the monthly share of postings mentioning an AI concept, per
 
 {
   const months = aiData.months;
-  const state = { series: "Other East Asia" };
-  const focusCountries = new Set(["Taiwan", "Japan", "Singapore"]);
-  const seriesList = [["Taiwan", "Taiwan"], ["Japan", "Japan"], ["Singapore", "Singapore"], ["India", "India"], ["Other East Asia", "Other East Asia (pooled)"]];
+  const state = { series: "Taiwan" };
+  const seriesList = [["Taiwan", "Taiwan"], ["Japan", "Japan"], ["South Korea", "South Korea"], ["Singapore", "Singapore"], ["India", "India"], ["Malaysia", "Malaysia"], ["Thailand", "Thailand"], ["Indonesia", "Indonesia"], ["Vietnam", "Vietnam"], ["Philippines", "Philippines"]];
 
   const erfc = x => {
     const z = Math.abs(x), t = 1 / (1 + 0.5 * z);
@@ -5494,17 +5482,8 @@ As before, we track the monthly share of postings mentioning an AI concept, per
 
   const MIN_POSTINGS = 500;
   const countsFor = name => {
-    if (name !== "Other East Asia") {
-      const m = aiData.byCountryMonth[name];
-      return { total: months.map(x => m[x].total), signal: months.map(x => m[x].ai) };
-    }
-    const total = months.map(() => 0), signal = months.map(() => 0);
-    Object.entries(aiData.countries).forEach(([country, meta]) => {
-      if (meta.group !== "East Asia" || focusCountries.has(country)) return;
-      const m = aiData.byCountryMonth[country];
-      months.forEach((ym, i) => { total[i] += m[ym].total; signal[i] += m[ym].ai; });
-    });
-    return { total, signal };
+    const m = aiData.byCountryMonth[name];
+    return { total: months.map(x => m[x].total), signal: months.map(x => m[x].ai) };
   };
   const seriesShare = name => {
     const { total, signal } = countsFor(name);
@@ -5512,15 +5491,14 @@ As before, we track the monthly share of postings mentioning an AI concept, per
   };
 
   const wrap = d3.create("div").style("font-family", "system-ui,-apple-system,sans-serif");
-  const bar = wrap.append("div").style("display", "flex").style("align-items", "center").style("gap", "0.5rem").style("margin", "0.1rem 0 1rem 0");
-  bar.append("span").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").text("Market");
+  const bar = wrap.append("div").style("display", "grid").style("grid-template-columns", "auto minmax(0, 1fr) auto").style("align-items", "start").style("gap", "0.45rem 0.75rem").style("margin", "0.1rem 0 1.25rem 0");
+  bar.append("span").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").style("padding-top", "7px").text("Market");
   const btnStyle = active => `padding:5px 12px;font-size:12px;font-weight:${active ? 700 : 500};cursor:pointer;border:1px solid #cbd5e1;background:${active ? "#0f172a" : "#fff"};color:${active ? "#fff" : "#475569"}`;
-  const box = bar.append("div").style("display", "flex").style("flex-wrap", "wrap");
+  const box = bar.append("div").style("display", "flex").style("flex-wrap", "wrap").style("gap", "0.35rem");
   const btns = seriesList.map(([val, txt], i) => {
-    const radius = i === 0 ? "6px 0 0 6px" : (i === seriesList.length - 1 ? "0 6px 6px 0" : "0");
-    const b = box.append("button").attr("style", btnStyle(state.series === val) + `;border-radius:${radius}` + (i > 0 ? ";border-left:none" : "")).text(txt);
-    b.on("click", () => { state.series = val; btns.forEach(o => o.b.attr("style", btnStyle(state.series === o.val) + `;border-radius:${o.radius}` + (o.first ? "" : ";border-left:none"))); render(); });
-    return { val, b, radius, first: i === 0 };
+    const b = box.append("button").attr("style", btnStyle(state.series === val) + ";border-radius:6px").text(txt);
+    b.on("click", () => { state.series = val; btns.forEach(o => o.b.attr("style", btnStyle(state.series === o.val) + ";border-radius:6px")); render(); });
+    return { val, b };
   });
   // xlsx export of the plotted series (reliable months only; February omitted).
   async function ensureXlsx() {
@@ -5557,7 +5535,7 @@ As before, we track the monthly share of postings mentioning an AI concept, per
     }
   }
   bar.append("button").attr("type", "button")
-    .attr("style", "margin-left:auto;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .attr("style", "padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569;white-space:nowrap")
     .text("xlsx").on("click", exportXlsx);
   const plot = wrap.append("div");
   wrap.style("position", "relative");
@@ -5578,7 +5556,7 @@ As before, we track the monthly share of postings mentioning an AI concept, per
     }).filter(d => d != null);
     const relPts = allPts.filter(d => d.reliable);
     const ys = relPts.map(d => d.v);            // trend stats use reliable months only
-    const W = 720, H = 300, m = { t: 14, r: 16, b: 44, l: 46 };
+    const W = 720, H = 316, m = { t: 30, r: 16, b: 44, l: 46 };
     const iw = W - m.l - m.r, ih = H - m.t - m.b;
     const svg = plot.append("svg").attr("viewBox", `0 0 ${W} ${H}`).style("width", "100%").style("max-width", `${W}px`).style("height", "auto").style("font-family", "system-ui,sans-serif");
     const gph = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
@@ -5593,7 +5571,7 @@ As before, we track the monthly share of postings mentioning an AI concept, per
       const isUn = unreliable.has(mn);
       gph.append("text").attr("x", x(i)).attr("y", ih + 22).attr("text-anchor", "middle").attr("font-size", "9.5px").attr("fill", isUn ? "#b45309" : "#94a3b8").text(mn.slice(2));
     });
-    gph.append("text").attr("x", -m.l + 2).attr("y", -2).attr("font-size", "10px").attr("fill", "#64748b").text("per 10k postings");
+    gph.append("text").attr("x", 0).attr("y", -16).attr("font-size", "10px").attr("fill", "#64748b").text("per 10k postings");
 
     let fit = null;
     if (ys.length >= 2) {
