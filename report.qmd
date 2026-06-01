@@ -4239,6 +4239,168 @@ Intermediate, and Advanced sum to 100% of classified digital-skill mentions.
 :::
 
 ::: {.section-card}
+#### Digital skill mix over time
+
+The previous section presents the composition of digital-skill demand as a
+single snapshot. This section examines how the mix changes over time by tracking
+the monthly distribution of digital skill mentions across three proficiency
+bands: Basic, Intermediate, and Advanced. To reduce short-term volatility, the
+series are presented as 3-month rolling averages. Within each country-month, the
+three bands sum to 100 percent.
+
+The analysis is based on the composition of digital skill mentions rather than
+on the share of job postings that include at least one skill from a given
+proficiency band. This approach provides a more consistent measure of skill
+demand, as it focuses on the relative structure of extracted digital skills
+within each country and month. It also reduces sensitivity to differences in the
+number of skills extracted per posting, which may vary across data sources,
+occupations, posting formats, and processing conditions.
+
+The monthly series are not directly comparable to the aggregate statistics
+presented above. For Japan, Korea, and Taiwan, a subset of postings from job
+portals contained only year-level information in 2026 and could therefore not be
+assigned to a specific month. These postings are included in the aggregate
+statistics but excluded from the monthly time-series analysis. As a result, the
+monthly estimates for these countries are based on a narrower subset of postings
+and may show a different skill composition. In particular, the aggregate data
+indicate a higher share of Advanced digital skills than is visible in the
+monthly series.
+
+```{ojs}
+//| echo: false
+
+digMix = FileAttachment("digital_level_composition.json").json()
+```
+
+```{ojs}
+//| echo: false
+
+{
+  const data = digMix;
+  const months = data.months;
+  const LEVELS = [
+    { key: "Basic",        label: "Basic",        color: "#60a5fa" },
+    { key: "Intermediate", label: "Intermediate", color: "#2563eb" },
+    { key: "Advanced",     label: "Advanced",     color: "#1e3a8a" }
+  ];
+  const eastAsia = Object.entries(data.countries).filter(([, m]) => m.group === "East Asia").map(([n]) => n).sort(d3.ascending);
+  const benchmark = Object.entries(data.countries).filter(([, m]) => m.group === "Benchmark").map(([n]) => n).sort(d3.ascending);
+  const countriesAll = [...eastAsia, ...benchmark];
+  const WIN = data.rolling_window_months || 3;
+
+  // Distinct palette for the country-comparison view.
+  const cpalette = {
+    "Japan": "#dc2626", "South Korea": "#ea580c", "Taiwan": "#d97706",
+    "Singapore": "#0d9488", "Thailand": "#0891b2", "Malaysia": "#7c3aed",
+    "Indonesia": "#9333ea", "Vietnam": "#2563eb", "Philippines": "#4f46e5",
+    "India": "#64748b", "Mexico": "#94a3b8", "Poland": "#16a34a"
+  };
+
+  const state = { country: "Japan" };
+
+  // precomputed composition share (%) for a country-month-level
+  const share = (country, ym, key) => {
+    const r = (data.raw || {})[country];
+    const v = r && r[ym] ? r[ym][key] : null;
+    return (v == null) ? null : v;
+  };
+  // 3-month trailing rolling average of the composition share
+  const rolling = (country, key) => months.map((ym, i) => {
+    const win = [];
+    for (let k = Math.max(0, i - WIN + 1); k <= i; k++) {
+      const v = share(country, months[k], key);
+      if (v != null) win.push(v);
+    }
+    return { i, ym, v: win.length ? d3.mean(win) : null };
+  }).filter(d => d.v != null);
+
+  const fmtMonth = ym => { const [yy, mm] = ym.split("-"); return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+mm - 1] + " " + yy; };
+
+  const wrap = d3.create("div").style("font-family", "system-ui,-apple-system,sans-serif").style("position", "relative");
+  const ctrlRow = wrap.append("div").style("margin", "0.1rem 0 0.6rem 0");
+  const plot = wrap.append("div");
+  const tip = wrap.append("div").attr("class", "cs-tooltip");
+
+  function pill(host, txt, active, onClick, dotColor) {
+    const b = host.append("button").attr("type", "button")
+      .style("display", "inline-flex").style("align-items", "center").style("gap", "0.4rem")
+      .style("padding", "3px 10px").style("margin", "0 0.35rem 0.35rem 0").style("border", "1px solid #e2e8f0").style("border-radius", "999px")
+      .style("background", "#fff").style("cursor", "pointer").style("font-size", "12px").style("font-weight", "600")
+      .style("opacity", active ? 1 : 0.45).style("color", active ? "#1e293b" : "#94a3b8");
+    if (dotColor) b.append("span").style("width", "10px").style("height", "10px").style("border-radius", "50%").style("background", dotColor);
+    b.append("span").text(txt);
+    b.on("click", onClick);
+    return b;
+  }
+
+  function buildControls() {
+    ctrlRow.selectAll("*").remove();
+    ctrlRow.append("div").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").style("margin-bottom", "0.3rem").text("Market");
+    renderGroups(ctrlRow, c => state.country === c, c => { state.country = c; buildControls(); render(); }, false);
+  }
+
+  // East Asia and Benchmark rendered as separate, alphabetically ordered groups.
+  function renderGroups(host, isActive, onClick, withDot) {
+    [["East Asia", eastAsia], ["Benchmark", benchmark]].forEach(([gLabel, list]) => {
+      if (!list.length) return;
+      const row = host.append("div").style("display", "flex").style("align-items", "baseline").style("flex-wrap", "wrap").style("gap", "0.1rem 0.5rem").style("margin-bottom", "0.35rem");
+      row.append("span").style("font-size", "10px").style("font-weight", "700").style("color", "#cbd5e1").style("text-transform", "uppercase").style("letter-spacing", "0.04em").style("min-width", "70px").text(gLabel);
+      const pills = row.append("div");
+      list.forEach(c => pill(pills, c, isActive(c), () => onClick(c), withDot ? cpalette[c] : null));
+    });
+  }
+
+  function render() {
+    plot.selectAll("*").remove();
+    const series = LEVELS.map(L => ({ label: L.label, color: L.color, pts: rolling(state.country, L.key) }));
+    const ymax = Math.min(100, (d3.max(series.flatMap(s => s.pts.map(d => d.v))) || 1) * 1.15);
+
+    const W = 760, H = 340, m = { t: 30, r: 120, b: 44, l: 46 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const svg = plot.append("svg").attr("viewBox", `0 0 ${W} ${H}`).style("width", "100%").style("max-width", `${W}px`).style("height", "auto").style("font-family", "system-ui,sans-serif");
+    const gph = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
+    const x = d3.scalePoint().domain(d3.range(months.length)).range([0, iw]).padding(0.5);
+    const y = d3.scaleLinear().domain([0, ymax]).range([ih, 0]).nice();
+    y.ticks(5).forEach(t => {
+      gph.append("line").attr("x1", 0).attr("x2", iw).attr("y1", y(t)).attr("y2", y(t)).attr("stroke", "#eef2f7");
+      gph.append("text").attr("x", -8).attr("y", y(t)).attr("dy", "0.32em").attr("text-anchor", "end").attr("font-size", "10px").attr("fill", "#94a3b8").text(t + "%");
+    });
+    months.forEach((mn, i) => {
+      gph.append("text").attr("x", x(i)).attr("y", ih + 22).attr("text-anchor", "middle").attr("font-size", "9.5px").attr("fill", "#94a3b8").text(mn.slice(2));
+    });
+    gph.append("text").attr("x", 0).attr("y", -16).attr("font-size", "10px").attr("fill", "#64748b").text(`${state.country} · % of digital mentions · ${WIN}-mo avg`);
+
+    const seg2 = d3.line().x(d => x(d.i)).y(d => y(d.v));
+    series.forEach(s => {
+      for (let k = 1; k < s.pts.length; k++) {
+        const a = s.pts[k - 1], b = s.pts[k], gap = b.i - a.i > 1;
+        gph.append("path").datum([a, b]).attr("fill", "none").attr("stroke", s.color)
+          .attr("stroke-width", 2.2).attr("stroke-dasharray", gap ? "4 4" : null).attr("opacity", gap ? 0.5 : 1).attr("d", seg2);
+      }
+      const last = s.pts[s.pts.length - 1];
+      if (last) gph.append("text").attr("x", x(last.i) + 8).attr("y", y(last.v)).attr("dy", "0.32em").attr("font-size", "10px").attr("font-weight", "600").attr("fill", s.color).text(s.label);
+      gph.selectAll(null).data(s.pts).join("circle").attr("cx", d => x(d.i)).attr("cy", d => y(d.v)).attr("r", 2.6).attr("fill", s.color).style("cursor", "pointer")
+        .on("mouseenter", function (event, d) {
+          d3.select(this).interrupt().transition().duration(90).attr("r", 5).attr("stroke", "#fff").attr("stroke-width", 2);
+          tip.style("opacity", 1).html(`<div class="cs-tip-h">${s.label} · ${fmtMonth(d.ym)}</div><div class="cs-tip-v">${d.v.toFixed(1)}%<span>${WIN}-mo avg of digital mentions</span></div>`);
+        })
+        .on("mousemove", function (event) { const [mx, my] = d3.pointer(event, wrap.node()); tip.style("left", (mx + 16) + "px").style("top", (my + 12) + "px"); })
+        .on("mouseleave", function () { d3.select(this).interrupt().transition().duration(130).attr("r", 2.6).attr("stroke", null); tip.style("opacity", 0); });
+    });
+
+    plot.append("div").style("font-size", "0.78rem").style("color", "#94a3b8").style("margin-top", "0.4rem")
+      .html(`${WIN}-month trailing rolling average of the digital-skill mention mix (the three bands sum to 100% within each country-month). Composition conditions on a digital mention, so it is not distorted by how many skills are extracted per posting.`);
+  }
+
+  buildControls();
+  render();
+  return wrap.node();
+}
+```
+
+:::
+
+::: {.section-card}
 #### Advanced and intermediate digital profiles
 
 The table below summarises each country's digital profile. Use the toggles to

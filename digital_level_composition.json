@@ -1,0 +1,871 @@
+{
+  "metric": "composition of digital skill mentions (Basic/Intermediate/Advanced sum to 100%)",
+  "normalisations": {
+    "raw": "pooled across all postings (month-level dated)"
+  },
+  "rolling_window_months": 3,
+  "levels": [
+    "Basic",
+    "Intermediate",
+    "Advanced"
+  ],
+  "months": [
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-03",
+    "2026-04"
+  ],
+  "countries": {
+    "Japan": {
+      "group": "East Asia"
+    },
+    "South Korea": {
+      "group": "East Asia"
+    },
+    "Taiwan": {
+      "group": "East Asia"
+    },
+    "Thailand": {
+      "group": "East Asia"
+    },
+    "Malaysia": {
+      "group": "East Asia"
+    },
+    "Singapore": {
+      "group": "East Asia"
+    },
+    "Indonesia": {
+      "group": "East Asia"
+    },
+    "Vietnam": {
+      "group": "East Asia"
+    },
+    "Philippines": {
+      "group": "East Asia"
+    },
+    "India": {
+      "group": "Benchmark"
+    },
+    "Mexico": {
+      "group": "Benchmark"
+    },
+    "Poland": {
+      "group": "Benchmark"
+    }
+  },
+  "raw": {
+    "Japan": {
+      "2025-03": {
+        "Basic": 42.2321,
+        "Intermediate": 43.8783,
+        "Advanced": 13.8896
+      },
+      "2025-04": {
+        "Basic": 40.2508,
+        "Intermediate": 42.1431,
+        "Advanced": 17.6061
+      },
+      "2025-05": {
+        "Basic": 40.7535,
+        "Intermediate": 43.376,
+        "Advanced": 15.8705
+      },
+      "2025-06": {
+        "Basic": 32.6159,
+        "Intermediate": 43.4896,
+        "Advanced": 23.8945
+      },
+      "2025-07": {
+        "Basic": 27.5868,
+        "Intermediate": 37.1367,
+        "Advanced": 35.2765
+      },
+      "2025-08": {
+        "Basic": 34.8566,
+        "Intermediate": 39.1885,
+        "Advanced": 25.9549
+      },
+      "2025-09": {
+        "Basic": 46.1953,
+        "Intermediate": 41.6153,
+        "Advanced": 12.1895
+      },
+      "2025-10": {
+        "Basic": 46.1504,
+        "Intermediate": 41.5398,
+        "Advanced": 12.3098
+      },
+      "2025-11": {
+        "Basic": 47.766,
+        "Intermediate": 39.9693,
+        "Advanced": 12.2647
+      },
+      "2025-12": {
+        "Basic": 48.8815,
+        "Intermediate": 40.1439,
+        "Advanced": 10.9746
+      },
+      "2026-01": {
+        "Basic": 44.9386,
+        "Intermediate": 44.3952,
+        "Advanced": 10.6662
+      },
+      "2026-03": {
+        "Basic": 46.7713,
+        "Intermediate": 40.1521,
+        "Advanced": 13.0765
+      },
+      "2026-04": {
+        "Basic": 43.5818,
+        "Intermediate": 41.1227,
+        "Advanced": 15.2955
+      }
+    },
+    "South Korea": {
+      "2025-03": {
+        "Basic": 28.8682,
+        "Intermediate": 46.0446,
+        "Advanced": 25.0872
+      },
+      "2025-04": {
+        "Basic": 26.6667,
+        "Intermediate": 47.6201,
+        "Advanced": 25.7133
+      },
+      "2025-05": {
+        "Basic": 29.5343,
+        "Intermediate": 46.7034,
+        "Advanced": 23.7623
+      },
+      "2025-06": {
+        "Basic": 30.0699,
+        "Intermediate": 44.6698,
+        "Advanced": 25.2603
+      },
+      "2025-07": {
+        "Basic": 27.27,
+        "Intermediate": 47.514,
+        "Advanced": 25.2159
+      },
+      "2025-08": {
+        "Basic": 25.8893,
+        "Intermediate": 47.2175,
+        "Advanced": 26.8931
+      },
+      "2025-09": {
+        "Basic": 25.4399,
+        "Intermediate": 47.1746,
+        "Advanced": 27.3855
+      },
+      "2025-10": {
+        "Basic": 26.4859,
+        "Intermediate": 46.4241,
+        "Advanced": 27.09
+      },
+      "2025-11": {
+        "Basic": 27.7439,
+        "Intermediate": 46.9504,
+        "Advanced": 25.3057
+      },
+      "2025-12": {
+        "Basic": 27.7673,
+        "Intermediate": 48.0976,
+        "Advanced": 24.1351
+      },
+      "2026-01": {
+        "Basic": 25.7235,
+        "Intermediate": 47.694,
+        "Advanced": 26.5824
+      },
+      "2026-03": {
+        "Basic": 25.8693,
+        "Intermediate": 48.0314,
+        "Advanced": 26.0993
+      },
+      "2026-04": {
+        "Basic": 25.7659,
+        "Intermediate": 48.7542,
+        "Advanced": 25.4799
+      }
+    },
+    "Taiwan": {
+      "2025-03": {
+        "Basic": 16.2162,
+        "Intermediate": 43.0631,
+        "Advanced": 40.7207
+      },
+      "2025-04": {
+        "Basic": 35.1477,
+        "Intermediate": 41.3985,
+        "Advanced": 23.4538
+      },
+      "2025-05": {
+        "Basic": 31.8124,
+        "Intermediate": 41.1665,
+        "Advanced": 27.0211
+      },
+      "2025-06": {
+        "Basic": 34.4198,
+        "Intermediate": 42.253,
+        "Advanced": 23.3271
+      },
+      "2025-07": {
+        "Basic": 34.6168,
+        "Intermediate": 41.8971,
+        "Advanced": 23.486
+      },
+      "2025-08": {
+        "Basic": 30.8295,
+        "Intermediate": 49.4477,
+        "Advanced": 19.7229
+      },
+      "2025-09": {
+        "Basic": 31.4604,
+        "Intermediate": 46.1087,
+        "Advanced": 22.4309
+      },
+      "2025-10": {
+        "Basic": 26.2889,
+        "Intermediate": 44.4125,
+        "Advanced": 29.2986
+      },
+      "2025-11": {
+        "Basic": 27.6182,
+        "Intermediate": 48.9498,
+        "Advanced": 23.432
+      },
+      "2025-12": {
+        "Basic": 24.3917,
+        "Intermediate": 46.1282,
+        "Advanced": 29.4801
+      },
+      "2026-01": {
+        "Basic": 27.9825,
+        "Intermediate": 45.3971,
+        "Advanced": 26.6204
+      },
+      "2026-03": {
+        "Basic": 27.5696,
+        "Intermediate": 41.3465,
+        "Advanced": 31.0839
+      },
+      "2026-04": {
+        "Basic": 31.28,
+        "Intermediate": 41.9576,
+        "Advanced": 26.7624
+      }
+    },
+    "Thailand": {
+      "2025-03": {
+        "Basic": 40.5522,
+        "Intermediate": 44.71,
+        "Advanced": 14.7378
+      },
+      "2025-04": {
+        "Basic": 37.399,
+        "Intermediate": 46.6393,
+        "Advanced": 15.9617
+      },
+      "2025-05": {
+        "Basic": 35.1801,
+        "Intermediate": 48.8142,
+        "Advanced": 16.0057
+      },
+      "2025-06": {
+        "Basic": 39.182,
+        "Intermediate": 47.3084,
+        "Advanced": 13.5096
+      },
+      "2025-07": {
+        "Basic": 36.8297,
+        "Intermediate": 47.3009,
+        "Advanced": 15.8695
+      },
+      "2025-08": {
+        "Basic": 34.0578,
+        "Intermediate": 49.4566,
+        "Advanced": 16.4855
+      },
+      "2025-09": {
+        "Basic": 35.7238,
+        "Intermediate": 48.6901,
+        "Advanced": 15.5861
+      },
+      "2025-10": {
+        "Basic": 34.8232,
+        "Intermediate": 49.5441,
+        "Advanced": 15.6326
+      },
+      "2025-11": {
+        "Basic": 35.9591,
+        "Intermediate": 47.3765,
+        "Advanced": 16.6643
+      },
+      "2025-12": {
+        "Basic": 35.847,
+        "Intermediate": 48.1895,
+        "Advanced": 15.9635
+      },
+      "2026-01": {
+        "Basic": 38.8026,
+        "Intermediate": 51.3347,
+        "Advanced": 9.8627
+      },
+      "2026-03": {
+        "Basic": 37.3947,
+        "Intermediate": 49.4631,
+        "Advanced": 13.1422
+      },
+      "2026-04": {
+        "Basic": 37.0058,
+        "Intermediate": 50.1861,
+        "Advanced": 12.8081
+      }
+    },
+    "Malaysia": {
+      "2025-03": {
+        "Basic": 39.3588,
+        "Intermediate": 46.8552,
+        "Advanced": 13.786
+      },
+      "2025-04": {
+        "Basic": 40.9183,
+        "Intermediate": 47.515,
+        "Advanced": 11.5667
+      },
+      "2025-05": {
+        "Basic": 40.4041,
+        "Intermediate": 46.9787,
+        "Advanced": 12.6172
+      },
+      "2025-06": {
+        "Basic": 41.4384,
+        "Intermediate": 46.3928,
+        "Advanced": 12.1688
+      },
+      "2025-07": {
+        "Basic": 40.0798,
+        "Intermediate": 46.9512,
+        "Advanced": 12.969
+      },
+      "2025-08": {
+        "Basic": 40.5337,
+        "Intermediate": 46.4945,
+        "Advanced": 12.9718
+      },
+      "2025-09": {
+        "Basic": 40.9004,
+        "Intermediate": 46.276,
+        "Advanced": 12.8236
+      },
+      "2025-10": {
+        "Basic": 41.1874,
+        "Intermediate": 46.6741,
+        "Advanced": 12.1385
+      },
+      "2025-11": {
+        "Basic": 42.487,
+        "Intermediate": 46.0007,
+        "Advanced": 11.5123
+      },
+      "2025-12": {
+        "Basic": 43.5001,
+        "Intermediate": 45.1175,
+        "Advanced": 11.3824
+      },
+      "2026-01": {
+        "Basic": 42.1095,
+        "Intermediate": 46.702,
+        "Advanced": 11.1885
+      },
+      "2026-03": {
+        "Basic": 41.9109,
+        "Intermediate": 45.7386,
+        "Advanced": 12.3504
+      },
+      "2026-04": {
+        "Basic": 41.3631,
+        "Intermediate": 45.5351,
+        "Advanced": 13.1018
+      }
+    },
+    "Singapore": {
+      "2025-03": {
+        "Basic": 23.7536,
+        "Intermediate": 47.6039,
+        "Advanced": 28.6425
+      },
+      "2025-04": {
+        "Basic": 21.1331,
+        "Intermediate": 46.1087,
+        "Advanced": 32.7582
+      },
+      "2025-05": {
+        "Basic": 24.8986,
+        "Intermediate": 46.3872,
+        "Advanced": 28.7141
+      },
+      "2025-06": {
+        "Basic": 27.151,
+        "Intermediate": 46.9748,
+        "Advanced": 25.8742
+      },
+      "2025-07": {
+        "Basic": 26.2647,
+        "Intermediate": 46.8033,
+        "Advanced": 26.932
+      },
+      "2025-08": {
+        "Basic": 27.9454,
+        "Intermediate": 46.7129,
+        "Advanced": 25.3417
+      },
+      "2025-09": {
+        "Basic": 27.3569,
+        "Intermediate": 46.7488,
+        "Advanced": 25.8943
+      },
+      "2025-10": {
+        "Basic": 26.5677,
+        "Intermediate": 47.0756,
+        "Advanced": 26.3568
+      },
+      "2025-11": {
+        "Basic": 25.4624,
+        "Intermediate": 46.6514,
+        "Advanced": 27.8862
+      },
+      "2025-12": {
+        "Basic": 23.6298,
+        "Intermediate": 46.1864,
+        "Advanced": 30.1838
+      },
+      "2026-01": {
+        "Basic": 24.2445,
+        "Intermediate": 47.0389,
+        "Advanced": 28.7166
+      },
+      "2026-03": {
+        "Basic": 22.2832,
+        "Intermediate": 46.2213,
+        "Advanced": 31.4955
+      },
+      "2026-04": {
+        "Basic": 22.4918,
+        "Intermediate": 46.8053,
+        "Advanced": 30.7028
+      }
+    },
+    "Indonesia": {
+      "2025-03": {
+        "Basic": 31.9451,
+        "Intermediate": 49.9629,
+        "Advanced": 18.092
+      },
+      "2025-04": {
+        "Basic": 27.8143,
+        "Intermediate": 50.0245,
+        "Advanced": 22.1612
+      },
+      "2025-05": {
+        "Basic": 30.933,
+        "Intermediate": 49.3393,
+        "Advanced": 19.7277
+      },
+      "2025-06": {
+        "Basic": 30.5615,
+        "Intermediate": 50.9314,
+        "Advanced": 18.507
+      },
+      "2025-07": {
+        "Basic": 31.4152,
+        "Intermediate": 49.6395,
+        "Advanced": 18.9454
+      },
+      "2025-08": {
+        "Basic": 29.1504,
+        "Intermediate": 50.8064,
+        "Advanced": 20.0432
+      },
+      "2025-09": {
+        "Basic": 31.224,
+        "Intermediate": 49.5367,
+        "Advanced": 19.2392
+      },
+      "2025-10": {
+        "Basic": 30.8142,
+        "Intermediate": 49.1333,
+        "Advanced": 20.0525
+      },
+      "2025-11": {
+        "Basic": 30.9624,
+        "Intermediate": 49.4719,
+        "Advanced": 19.5657
+      },
+      "2025-12": {
+        "Basic": 32.1119,
+        "Intermediate": 48.8075,
+        "Advanced": 19.0806
+      },
+      "2026-01": {
+        "Basic": 31.8343,
+        "Intermediate": 49.6352,
+        "Advanced": 18.5304
+      },
+      "2026-03": {
+        "Basic": 30.6905,
+        "Intermediate": 50.0459,
+        "Advanced": 19.2636
+      },
+      "2026-04": {
+        "Basic": 30.9965,
+        "Intermediate": 50.0621,
+        "Advanced": 18.9414
+      }
+    },
+    "Vietnam": {
+      "2025-03": {
+        "Basic": 33.9622,
+        "Intermediate": 48.9301,
+        "Advanced": 17.1077
+      },
+      "2025-04": {
+        "Basic": 34.1624,
+        "Intermediate": 48.4169,
+        "Advanced": 17.4207
+      },
+      "2025-05": {
+        "Basic": 37.1347,
+        "Intermediate": 49.2468,
+        "Advanced": 13.6185
+      },
+      "2025-06": {
+        "Basic": 36.6288,
+        "Intermediate": 49.8961,
+        "Advanced": 13.4751
+      },
+      "2025-07": {
+        "Basic": 38.7323,
+        "Intermediate": 49.5216,
+        "Advanced": 11.746
+      },
+      "2025-08": {
+        "Basic": 38.7421,
+        "Intermediate": 49.7962,
+        "Advanced": 11.4618
+      },
+      "2025-09": {
+        "Basic": 36.413,
+        "Intermediate": 49.7354,
+        "Advanced": 13.8516
+      },
+      "2025-10": {
+        "Basic": 35.4015,
+        "Intermediate": 49.4891,
+        "Advanced": 15.1094
+      },
+      "2025-11": {
+        "Basic": 28.3083,
+        "Intermediate": 47.4519,
+        "Advanced": 24.2398
+      },
+      "2025-12": {
+        "Basic": 32.3247,
+        "Intermediate": 48.7268,
+        "Advanced": 18.9485
+      },
+      "2026-01": {
+        "Basic": 29.0355,
+        "Intermediate": 47.2367,
+        "Advanced": 23.7278
+      },
+      "2026-03": {
+        "Basic": 40.5538,
+        "Intermediate": 45.686,
+        "Advanced": 13.7602
+      },
+      "2026-04": {
+        "Basic": 41.3443,
+        "Intermediate": 44.8066,
+        "Advanced": 13.8491
+      }
+    },
+    "Philippines": {
+      "2025-03": {
+        "Basic": 40.7655,
+        "Intermediate": 47.2351,
+        "Advanced": 11.9994
+      },
+      "2025-04": {
+        "Basic": 41.3723,
+        "Intermediate": 47.0858,
+        "Advanced": 11.5419
+      },
+      "2025-05": {
+        "Basic": 40.1839,
+        "Intermediate": 48.0494,
+        "Advanced": 11.7667
+      },
+      "2025-06": {
+        "Basic": 40.2555,
+        "Intermediate": 47.41,
+        "Advanced": 12.3345
+      },
+      "2025-07": {
+        "Basic": 39.8908,
+        "Intermediate": 47.6523,
+        "Advanced": 12.4568
+      },
+      "2025-08": {
+        "Basic": 40.318,
+        "Intermediate": 47.4015,
+        "Advanced": 12.2805
+      },
+      "2025-09": {
+        "Basic": 40.3705,
+        "Intermediate": 47.3888,
+        "Advanced": 12.2407
+      },
+      "2025-10": {
+        "Basic": 40.9696,
+        "Intermediate": 47.3526,
+        "Advanced": 11.6778
+      },
+      "2025-11": {
+        "Basic": 41.7085,
+        "Intermediate": 46.9855,
+        "Advanced": 11.306
+      },
+      "2025-12": {
+        "Basic": 42.8582,
+        "Intermediate": 46.4936,
+        "Advanced": 10.6482
+      },
+      "2026-01": {
+        "Basic": 43.6898,
+        "Intermediate": 45.9515,
+        "Advanced": 10.3588
+      },
+      "2026-03": {
+        "Basic": 40.6055,
+        "Intermediate": 47.2258,
+        "Advanced": 12.1686
+      },
+      "2026-04": {
+        "Basic": 40.9652,
+        "Intermediate": 47.0207,
+        "Advanced": 12.0141
+      }
+    },
+    "India": {
+      "2025-03": {
+        "Basic": 28.8619,
+        "Intermediate": 52.5961,
+        "Advanced": 18.542
+      },
+      "2025-04": {
+        "Basic": 27.6144,
+        "Intermediate": 52.3457,
+        "Advanced": 20.0399
+      },
+      "2025-05": {
+        "Basic": 27.8864,
+        "Intermediate": 50.9225,
+        "Advanced": 21.1911
+      },
+      "2025-06": {
+        "Basic": 28.5475,
+        "Intermediate": 51.2757,
+        "Advanced": 20.1767
+      },
+      "2025-07": {
+        "Basic": 28.0176,
+        "Intermediate": 51.3634,
+        "Advanced": 20.619
+      },
+      "2025-08": {
+        "Basic": 29.8175,
+        "Intermediate": 51.1647,
+        "Advanced": 19.0178
+      },
+      "2025-09": {
+        "Basic": 28.8784,
+        "Intermediate": 50.5889,
+        "Advanced": 20.5326
+      },
+      "2025-10": {
+        "Basic": 30.392,
+        "Intermediate": 51.4752,
+        "Advanced": 18.1328
+      },
+      "2025-11": {
+        "Basic": 30.7873,
+        "Intermediate": 50.4829,
+        "Advanced": 18.7298
+      },
+      "2025-12": {
+        "Basic": 31.9159,
+        "Intermediate": 50.7584,
+        "Advanced": 17.3257
+      },
+      "2026-01": {
+        "Basic": 31.7664,
+        "Intermediate": 50.7379,
+        "Advanced": 17.4957
+      },
+      "2026-03": {
+        "Basic": 26.2701,
+        "Intermediate": 49.9484,
+        "Advanced": 23.7815
+      },
+      "2026-04": {
+        "Basic": 28.6042,
+        "Intermediate": 49.7206,
+        "Advanced": 21.6753
+      }
+    },
+    "Mexico": {
+      "2025-03": {
+        "Basic": 28.3262,
+        "Intermediate": 51.9313,
+        "Advanced": 19.7425
+      },
+      "2025-04": {
+        "Basic": 41.0661,
+        "Intermediate": 42.8813,
+        "Advanced": 16.0526
+      },
+      "2025-05": {
+        "Basic": 42.1229,
+        "Intermediate": 43.8468,
+        "Advanced": 14.0303
+      },
+      "2025-06": {
+        "Basic": 39.4798,
+        "Intermediate": 44.8231,
+        "Advanced": 15.6971
+      },
+      "2025-07": {
+        "Basic": 38.9052,
+        "Intermediate": 45.1059,
+        "Advanced": 15.9889
+      },
+      "2025-08": {
+        "Basic": 39.8402,
+        "Intermediate": 44.7498,
+        "Advanced": 15.41
+      },
+      "2025-09": {
+        "Basic": 39.3431,
+        "Intermediate": 44.8485,
+        "Advanced": 15.8085
+      },
+      "2025-10": {
+        "Basic": 40.1919,
+        "Intermediate": 44.8106,
+        "Advanced": 14.9974
+      },
+      "2025-11": {
+        "Basic": 39.1737,
+        "Intermediate": 45.3577,
+        "Advanced": 15.4686
+      },
+      "2025-12": {
+        "Basic": 41.1477,
+        "Intermediate": 44.9266,
+        "Advanced": 13.9257
+      },
+      "2026-01": {
+        "Basic": 41.8916,
+        "Intermediate": 44.8619,
+        "Advanced": 13.2466
+      },
+      "2026-03": {
+        "Basic": 37.5265,
+        "Intermediate": 45.2845,
+        "Advanced": 17.189
+      },
+      "2026-04": {
+        "Basic": 39.3667,
+        "Intermediate": 45.0746,
+        "Advanced": 15.5587
+      }
+    },
+    "Poland": {
+      "2025-03": {
+        "Basic": 33.4153,
+        "Intermediate": 47.1437,
+        "Advanced": 19.441
+      },
+      "2025-04": {
+        "Basic": 30.9959,
+        "Intermediate": 46.9316,
+        "Advanced": 22.0725
+      },
+      "2025-05": {
+        "Basic": 24.3356,
+        "Intermediate": 46.3312,
+        "Advanced": 29.3332
+      },
+      "2025-06": {
+        "Basic": 25.3296,
+        "Intermediate": 46.3725,
+        "Advanced": 28.2979
+      },
+      "2025-07": {
+        "Basic": 25.6178,
+        "Intermediate": 46.8358,
+        "Advanced": 27.5464
+      },
+      "2025-08": {
+        "Basic": 24.5111,
+        "Intermediate": 47.1306,
+        "Advanced": 28.3583
+      },
+      "2025-09": {
+        "Basic": 25.3068,
+        "Intermediate": 46.9147,
+        "Advanced": 27.7786
+      },
+      "2025-10": {
+        "Basic": 24.9005,
+        "Intermediate": 47.1426,
+        "Advanced": 27.9569
+      },
+      "2025-11": {
+        "Basic": 23.5732,
+        "Intermediate": 48.0983,
+        "Advanced": 28.3285
+      },
+      "2025-12": {
+        "Basic": 25.6477,
+        "Intermediate": 48.9572,
+        "Advanced": 25.395
+      },
+      "2026-01": {
+        "Basic": 25.8335,
+        "Intermediate": 48.2583,
+        "Advanced": 25.9082
+      },
+      "2026-03": {
+        "Basic": 22.3778,
+        "Intermediate": 44.547,
+        "Advanced": 33.0752
+      },
+      "2026-04": {
+        "Basic": 23.6408,
+        "Intermediate": 44.9397,
+        "Advanced": 31.4195
+      }
+    }
+  }
+}
