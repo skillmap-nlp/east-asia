@@ -4333,9 +4333,49 @@ digMix = FileAttachment("digital_level_composition.json").json()
     return b;
   }
 
+  async function ensureXlsx() {
+    if (window.XLSX) return window.XLSX;
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      s.async = true; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return window.XLSX;
+  }
+  async function exportXlsx() {
+    try {
+      const XLSX = await ensureXlsx();
+      const rollRows = [];
+      countriesAll.forEach(c => {
+        const rollMap = {};
+        LEVELS.forEach(L => rolling(c, L.key).forEach(p => { (rollMap[p.ym] || (rollMap[p.ym] = {}))[L.label] = +p.v.toFixed(2); }));
+        Object.keys(rollMap).sort().forEach(ym => rollRows.push({
+          Country: c,
+          Group: (data.countries[c] || {}).group || "",
+          Month: ym,
+          "Basic (3-mo avg %)": rollMap[ym].Basic == null ? "" : rollMap[ym].Basic,
+          "Intermediate (3-mo avg %)": rollMap[ym].Intermediate == null ? "" : rollMap[ym].Intermediate,
+          "Advanced (3-mo avg %)": rollMap[ym].Advanced == null ? "" : rollMap[ym].Advanced
+        }));
+      });
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rollRows), `${WIN}-mo rolling avg`);
+      XLSX.writeFile(wb, "digital_skill_mix_all_countries.xlsx");
+    } catch (err) {
+      console.error(err);
+      alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
+    }
+  }
+
   function buildControls() {
     ctrlRow.selectAll("*").remove();
-    ctrlRow.append("div").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").style("margin-bottom", "0.3rem").text("Market");
+    const head = ctrlRow.append("div").style("display", "flex").style("align-items", "center").style("justify-content", "space-between").style("gap", "0.5rem").style("margin-bottom", "0.3rem");
+    head.append("div").style("font-size", "11px").style("font-weight", "600").style("color", "#94a3b8").style("text-transform", "uppercase").style("letter-spacing", "0.04em").text("Market");
+    head.append("button").attr("type", "button")
+      .style("padding", "3px 10px").style("font-size", "12px").style("font-weight", "600").style("cursor", "pointer")
+      .style("border", "1px solid #cbd5e1").style("border-radius", "6px").style("background", "#fff").style("color", "#475569").style("white-space", "nowrap")
+      .text("xlsx").on("click", exportXlsx);
     renderGroups(ctrlRow, c => state.country === c, c => { state.country = c; buildControls(); render(); }, false);
   }
 
@@ -4499,6 +4539,56 @@ digitalProfilesData = ({"wide":{"Intermediate":{"Japan":{"common":["analyse tran
     classBtns.forEach(o => o.b.attr("style", btnStyle(state.classification === o.val) + `;border-radius:${o.radius}` + (o.first ? "" : ";border-left:none")));
   }
 
+  // ---- xlsx export (all classifications, levels, countries, methods) ----
+  async function ensureXlsx() {
+    if (window.XLSX) return window.XLSX;
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      s.async = true; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return window.XLSX;
+  }
+  async function exportXlsx() {
+    try {
+      const XLSX = await ensureXlsx();
+      const rankedRows = [], commonRows = [];
+      Object.keys(digitalProfilesData).forEach(cls => {
+        Object.keys(digitalProfilesData[cls]).forEach(lvl => {
+          order.forEach(country => {
+            const cd = digitalProfilesData[cls][lvl][country];
+            if (!cd) return;
+            const commonSet = new Set(cd.common || []);
+            commonRows.push({ Classification: classLabel[cls] || cls, Level: lvl, Country: country, "Common labels": (cd.common || []).join("; ") });
+            ["logodds", "g2"].forEach(method => {
+              (cd[method] || []).forEach((r, i) => rankedRows.push({
+                Classification: classLabel[cls] || cls,
+                Level: lvl,
+                Country: country,
+                Method: methodLabel[method] || method,
+                Rank: i + 1,
+                Label: r.label,
+                Score: r.score,
+                "Is common": commonSet.has(r.label) ? "yes" : "no"
+              }));
+            });
+          });
+        });
+      });
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rankedRows), "Distinctive (ranked)");
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(commonRows), "Common labels");
+      XLSX.writeFile(wb, "digital_profiles_all_countries.xlsx");
+    } catch (err) {
+      console.error(err);
+      alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
+    }
+  }
+  bar.append("button").attr("type", "button")
+    .attr("style", "padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .text("xlsx").on("click", exportXlsx);
+
   // legend
   const legend = wrap.append("div")
     .style("display", "flex").style("gap", "1.2rem").style("align-items", "center")
@@ -4508,7 +4598,11 @@ digitalProfilesData = ({"wide":{"Intermediate":{"Japan":{"common":["analyse tran
 
   const tableHost = wrap.append("div").style("overflow-x", "auto");
 
-  const fwTitle = wrap.append("h5").style("margin", "1.6rem 0 0.2rem 0").style("font-size", "1rem");
+  const fwHead = wrap.append("div").style("display", "flex").style("align-items", "center").style("gap", "0.8rem").style("flex-wrap", "wrap").style("margin", "1.6rem 0 0.2rem 0");
+  const fwTitle = fwHead.append("h5").style("margin", "0").style("font-size", "1rem");
+  fwHead.append("button").attr("type", "button")
+    .attr("style", "padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .text("xlsx").on("click", exportXlsx);
   const fwSub = wrap.append("p").style("margin", "0 0 0.9rem 0").style("font-size", "0.85rem").style("color", "#475569");
   const fwHost = wrap.append("div").style("display", "grid").style("grid-template-columns", "repeat(auto-fill, minmax(300px, 1fr))").style("gap", "0.9rem 1.4rem");
 
@@ -4934,22 +5028,25 @@ digitalCooccurrenceData = FileAttachment("digital_cooccurrence_links.json").json
   async function exportXlsx() {
     try {
       const XLSX = await ensureXlsx();
-      const data = current();
-      const titleByCode = {}; data.nodes.forEach(nd => titleByCode[nd.code] = nd.title);
-      const pairRows = data.edges.map(e => ({ "Skill A": titleByCode[e.a] || e.a, "Skill B": titleByCode[e.b] || e.b, NPMI: e.npmi, "Co-occurring postings": e.cooc }));
-      const nodeRows = data.nodes.map((nd, i) => ({ Order: i + 1, Skill: nd.title, "ICT level": nd.level, Code: nd.code, "% of postings": nd.pct }));
-      const areaRows = [];
-      data.groups.forEach(g => ["All", "Basic", "Intermediate", "Advanced"].forEach(l => {
-        const d = g.by_level[l]; if (!d) return;
-        areaRows.push({ Area: g.glabel, "ESCO group": g.ghead, Pillar: g.pillar, Level: l, "Premium (pp)": d.premium, "Digital share %": d.dig, "Baseline share %": d.base, "Level offers": d.level_offers });
-      }));
-      const partnerRows = data.partners.map(p => ({ Level: p.level, Skill: p.title, Code: p.code, Area: p.glabel, Pillar: p.pillar, "Premium (pp)": p.premium_pp, Lift: p.lift, "In digital postings %": p.dig_pct, "Baseline %": p.base_pct, "Co-occurring postings": p.support }));
+      const pairRows = [], nodeRows = [], areaRows = [], partnerRows = [];
+      Object.keys(digitalCooccurrenceData).forEach(country => {
+        const data = digitalCooccurrenceData[country];
+        if (!data) return;
+        const titleByCode = {}; (data.nodes || []).forEach(nd => titleByCode[nd.code] = nd.title);
+        (data.edges || []).forEach(e => pairRows.push({ Country: country, "Skill A": titleByCode[e.a] || e.a, "Skill B": titleByCode[e.b] || e.b, NPMI: e.npmi, "Co-occurring postings": e.cooc }));
+        (data.nodes || []).forEach((nd, i) => nodeRows.push({ Country: country, Order: i + 1, Skill: nd.title, "ICT level": nd.level, Code: nd.code, "% of postings": nd.pct }));
+        (data.groups || []).forEach(g => ["All", "Basic", "Intermediate", "Advanced"].forEach(l => {
+          const d = g.by_level[l]; if (!d) return;
+          areaRows.push({ Country: country, Area: g.glabel, "ESCO group": g.ghead, Pillar: g.pillar, Level: l, "Premium (pp)": d.premium, "Digital share %": d.dig, "Baseline share %": d.base, "Level offers": d.level_offers });
+        }));
+        (data.partners || []).forEach(p => partnerRows.push({ Country: country, Level: p.level, Skill: p.title, Code: p.code, Area: p.glabel, Pillar: p.pillar, "Premium (pp)": p.premium_pp, Lift: p.lift, "In digital postings %": p.dig_pct, "Baseline %": p.base_pct, "Co-occurring postings": p.support }));
+      });
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(pairRows), "Digital pairings (NPMI)");
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(nodeRows), "Digital skills");
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(areaRows), "Area premium by level");
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(partnerRows), "Top partner skills");
-      XLSX.writeFile(wb, `digital_cooccurrence_${state.country.replace(/[^A-Za-z0-9]/g, "_")}.xlsx`);
+      XLSX.writeFile(wb, "digital_cooccurrence_all_countries.xlsx");
     } catch (err) {
       console.error(err);
       alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
@@ -5014,6 +5111,42 @@ engineerTechData = ({"definition":{"engineers":"ESCO occupation title contains e
   };
   selectBox("Occupation group", Object.entries(groups), state.group, v => { state.group = v; render(); });
   selectBox("Metric", Object.entries(metrics).map(([k, v]) => [k, v.label]), state.metric, v => { state.metric = v; render(); });
+
+  async function ensureXlsx() {
+    if (window.XLSX) return window.XLSX;
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      s.async = true; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return window.XLSX;
+  }
+  async function exportXlsx() {
+    try {
+      const XLSX = await ensureXlsx();
+      const wb = XLSX.utils.book_new();
+      Object.keys(groups).forEach(grp => {
+        const rows = rowsFor(grp).map(r => ({
+          Country: r.country,
+          Region: r.region,
+          "Total offers": r.total_offers,
+          "Offers": r.offers,
+          "% of all offers": +r.pct_offers.toFixed(2),
+          "Per 100k labour force": r.per100k == null ? "" : +r.per100k.toFixed(1)
+        }));
+        XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows), groups[grp]);
+      });
+      XLSX.writeFile(wb, "engineers_technicians_demand.xlsx");
+    } catch (err) {
+      console.error(err);
+      alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
+    }
+  }
+  controls.append("button").attr("type", "button")
+    .style("padding", "0.35rem 0.7rem").style("font-size", "0.84rem").style("font-weight", "700").style("cursor", "pointer")
+    .style("border", "1px solid #cbd5e1").style("border-radius", "8px").style("background", "#fff").style("color", "#475569")
+    .text("xlsx").on("click", exportXlsx);
 
   const note = wrap.append("div").attr("class", "compare-note").style("margin-bottom", "0.7rem");
   const chart = wrap.append("div");
@@ -5191,6 +5324,48 @@ semiData = ({"threshold":0.5,"window":{"start":"2025-03","end":"2026-04"},"unrel
   });
   const refreshBtns = () => btns.forEach(o => o.b.attr("style", btnStyle(state.metric === o.val) + `;border-radius:${o.radius}` + (o.first ? "" : ";border-left:none")));
 
+  // ---- xlsx export (all metrics, all countries) ----
+  async function ensureXlsx() {
+    if (window.XLSX) return window.XLSX;
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      s.async = true; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return window.XLSX;
+  }
+  async function exportXlsx() {
+    try {
+      const XLSX = await ensureXlsx();
+      const rows = codes.map(c => {
+        const d = data[c], lf = lfOf(c);
+        return {
+          Country: c,
+          Group: d.group,
+          "Total postings": d.total_offers,
+          "Semiconductor postings": d.semi_offers,
+          "Share of all postings (%)": d.pct == null ? "" : +d.pct.toFixed(3),
+          "Per 100k labour force": lf ? +((d.semi_offers / lf) * 1e5).toFixed(2) : ""
+        };
+      });
+      const notes = [
+        { Note: "Total postings counts only job postings for which a posting month could be identified within the analysis window. Postings dated to a year only (no month) or falling outside the window are excluded, so this base is narrower than the overall posting counts reported elsewhere." },
+        { Note: "Share of all postings is computed on this monthly base." }
+      ];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows), "Semiconductor demand");
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(notes), "Notes");
+      XLSX.writeFile(wb, "semiconductor_demand_by_country.xlsx");
+    } catch (err) {
+      console.error(err);
+      alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
+    }
+  }
+  bar.append("button").attr("type", "button")
+    .attr("style", "padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .text("xlsx").on("click", exportXlsx);
+
   // ---- chart ----
   const chart = wrap.append("div");
   const rowH = 28, labelW = 110, valW = 64;
@@ -5313,20 +5488,23 @@ postings. The series runs from March 2025 to April 2026.
     try {
       const XLSX = await ensureXlsx();
       const unreliable = new Set(semiData.unreliable_months || []);
-      const { total, signal } = countsFor(state.series);
       const rows = [];
-      months.forEach((mn, i) => {
-        if (unreliable.has(mn) || total[i] < MIN_POSTINGS) return;
-        rows.push({
-          Month: mn,
-          "Postings": total[i],
-          "Semiconductor postings": signal[i],
-          "Per 10,000 postings": total[i] ? +(10000 * signal[i] / total[i]).toFixed(2) : 0
+      seriesList.forEach(([name]) => {
+        const { total, signal } = countsFor(name);
+        months.forEach((mn, i) => {
+          if (unreliable.has(mn) || total[i] < MIN_POSTINGS) return;
+          rows.push({
+            Country: name,
+            Month: mn,
+            "Postings": total[i],
+            "Semiconductor postings": signal[i],
+            "Per 10,000 postings": total[i] ? +(10000 * signal[i] / total[i]).toFixed(2) : 0
+          });
         });
       });
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows), "Semiconductor trend");
-      XLSX.writeFile(wb, `semiconductor_trend_${state.series.replace(/\s+/g, "_")}.xlsx`);
+      XLSX.writeFile(wb, "semiconductor_trend_all_countries.xlsx");
     } catch (err) {
       console.error(err);
       alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
@@ -5497,6 +5675,63 @@ aiData = ({"threshold":0.5,"window":{"start":"2025-03","end":"2026-04"},"unrelia
     return { val, b, radius, first: i === 0 };
   });
   const refreshBtns = () => btns.forEach(o => o.b.attr("style", btnStyle(state.metric === o.val) + `;border-radius:${o.radius}` + (o.first ? "" : ";border-left:none")));
+
+  // ---- xlsx export (per country + per concept) ----
+  async function ensureXlsx() {
+    if (window.XLSX) return window.XLSX;
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      s.async = true; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return window.XLSX;
+  }
+  async function exportXlsx() {
+    try {
+      const XLSX = await ensureXlsx();
+      const byCountry = codes.map(c => {
+        const d = data[c], lf = lfOf(c);
+        return {
+          Country: c,
+          Group: d.group,
+          "Total postings": d.total_offers,
+          "AI postings": d.ai_offers,
+          "Share of all postings (%)": d.pct == null ? "" : +d.pct.toFixed(3),
+          "Per 100k labour force": lf ? +((d.ai_offers / lf) * 1e5).toFixed(2) : ""
+        };
+      });
+      const byConcept = [];
+      codes.forEach(c => {
+        const d = data[c];
+        skillMeta.forEach(s => {
+          const cnt = (d.perSkill || {})[s.label] || 0;
+          byConcept.push({
+            Country: c,
+            Concept: s.label,
+            Family: (cats[s.category] || {}).label || s.category,
+            Count: cnt,
+            "Share of postings (%)": d.total_offers ? +(100 * cnt / d.total_offers).toFixed(3) : ""
+          });
+        });
+      });
+      const notes = [
+        { Note: "Total postings counts only job postings for which a posting month could be identified within the analysis window. Postings dated to a year only (no month) or falling outside the window are excluded, so this base is narrower than the overall posting counts reported elsewhere." },
+        { Note: "Share of all postings is computed on this monthly base." }
+      ];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(byCountry), "AI demand by country");
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(byConcept), "AI demand by concept");
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(notes), "Notes");
+      XLSX.writeFile(wb, "ai_demand_by_country.xlsx");
+    } catch (err) {
+      console.error(err);
+      alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
+    }
+  }
+  bar.append("button").attr("type", "button")
+    .attr("style", "padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569")
+    .text("xlsx").on("click", exportXlsx);
 
   // ---- category legend (explains the dot colours) ----
   const leg = wrap.append("div").style("display", "flex").style("flex-wrap", "wrap").style("gap", "0.35rem 1rem").style("align-items", "center").style("font-size", "0.78rem").style("color", "#475569").style("margin", "0 0 1rem 0");
@@ -5677,20 +5912,23 @@ As before, we track the monthly share of postings mentioning an AI concept, per
     try {
       const XLSX = await ensureXlsx();
       const unreliable = new Set(aiData.unreliable_months || []);
-      const { total, signal } = countsFor(state.series);
       const rows = [];
-      months.forEach((mn, i) => {
-        if (unreliable.has(mn) || total[i] < MIN_POSTINGS) return;
-        rows.push({
-          Month: mn,
-          "Postings": total[i],
-          "AI postings": signal[i],
-          "Per 10,000 postings": total[i] ? +(10000 * signal[i] / total[i]).toFixed(2) : 0
+      seriesList.forEach(([name]) => {
+        const { total, signal } = countsFor(name);
+        months.forEach((mn, i) => {
+          if (unreliable.has(mn) || total[i] < MIN_POSTINGS) return;
+          rows.push({
+            Country: name,
+            Month: mn,
+            "Postings": total[i],
+            "AI postings": signal[i],
+            "Per 10,000 postings": total[i] ? +(10000 * signal[i] / total[i]).toFixed(2) : 0
+          });
         });
       });
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows), "AI trend");
-      XLSX.writeFile(wb, `ai_trend_${state.series.replace(/\s+/g, "_")}.xlsx`);
+      XLSX.writeFile(wb, "ai_trend_all_countries.xlsx");
     } catch (err) {
       console.error(err);
       alert("Could not load the XLSX exporter. Please check your internet connection and try again.");
