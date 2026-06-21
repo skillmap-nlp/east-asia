@@ -454,5 +454,43 @@
         "r": 0.4
       }
     ]
+  },
+  "CL": {
+    "full": "Chile",
+    "n": "79,613",
+    "over": [
+      {
+        "s": "B",
+        "n": "Mining",
+        "p": 0.8,
+        "r": 3.7
+      },
+      {
+        "s": "D",
+        "n": "Utilities",
+        "p": 0.9,
+        "r": 2.3
+      },
+      {
+        "s": "E",
+        "n": "Water & waste",
+        "p": 0.6,
+        "r": 2.0
+      }
+    ],
+    "under": [
+      {
+        "s": "U",
+        "n": "Households",
+        "p": 0.5,
+        "r": 0.4
+      },
+      {
+        "s": "J",
+        "n": "Publishing & broadcasting",
+        "p": 0.7,
+        "r": 0.5
+      }
+    ]
   }
 }
