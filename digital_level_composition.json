@@ -60,6 +60,9 @@
     },
     "Poland": {
       "group": "Benchmark"
+    },
+    "Chile": {
+      "group": "Benchmark"
     }
   },
   "raw": {
@@ -865,6 +868,73 @@
         "Basic": 23.6408,
         "Intermediate": 44.9397,
         "Advanced": 31.4195
+      }
+    },
+    "Chile": {
+      "2025-03": {
+        "Basic": 29.8617,
+        "Intermediate": 46.5042,
+        "Advanced": 23.6341
+      },
+      "2025-04": {
+        "Basic": 32.3573,
+        "Intermediate": 45.098,
+        "Advanced": 22.5446
+      },
+      "2025-05": {
+        "Basic": 29.1317,
+        "Intermediate": 48.3086,
+        "Advanced": 22.5597
+      },
+      "2025-06": {
+        "Basic": 29.3911,
+        "Intermediate": 47.7615,
+        "Advanced": 22.8475
+      },
+      "2025-07": {
+        "Basic": 29.73,
+        "Intermediate": 46.7831,
+        "Advanced": 23.4869
+      },
+      "2025-08": {
+        "Basic": 29.5001,
+        "Intermediate": 47.0513,
+        "Advanced": 23.4486
+      },
+      "2025-09": {
+        "Basic": 31.4144,
+        "Intermediate": 45.9204,
+        "Advanced": 22.6652
+      },
+      "2025-10": {
+        "Basic": 30.3768,
+        "Intermediate": 46.3843,
+        "Advanced": 23.2389
+      },
+      "2025-11": {
+        "Basic": 31.4635,
+        "Intermediate": 47.4301,
+        "Advanced": 21.1064
+      },
+      "2025-12": {
+        "Basic": 32.0827,
+        "Intermediate": 46.5461,
+        "Advanced": 21.3712
+      },
+      "2026-01": {
+        "Basic": null,
+        "Intermediate": null,
+        "Advanced": null
+      },
+      "2026-03": {
+        "Basic": null,
+        "Intermediate": null,
+        "Advanced": null
+      },
+      "2026-04": {
+        "Basic": null,
+        "Intermediate": null,
+        "Advanced": null
       }
     }
   }
